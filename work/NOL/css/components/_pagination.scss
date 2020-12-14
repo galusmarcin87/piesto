@@ -1,0 +1,47 @@
+.Pagination {
+  margin-top: 45px;
+  nav {
+    display: inline-block;
+  }
+  .pagination {
+    margin-bottom: 0;
+  }
+  .page-item {
+    margin: 0 5px;
+    @media (max-width: $MD) {
+      margin: 0 1px;
+    }
+    .page-link {
+      border-radius: 0;
+      color: $COLOR-3;
+      background: $PRIMARY;
+      font-weight: bold;
+      border: none;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      padding: 0;
+      &:hover,
+      &--active {
+        background: $PRIMARY_HOVER;
+      }
+      @media (max-width: $TABLET) {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+      }
+      @media (max-width: $XS) {
+        width: 24px;
+      }
+    }
+  }
+  &__arrow {
+    .page-link {
+      font-size: 1.2em;
+      background: $SECONDARY !important;
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}

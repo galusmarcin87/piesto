@@ -1,0 +1,92 @@
+.Accordion {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr;
+  grid-column-gap: 20px;
+
+  @media (max-width: $TABLET) {
+    display: block;
+  }
+
+  &__text {
+    background: $BLACK;
+    padding: 20px;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 30px;
+    z-index: 0;
+    position: relative;
+
+    @media (max-width: $MD) {
+      display: none;
+    }
+
+    @media (max-width: 1350px) {
+      line-height: 24px;
+    }
+  }
+
+  &__button {
+    margin-top: 20px !important;
+  }
+
+  &__card {
+    background: $BLACK;
+    position: relative;
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &__header {
+      padding: 10px 30px;
+      border: 1px solid #585858;
+      color: #ffffff;
+      display: block;
+      min-height: 80px;
+      font-size: 20px;
+      line-height: 30px;
+      display: grid;
+      align-items: center;
+
+      @media (max-width: 1350px) {
+        min-height: 60px;
+        font-size: 16px;
+      }
+
+      &:not(.collapsed) {
+        background-color: $PRIMARY;
+        border-color: $PRIMARY;
+
+        &::after {
+          content: '';
+          position: absolute;
+          background-color: $PRIMARY;
+          top: 0;
+          bottom: 0;
+          right: -100px;
+          left: 0;
+          z-index: -1;
+
+          @media (max-width: $TABLET) {
+            display: none;
+          }
+        }
+
+        + {
+          .collapse {
+            @media (max-width: $MD) {
+              display: block !important;
+            }
+          }
+        }
+      }
+    }
+
+    &__body {
+      color: #ffffff;
+      padding: 10px;
+      background: $BLACK;
+    }
+  }
+}

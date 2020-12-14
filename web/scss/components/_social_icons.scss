@@ -1,0 +1,15 @@
+.Social-icons {
+  display: inline-flex;
+  vertical-align: middle;
+
+  &__icon {
+    width: 40px;
+    text-align: left;
+    cursor: pointer;
+
+    .fa {
+      color: $COLOR_1;
+      font-size: 14px;
+    }
+  }
+}

@@ -1,0 +1,331 @@
+.Slider {
+  position: relative;
+  overflow: hidden;
+
+  &__item {
+    background-size: cover;
+    background-position: center;
+    min-height: calc(100vh - 220px);
+    display: grid;
+    padding: 200px 0;
+
+    .btn {
+      text-transform: none;
+    }
+
+    @media (max-width: $TABLET) {
+      min-height: calc(100vh - 198px);
+      padding: 130px 0;
+    }
+
+    @media (max-width: $SM) {
+      display: block;
+    }
+
+    > .container {
+      display: grid;
+    }
+  }
+
+  &__description {
+    color: $COLOR_1;
+    position: relative;
+    font-size: 16px;
+
+    &__header {
+      font-size: 50px;
+      line-height: 65px;
+      color: $COLOR_3;
+      font-weight: 600;
+      line-height: 1.2;
+      align-self: center;
+      margin-bottom: 20px;
+      color: $PRIMARY;
+      -webkit-text-stroke: 2px white;
+      -webkit-text-fill-color: $PRIMARY;
+      font-weight: 800;
+
+      > div {
+        font-size: 70px;
+        -webkit-text-stroke: 3px white;
+        -webkit-text-fill-color: $BLACK;
+        line-height: 72px;
+      }
+
+      @media (max-width: $TABLET) {
+        font-size: 1.8em;
+
+        > div {
+          font-size: 60px;
+        }
+      }
+      @media (max-width: $SM) {
+        font-size: 1.6em;
+        -webkit-text-stroke: 1px white;
+
+        > div {
+          font-size: 48px;
+        }
+      }
+    }
+
+    &__content {
+      font-size: 14px;
+      line-height: 24px;
+      max-width: 465px;
+    }
+
+    @media (max-width: $SM) {
+      padding-left: 20px;
+      padding-right: 20px;
+      max-width: 100%;
+    }
+
+    .btn {
+      margin-top: 20px;
+    }
+  }
+
+  .owl-dots {
+    margin-top: 85px;
+    height: 50px;
+
+    @media (max-width: $TABLET) {
+      margin-top: 40px;
+    }
+
+    .owl-dot {
+      width: 30px;
+      height: 30px;
+      border-radius: 15px;
+      background-color: rgba(255, 255, 255, 0);
+      border: 1px solid #aaabac;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 15px;
+      text-align: center;
+      line-height: 30px;
+      font-size: 14px;
+      color: $BLACK;
+      font-weight: 500;
+      font-style: italic;
+      position: relative;
+
+      &::after {
+        content: '';
+        height: 1px;
+        background-color: #aaabac;
+        width: 20px;
+        position: absolute;
+        top: 50%;
+        left: 100%;
+      }
+
+      &:last-child {
+        &::after {
+          display: none;
+        }
+      }
+
+      &.active {
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        background-color: rgba(5, 0, 9, 0.3);
+        line-height: 50px;
+        font-size: 30px;
+        color: #ffffff;
+        font-weight: 300;
+        font-style: italic;
+      }
+    }
+  }
+
+  @include owlArrows();
+
+  @media (max-width: $SM) {
+    @include owlArrows($offset: 0);
+  }
+}
+
+#projects-nav {
+  @media (max-width: $TABLET) {
+    margin-bottom: 20px;
+  }
+}
+
+.Custom-nav {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 20px;
+  font-size: 20px;
+  align-self: end;
+  width: 100%;
+
+  button {
+    border: 1px solid $PRIMARY;
+    background-color: transparent;
+    color: #fff;
+    border-radius: 25px;
+    height: 50px;
+    outline: none !important;
+  }
+
+  &--color-black {
+    button {
+      color: $BLACK;
+    }
+  }
+
+  &--bg-black {
+    button {
+      background-color: $BLACK;
+      color: #ffffff;
+    }
+  }
+
+  &--vertical {
+    width: 50px;
+    grid-template-columns: auto;
+    grid-row-gap: 10px;
+    margin: 0 !important;
+    justify-self: right;
+
+    button {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+
+    @media (max-width: $TABLET) {
+      grid-template-columns: auto auto;
+      width: auto;
+      margin-bottom: 20px !important;
+    }
+  }
+}
+
+.Image-slider {
+  margin-top: 50px;
+  margin-bottom: 30px;
+  position: relative;
+
+  &::before {
+    content: '';
+    width: 50%;
+    display: block;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: -moz-linear-gradient(
+      left,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 17%
+    );
+    background: -webkit-linear-gradient(
+      left,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 17%
+    );
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 0) 17%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=1 );
+  }
+
+  &::after {
+    content: '';
+    width: 50%;
+    display: block;
+    position: absolute;
+    z-index: 9;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background: -moz-linear-gradient(
+      left,
+      rgba(255, 255, 255, 0) 81%,
+      rgba(255, 255, 255, 1) 99%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+      left,
+      rgba(255, 255, 255, 0) 81%,
+      rgba(255, 255, 255, 1) 99%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 81%,
+      rgba(255, 255, 255, 1) 99%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 );
+  }
+
+  &__card {
+    position: relative;
+    display: block;
+
+    &:hover {
+      &::before {
+        color: #ffffff;
+        font-size: 40px;
+        content: '\f002';
+        font-family: 'FontAwesome';
+        position: absolute;
+        pointer-events: none;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: grid;
+        align-items: center;
+        justify-items: center;
+      }
+    }
+  }
+
+  &__image {
+    width: 450px !important;
+    height: 250px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+}
+
+.Single-image-slider {
+  &:before,
+  &:after {
+    display: none;
+  }
+
+  .Image-slider__card {
+    width: 100%;
+
+    &:before {
+      align-items: end !important;
+      justify-items: right !important;
+      padding: 10px 20px;
+    }
+  }
+
+  .Image-slider__image {
+    width: 100% !important;
+    height: 460px !important;
+  }
+
+  &__nav {
+    margin-top: 35px !important;
+    margin-bottom: 35px !important;
+  }
+}

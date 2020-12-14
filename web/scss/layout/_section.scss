@@ -1,0 +1,316 @@
+.Section {
+  padding: 100px 0;
+
+  &--big-padding-top {
+    padding-top: 200px;
+
+    @media (max-width: $LG) {
+      padding-top: 150px;
+    }
+  }
+
+  &:nth-child(even) {
+    background-color: $COLOR_4;
+  }
+
+  p {
+    margin-bottom: 25px;
+    line-height: 26px;
+  }
+
+  strong {
+    color: $SECONDARY;
+  }
+
+  &--transparent {
+    background-color: transparent !important;
+  }
+
+  &--bg-fixed {
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: left 2vw bottom 2vh;
+    background-size: 640px;
+  }
+
+  &--bg-fixed-two {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url(../img/bg_01.jpg);
+      background-color: rgba(238, 238, 238, 1);
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: top right -75vh;
+      opacity: 0.2;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 0;
+      pointer-events: none;
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#eeeeee+50,eeeeee+100&1+70,0.25+100 */
+      background: -moz-linear-gradient(
+        left,
+        rgba(238, 238, 238, 1) 50%,
+        rgba(238, 238, 238, 1) 70%,
+        rgba(238, 238, 238, 0.25) 100%
+      ); /* FF3.6-15 */
+      background: -webkit-linear-gradient(
+        left,
+        rgba(238, 238, 238, 1) 50%,
+        rgba(238, 238, 238, 1) 70%,
+        rgba(238, 238, 238, 0.25) 100%
+      ); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(
+        to right,
+        rgba(238, 238, 238, 1) 50%,
+        rgba(238, 238, 238, 1) 70%,
+        rgba(238, 238, 238, 0.25) 100%
+      ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#40eeeeee',GradientType=1 ); /* IE6-9 */
+    }
+
+    * {
+      z-index: 1;
+      position: relative;
+    }
+  }
+
+  &--light-bg {
+    margin-bottom: 25px;
+    position: relative;
+
+    &:before {
+      content: '';
+      background: rgb(255, 255, 255);
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(255, 255, 255, 0) 55%
+      );
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+      pointer-events: none;
+
+      @media screen and (max-width: $LG) {
+        display: none;
+      }
+    }
+
+    * {
+      color: $PRIMARY !important;
+    }
+  }
+
+  &-heading {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    background: $SECONDARY !important;
+    min-height: 105px;
+
+    h2 {
+      font-size: 2em;
+      margin: 0;
+    }
+  }
+
+  &__header-icon {
+    display: grid;
+    grid-template-columns: 80px auto;
+    grid-column-gap: 20px;
+    align-items: center;
+  }
+
+  &__heading {
+    h2 {
+      font-size: 4em;
+    }
+  }
+
+  &__image {
+    max-width: 100%;
+
+    @media screen and (max-width: $MD) {
+      margin-top: 20px;
+      margin-left: 0 !important;
+    }
+  }
+
+  #gradient-horizontal {
+    --color-stop-1: #050009;
+    --color-stop-2: #050009;
+    --color-stop-3: #e53331;
+  }
+
+  #gradient-horizontal-two {
+    --color-stop-1: #681615;
+    --color-stop-2: #e53331;
+    --color-stop-3: #e53331;
+  }
+
+  &__icon {
+    fill: url(#gradient-horizontal) #e53331;
+  }
+
+  &__icon-two {
+    fill: url(#gradient-horizontal-two) #e53331;
+    max-width: 80px;
+    height: auto;
+
+    &--space {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__fit-image {
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: inline-block;
+    height: 100%;
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    max-width: 95%;
+    object-position: right;
+
+    &--center {
+      object-position: center;
+    }
+
+    @media screen and (max-width: $TABLET) {
+      padding-top: 25px;
+    }
+  }
+
+  &__text {
+    max-width: 445px;
+
+    @media screen and (max-width: $TABLET) {
+      max-width: 100%;
+    }
+  }
+
+  &--dark {
+    color: $COLOR_3;
+    background-color: $PRIMARY_DARKEN !important;
+
+    * {
+      color: $COLOR_4;
+    }
+  }
+
+  &--white {
+    color: $COLOR_3;
+  }
+
+  &--fixed-bg {
+    background-attachment: fixed;
+    background-position: right center;
+    background-size: cover;
+    color: $COLOR_3;
+
+    h2 {
+      color: $COLOR_3;
+    }
+
+    p {
+      color: $COLOR_3;
+    }
+
+    h6 {
+      font-size: 17px;
+      line-height: 1.5;
+      color: $COLOR_2;
+      font-weight: normal;
+    }
+
+    .btn {
+      margin-top: 20px;
+    }
+  }
+
+  &--secondary {
+    background: $SECONDARY;
+    color: $COLOR-3;
+  }
+
+  &--white {
+    background: $COLOR-3 !important;
+    background-image: none !important;
+  }
+
+  &--grey {
+    background-image: url($PATTERN_1) !important;
+  }
+}
+
+.Section--fixed-bg ~ section {
+  &:nth-child(odd) {
+    background: $COLOR_3;
+  }
+}
+
+.Image--spacing {
+  display: block;
+  margin-top: 25px;
+  margin-bottom: 35px;
+}
+
+.Image--rounded {
+  border-radius: 50%;
+  filter: drop-shadow(0px 10px 10px rgba(5, 0, 9, 0.3));
+}
+
+.Header--big {
+  font-size: 50px;
+  line-height: 60px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.Header-icon {
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: 3px;
+
+  &__icon {
+    transform: rotate(45deg);
+    width: 30px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+  }
+
+  &--small {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+}
+
+.Custom-nav {
+  max-width: 450px;
+  margin: 0 auto;
+  font-size: 28px;
+}

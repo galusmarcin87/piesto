@@ -1,0 +1,242 @@
+.List-custom {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+
+  &__item {
+    display: inline-block;
+    padding: 0 5px;
+    margin-right: 10px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  &__icon {
+    fill: $COLOR_2;
+    max-width: 13px;
+    height: auto;
+    margin-right: 3px;
+  }
+}
+
+.List-custom__two {
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 25px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 0.4fr 0.6fr;
+    position: relative;
+    color: #ffffff;
+    font-size: 16px;
+    min-height: 50px;
+    align-items: center;
+    padding: 0 20px;
+
+    @media (max-width: $XS) {
+      font-size: 14px;
+    }
+
+    &:first-child {
+      padding-left: 0;
+      padding-right: 0;
+      font-size: 20px;
+      margin-bottom: 20px;
+      min-height: unset;
+
+      @media (max-width: $XS) {
+        align-items: top;
+        font-size: 18px;
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: #484848;
+    }
+
+    span:last-child {
+      text-align: right;
+    }
+
+    strong {
+      font-weight: 700;
+      color: #ffffff;
+      span {
+        color: $PRIMARY;
+      }
+    }
+  }
+}
+
+.List-custm__checklist {
+  --size: 40px;
+  padding-left: 15px;
+  padding-top: 30px;
+  &__item {
+    position: relative;
+    list-style-type: none;
+    padding-left: 65px;
+    padding-top: 5px;
+    font-size: 16px;
+    color: $COLOR_5;
+    margin-bottom: 20px;
+
+    strong {
+      color: $SECONDARY;
+      font-weight: bold;
+    }
+
+    &:before {
+      content: '';
+      width: var(--size);
+      height: var(--size);
+      background: $COLOR_3;
+      border-radius: $RADIUS;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-top: 2px solid $COLOR_15;
+      box-shadow: 0 0 7px 3px #00000012;
+    }
+
+    &:after {
+      content: '\2713';
+      width: var(--size);
+      height: var(--size);
+      color: $PRIMARY;
+      position: absolute;
+      font-size: 30px;
+      left: 0%;
+      font-weight: bold;
+      top: 0%;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+.List-grid {
+  --size: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 30px;
+  margin-top: 30px;
+
+  @media (max-width: $TABLET) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: $SM) {
+    grid-template-columns: 1fr;
+  }
+
+  &--numbers {
+    counter-reset: section;
+
+    .List-grid__item {
+      &:before {
+        background: $SECONDARY !important;
+      }
+
+      &:after {
+        counter-increment: section;
+        content: counter(section);
+        font-size: 20px;
+        font-weight: 500;
+      }
+
+      &__header {
+        color: $PRIMARY !important;
+      }
+    }
+  }
+
+  &__item {
+    padding-left: 65px;
+    position: relative;
+
+    &:before {
+      content: '';
+      width: var(--size);
+      height: var(--size);
+      background: $SECONDARY;
+      border-radius: $RADIUS;
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-radius: 50%;
+    }
+
+    &:after {
+      content: '\2713';
+      width: var(--size);
+      height: var(--size);
+      color: $COLOR_3;
+      position: absolute;
+      font-size: 24px;
+      left: 0%;
+      font-weight: bold;
+      top: 0%;
+      display: grid;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__header {
+      font-size: 20px;
+    }
+
+    &__content {
+      font-size: 12px;
+    }
+
+    &:nth-child(odd) {
+      &:before {
+        background: $PRIMARY;
+      }
+
+      .List-grid__item__header {
+        color: $SECONDARY;
+      }
+    }
+  }
+}
+
+.List-grid-nth {
+  &__item {
+    display: grid;
+    grid-template-columns: 90px auto;
+    grid-column-gap: 30px;
+    margin-bottom: 50px;
+
+    @media (max-width: $SM) {
+      grid-template-columns: 1fr !important;
+      grid-row-gap: 10px;
+    }
+
+    @media (min-width: $SM) {
+      &:nth-child(even) {
+        grid-template-columns: auto 90px;
+        text-align: right;
+
+        > div {
+          &:first-child {
+            order: 1;
+          }
+
+          &:last-child {
+            order: 0;
+          }
+        }
+      }
+    }
+  }
+}

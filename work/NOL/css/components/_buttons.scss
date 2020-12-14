@@ -1,0 +1,250 @@
+.btn {
+  border: none;
+  border-radius: $RADIUS;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 9px 25px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 15px;
+  text-align: center;
+  line-height: 30px;
+  white-space: nowrap;
+
+  &--lowercase {
+    text-transform: initial;
+  }
+
+  &--medium {
+    min-width: 280px;
+  }
+
+  &--line-top {
+    border-top: 1px solid $SECONDARY_DARKEN_2 !important;
+    border-bottom: 1px solid $SECONDARY !important;
+  }
+}
+
+.btn-fb {
+  background: $FB;
+  color: $COLOR-3;
+
+  &:hover,
+  &:active,
+  &:focus {
+    color: $COLOR-3;
+    opacity: 0.9;
+  }
+}
+
+.btn-primary {
+  background: $PRIMARY;
+  border-radius: $RADIUS;
+  filter: drop-shadow(0px 10px 10px rgba(181, 29, 28, 0.3));
+  border-bottom: 2px solid #b82927;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $PRIMARY !important;
+    opacity: 0.9;
+    border-bottom: 2px solid #b82927;
+  }
+
+  &--reverse {
+    background-color: #ffffff;
+    color: $BLACK;
+    border: 1px solid $PRIMARY;
+
+    &:hover {
+      background: $PRIMARY;
+      color: #ffffff;
+      filter: drop-shadow(0px 10px 10px rgba(181, 29, 28, 0.3));
+      opacity: 1;
+    }
+  }
+}
+
+.btn-success {
+  background: $SECONDARY;
+  border: 1px solid $SECONDARY;
+  text-shadow: $TEXT_SHADOW;
+  box-shadow: 0 5px 12px 0px #0000000d;
+  border-bottom: 2px solid $SECONDARY_DARKEN_2;
+
+  &:hover,
+  &:active,
+  &:focus {
+    background: $SECONDARY !important;
+    opacity: 0.9;
+    border-color: $SECONDARY;
+  }
+
+  &--outline {
+    text-transform: none;
+    background: transparent;
+    border-bottom: 1px solid $SECONDARY;
+  }
+
+  &--reverse-colors {
+    color: $SECONDARY;
+    box-shadow: none;
+    border-bottom: 1px solid $SECONDARY;
+  }
+
+  &--line-bottom {
+    border-bottom: 2px solid $SECONDARY_DARKEN_2;
+  }
+}
+
+.btn-big {
+  padding: 25px 55px;
+}
+
+.btn__rounded {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #ffffff;
+  border: 1px solid #aaabac;
+  text-align: center;
+  line-height: 50%;
+  font-size: 15px;
+  line-height: 50px;
+  color: $BLACK;
+  font-weight: 500;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    .Menu-top__dropdown {
+      display: block;
+    }
+  }
+}
+
+.btn-small {
+  font-size: 13px !important;
+}
+
+.buttons-list {
+  display: grid;
+  justify-items: right;
+
+  .btn {
+    display: block;
+    margin-bottom: 30px;
+    text-align: left;
+    width: 330px;
+
+    &:hover {
+      background-color: #ffffff;
+      color: $BLACK;
+    }
+  }
+
+  &__icon {
+    width: 30px;
+    height: 30px;
+    filter: drop-shadow(0px 10px 10px rgba(5, 0, 9, 0.4));
+    margin-right: 20px;
+  }
+
+  &--reverse {
+    .btn {
+      background-color: transparent;
+      color: #ffffff;
+
+      &:hover {
+        background-color: $PRIMARY;
+        color: #ffffff;
+        svg {
+          fill: #ffffff;
+        }
+      }
+    }
+  }
+
+  &--two {
+    display: flex;
+    margin-top: 15px;
+
+    @media (max-width: $LG) {
+      display: block;
+    }
+
+    .btn {
+      background-color: transparent;
+
+      + .btn {
+        margin-left: 30px;
+
+        @media (max-width: $LG) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.btn-default {
+  background-color: #ffffff;
+  border: 1px solid #aaabac;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+button {
+  outline: none !important;
+}
+
+.btn-gray {
+  border-radius: 25px;
+  filter: drop-shadow(0px 5px 5px rgba(5, 0, 9, 0.15));
+  background-color: #eeeeee;
+  border-bottom: 2px solid #bebebe;
+  font-size: 14px;
+
+  &:hover {
+    background-color: $BLACK;
+    border-color: $BLACK;
+    color: #ffffff;
+  }
+
+  &--darken {
+    filter: drop-shadow(0px 10px 10px rgba(96, 125, 139, 0.3));
+    background-color: #ced7db;
+    font-size: 13px;
+    font-weight: 500;
+  }
+}
+
+.btn-black {
+  background-color: $BLACK;
+  border-color: $BLACK;
+  color: #ffffff;
+
+  &:hover {
+    color: #ffffff;
+  }
+}
+
+.btn-full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-blue {
+  border-radius: 25px;
+  filter: drop-shadow(0px 10px 10px rgba(57, 73, 171, 0.3));
+  background-color: #3e50b4;
+  font-size: 13px;
+  line-height: 20px;
+  color: #ffffff !important;
+  font-weight: 500;
+  min-height: 50px;
+}
