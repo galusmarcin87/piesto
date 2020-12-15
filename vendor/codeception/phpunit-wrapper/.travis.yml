@@ -4,11 +4,12 @@ env:
   CODECEPTION_VERSION: '3.0.x-dev'
 
 php:
-  - 5.6
-  - 7.0
+  - 7.1
+  - 7.2
+  - 7.3
 
 before_script:
-  - wget https://robo.li/robo.phar
+  - wget https://github.com/consolidation/Robo/releases/download/1.4.12/robo.phar
   - php robo.phar prepare
   - composer update
 

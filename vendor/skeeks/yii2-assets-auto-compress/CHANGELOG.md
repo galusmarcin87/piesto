@@ -1,6 +1,21 @@
 CHANGELOG
 ==============
 
+1.4.3.2
+-----------------
+ * Fixed option noIncludeJsFilesOnPjax = true
+ * Add option noIncludeCssFilesOnPjax = true — Do not connect the css files when all pjax requests when enabled cssFileCompile
+
+1.4.3.1
+-----------------
+ * Fixed: https://github.com/skeeks-semenov/yii2-assets-auto-compress/pull/60
+ * Fixed: https://github.com/skeeks-semenov/yii2-assets-auto-compress/issues/59
+ 
+1.4.3
+-----------------
+ * New option cssFileCompileByGroups — Enables the compilation of files in groups rather than in a single file. Works only when the $cssFileCompile option is enabled
+ * New option jsFileCompileByGroups — Enables the compilation of files in groups rather than in a single file. Works only when the $jsFileCompile option is enabled
+ 
 1.4.2
 -----------------
  * Fixed: https://github.com/skeeks-semenov/yii2-assets-auto-compress/issues/51

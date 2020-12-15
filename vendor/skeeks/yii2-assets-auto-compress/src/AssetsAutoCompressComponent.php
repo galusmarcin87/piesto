@@ -8,7 +8,6 @@
 
 namespace skeeks\yii2\assetsAuto;
 
-use skeeks\yii2\assetsAuto\vendor\HtmlCompressor;
 use yii\base\BootstrapInterface;
 use yii\base\Component;
 use yii\base\Event;
@@ -74,6 +73,12 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
     public $cssFileCompile = true;
 
     /**
+     * Enables the compilation of files in groups rather than in a single file. Works only when the $cssFileCompile option is enabled
+     * @var bool
+     */
+    public $cssFileCompileByGroups = false;
+
+    /**
      * Trying to get css files to which the specified path as the remote file, skchat him to her.
      * @var bool
      */
@@ -105,6 +110,12 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
     public $jsFileCompile = true;
 
     /**
+     * Enables the compilation of files in groups rather than in a single file. Works only when the $jsFileCompile option is enabled
+     * @var bool
+     */
+    public $jsFileCompileByGroups = false;
+
+    /**
      * @var array
      */
     public $jsOptions = [];
@@ -128,10 +139,16 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
     public $jsFileCompressFlaggedComments = true;
 
     /**
-     * Do not connect the js files when all pjax requests.
+     * Do not connect the js files when all pjax requests when enabled jsFileCompile
      * @var bool
      */
     public $noIncludeJsFilesOnPjax = true;
+
+    /**
+     * Do not connect the css files when all pjax requests when enabled cssFileCompile
+     * @var bool
+     */
+    public $noIncludeCssFilesOnPjax = true;
     /**
      * @var bool|array|string|IFormatter
      */
@@ -209,8 +226,15 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
                 }
 
                 //TODO:: Think about it
-                if ($this->enabled && $app->request->isPjax && $this->noIncludeJsFilesOnPjax) {
-                    \Yii::$app->view->jsFiles = null;
+                if ($this->enabled && $app->request->isPjax) {
+
+                    if ($this->noIncludeJsFilesOnPjax && $this->jsFileCompile) {
+                        \Yii::$app->view->jsFiles = null;
+                    }
+
+                    if ($this->noIncludeCssFilesOnPjax && $this->cssFileCompile) {
+                        \Yii::$app->view->cssFiles = null;
+                    }
                 }
             });
 
@@ -218,14 +242,10 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
             $app->response->on(\yii\web\Response::EVENT_BEFORE_SEND, function (\yii\base\Event $event) use ($app) {
                 $response = $event->sender;
 
-                if ($this->enabled && ($this->htmlFormatter instanceof IFormatter)  && $response->format == \yii\web\Response::FORMAT_HTML && !$app->request->isAjax && !$app->request->isPjax) {
+                if ($this->enabled && ($this->htmlFormatter instanceof IFormatter) && $response->format == \yii\web\Response::FORMAT_HTML && !$app->request->isAjax && !$app->request->isPjax) {
                     if (!empty($response->data)) {
                         $response->data = $this->_processingHtml($response->data);
                     }
-
-                    /*if (!empty($response->content)) {
-                        $response->content = $this->_processingHtml($response->content);
-                    }*/
                 }
             });
         }
@@ -236,15 +256,21 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
     protected function _processing(View $view)
     {
         //Компиляция файлов js в один.
+        //echo "<pre><code>" . print_r($view->jsFiles, true);die;
         if ($view->jsFiles && $this->jsFileCompile) {
             \Yii::beginProfile('Compress js files');
             foreach ($view->jsFiles as $pos => $files) {
                 if ($files) {
-                    $view->jsFiles[$pos] = $this->_processingJsFiles($files);
+                    if ($this->jsFileCompileByGroups) {
+                        $view->jsFiles[$pos] = $this->_processAndGroupJsFiles($files);
+                    } else {
+                        $view->jsFiles[$pos] = $this->_processingJsFiles($files);
+                    }
                 }
             }
             \Yii::endProfile('Compress js files');
         }
+        //echo "<pre><code>" . print_r($view->jsFiles, true);die;
 
         //Compiling js code that is found in the html code of the page.
         if ($view->js && $this->jsCompress) {
@@ -261,8 +287,11 @@ class AssetsAutoCompressComponent extends Component implements BootstrapInterfac
         //Compiling css files
         if ($view->cssFiles && $this->cssFileCompile) {
             \Yii::beginProfile('Compress css files');
-
-            $view->cssFiles = $this->_processingCssFiles($view->cssFiles);
+            if ($this->cssFileCompileByGroups) {
+                $view->cssFiles = $this->_processAndGroupCssFiles($view->cssFiles);
+            } else {
+                $view->cssFiles = $this->_processingCssFiles($view->cssFiles);
+            }
             \Yii::endProfile('Compress css files');
         }
 
@@ -313,6 +342,55 @@ JS
             \Yii::endProfile('Moving css files bottom');
         }
     }
+
+    /**
+     * @param array $files
+     */
+    protected function _processAndGroupJsFiles($files = [])
+    {
+        if (!$files) {
+            return [];
+        }
+
+        $result = [];
+        $groupedFiles = $this->_getGroupedFiles($files);
+        foreach ($groupedFiles as $files) {
+            $resultGroup = $this->_processingJsFiles($files);
+            $result = ArrayHelper::merge($result, $resultGroup);
+        }
+
+        return $result;
+        echo "<pre><code>".print_r($result, true);
+        die;
+
+    }
+
+    public function _getGroupedFiles($files)
+    {
+        $result = [];
+
+        $lastKey = null;
+        $tmpData = [];
+        $counter = 0;
+        foreach ($files as $fileCode => $fileTag) {
+            list($one, $two, $key) = explode("/", $fileCode);
+
+            $counter++;
+
+            if ($key != $lastKey && $counter > 1) {
+                $result[] = $tmpData;
+                $tmpData = [];
+                $tmpData[$fileCode] = $fileTag;
+            } else {
+                $tmpData[$fileCode] = $fileTag;
+            }
+
+            $lastKey = $key;
+        }
+
+        return $result;
+    }
+
     /**
      * @param array $files
      * @return array
@@ -392,7 +470,7 @@ JS
             $useFunction = function_exists('curl_init') ? 'curl extension' : 'php file_get_contents';
             $filesString = implode(', ', array_keys($files));
 
-            \Yii::info("Create js file: {$publicUrl} from files: {$filesString} to use {$useFunction} on page '{$page}'", static::className());
+            \Yii::info("Create js file: {$publicUrl} from files: {$filesString} to use {$useFunction} on page '{$page}'", static::class);
 
             $file = fopen($rootUrl, "w");
             fwrite($file, $content);
@@ -435,7 +513,7 @@ JS
             throw new \Exception("Unable to open file: '{$filePath}'");
         }
         $filesSize = filesize($filePath);
-        if($filesSize){
+        if ($filesSize) {
             return fread($file, $filesSize);
         }
         fclose($file);
@@ -481,6 +559,27 @@ JS
 
         return $result;
     }
+
+    /**
+     * @param array $files
+     */
+    protected function _processAndGroupCssFiles($files = [])
+    {
+        if (!$files) {
+            return [];
+        }
+
+        $result = [];
+        $groupedFiles = $this->_getGroupedFiles($files);
+        foreach ($groupedFiles as $files) {
+            $resultGroup = $this->_processingCssFiles($files);
+            $result = ArrayHelper::merge($result, $resultGroup);
+        }
+
+        return $result;
+
+    }
+
     /**
      * @param array $files
      * @return array
@@ -572,7 +671,7 @@ JS
             $useFunction = function_exists('curl_init') ? 'curl extension' : 'php file_get_contents';
             $filesString = implode(', ', array_keys($files));
 
-            \Yii::info("Create css file: {$publicUrl} from files: {$filesString} to use {$useFunction} on page '{$page}'", static::className());
+            \Yii::info("Create css file: {$publicUrl} from files: {$filesString} to use {$useFunction} on page '{$page}'", static::class);
 
 
             $file = fopen($rootUrl, "w");
@@ -603,7 +702,7 @@ JS
             }, $value);
         }
 
-        $css = implode($newCss, "\n");
+        $css = implode("\n", $newCss);
         $css = \CssMin::minify($css);
         return [md5($css) => "<style>".$css."</style>"];
     }
@@ -616,9 +715,9 @@ JS
     {
         if ($this->htmlFormatter instanceof IFormatter) {
             $r = new \ReflectionClass($this->htmlFormatter);
-            \Yii::beginProfile('Format html: ' . $r->getName());
-                $result = $this->htmlFormatter->format($html);
-            \Yii::endProfile('Format html: ' . $r->getName());
+            \Yii::beginProfile('Format html: '.$r->getName());
+            $result = $this->htmlFormatter->format($html);
+            \Yii::endProfile('Format html: '.$r->getName());
             return $result;
         }
 
@@ -629,9 +728,9 @@ JS
 
 
     /**
-     * @deprecated >= 1.4
      * @param $value
      * @return $this
+     * @deprecated >= 1.4
      */
     public function setHtmlCompress($value)
     {
@@ -639,20 +738,20 @@ JS
     }
 
     /**
-     * @deprecated >= 1.4
      * @param $value
      * @return $this
+     * @deprecated >= 1.4
      */
     public function getHtmlCompress()
     {
         return $this;
     }
     /**
-     * @deprecated >= 1.4
      * @param $value array options for compressing output result
      *   * extra - use more compact algorithm
      *   * no-comments - cut all the html comments
      * @return $this
+     * @deprecated >= 1.4
      */
     public function setHtmlCompressOptions($value)
     {
@@ -660,9 +759,9 @@ JS
     }
 
     /**
-     * @deprecated >= 1.4
      * @param $value
      * @return $this
+     * @deprecated >= 1.4
      */
     public function getHtmlCompressOptions()
     {
