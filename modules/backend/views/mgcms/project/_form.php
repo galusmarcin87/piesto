@@ -38,10 +38,10 @@ use app\components\mgcms\MgHelpers;
 
         <?= $form->field6md($model, 'name')->textInput(['maxlength' => true]) ?>
 
-        <div class="hidden">
-            <?= $form->field6md($model, 'status')->dropDownList(\app\models\mgcms\db\Project::STATUSES) ?>
 
-        </div>
+        <?= $form->field6md($model, 'status')->dropDownList(\app\models\mgcms\db\Project::STATUSES) ?>
+
+
         <?= $form->field12md($model, 'localization')->textInput(['maxlength' => true, 'placeholder' => 'Localization']) ?>
 
         <?= $form->field6md($model, 'gps_lat')->textInput(['maxlength' => true, 'placeholder' => 'Gps Lat']) ?>
@@ -55,17 +55,17 @@ use app\components\mgcms\MgHelpers;
 
         <?= $form->field12md($model, 'text2')->tinyMce() ?>
 
+
+
+
+        <?= $form->field6md($model, 'file_id')->widget(\kartik\widgets\Select2::classname(), [
+            'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\File::find()->orderBy('id')->asArray()->all(), 'id', 'origin_name'),
+            'options' => ['placeholder' => Yii::t('app', 'Choose File')],
+            'pluginOptions' => [
+                'allowClear' => true
+            ],
+        ]); ?>
         <div class="hidden">
-
-
-            <?= $form->field6md($model, 'file_id')->widget(\kartik\widgets\Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\File::find()->orderBy('id')->asArray()->all(), 'id', 'origin_name'),
-                'options' => ['placeholder' => Yii::t('app', 'Choose File')],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]); ?>
-
             <?= $form->field6md($model, 'flag_id')->widget(\kartik\widgets\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\File::find()->orderBy('id')->asArray()->all(), 'id', 'origin_name'),
                 'options' => ['placeholder' => Yii::t('app', 'Wybierz flagę')],

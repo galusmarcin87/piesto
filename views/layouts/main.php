@@ -21,9 +21,13 @@ FrontAsset::register($this);
         <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link
-            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700,700i&display=swap"
-            rel="stylesheet"
-            />
+                href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap"
+                rel="stylesheet"
+        />
+        <link
+                href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
+                rel="stylesheet"
+        />
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">

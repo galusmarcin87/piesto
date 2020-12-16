@@ -30,35 +30,29 @@ $showLink = isset($showLink) ? $showLink : true;
 
 ?>
 
-<section class="Section Projects animatedParent">
+<section
+        class="Section Projects animatedParent"
+        style="padding-bottom: 75px"
+>
     <div class="container fadeIn animated">
-        <div class="row">
-            <div class="col-sm-4">
-                <h4 class="Projects__header"><?= Yii::t('db', $header); ?></h4>
-            </div>
-            <div class="col-sm-8 text-right">
-                <?if($showLink):?>
-                <div class="Projects__filter">
-                    <a
-                            href="<?= \yii\helpers\Url::to(['project/index']) ?>"
-                            class="btn btn-success btn-success--outline btn-success--reverse-colors"
-                    ><?= Yii::t('db', 'SEE ALL'); ?></a
-                    >
-                </div>
-                <?endif;?>
-            </div>
-        </div>
-    </div>
 
-    <div class="Carousel">
+        <div class="Projects__header__wrapper">
+            <h4 class="Projects__header text-center"><?= Yii::t('db', $header); ?></h4>
+            <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="btn btn--transparent btn--medium">
+                <?= Yii::t('db', 'SEE ALL'); ?>
+            </a>
+        </div>
+
+
         <?php
 
         $provider = $projectSearch->search([], Project::STATUS_ACTIVE);
         $provider->pagination = false;
+        $provider->query->limit(3);
         echo ListView::widget([
             'dataProvider' => $provider,
-            'options' => ['class' => 'owl-carousel owl-theme Projects__sortable animatedParent'],
-            'itemOptions' => ['class' => 'Projects__card fadeIn animated'],
+            'options' => ['class' => 'Projects__sortable animatedParent'],
+            'itemOptions' => ['class' => 'Projects__card fadeIn animated item'],
             'emptyTextOptions' => ['class' => 'col-md-12'],
             'layout' => '{items}',
             'itemView' => function ($model, $key, $index, $widget) {
@@ -75,9 +69,6 @@ $showLink = isset($showLink) ? $showLink : true;
 
 
         ?>
-
-
-    </div>
 
 
 </section>

@@ -14,93 +14,100 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
 
 ?>
 
-
 <div class="Menu-top-wrapper">
     <div id="nav-container" class="Menu-top">
-        <div class="Menu-top__inner">
-            <div>
-                <a href="/">
-                    <img class="Menu-top__logo" src="/svg/logo.svg" alt="" />
-                </a>
-            </div>
-            <ul class="Menu-top__list">
-                <? foreach ($menu->getItems() as $item): ?>
-                    <li class="<? if (isset($item['active']) && $item['active']): ?>menu__item--current<? endif ?>">
-                        <? if (isset($item['url'])): ?>
-                            <a href="<?= \yii\helpers\Url::to($item['url']) ?>"
-                               class="
+        <div class="container">
+            <div class="Menu-top__inner">
+                <div>
+                    <a href="/">
+                        <img src="/svg/logo_piesto.svg" alt="" />
+                    </a>
+                </div>
+                <div class="Menu-top__elements">
+                    <ul class="Menu-top__list">
+                        <? foreach ($menu->getItems() as $item): ?>
+                            <li class="<? if (isset($item['active']) && $item['active']): ?>menu__item--current<? endif ?>">
+                                <? if (isset($item['url'])): ?>
+                                    <a href="<?= \yii\helpers\Url::to($item['url']) ?>"
+                                       class="
                                    Menu-top__link
                                    <? if (!$isHomePage || !preg_match('/.*#.*/', $item['url'])): ?>external<? endif ?>
                                    <? if (isset($item['active']) && $item['active']): ?>Menu-top__link--active<? endif ?>
                                 "><?= $item['label'] ?></a>
-                        <? endif ?>
-                    </li>
-                <? endforeach ?>
-
-            </ul>
-            <div class="Menu-top__action-block">
-                <a href="<?= MgHelpers::getSetting('header buy tokens url') ?>" class="Menu-top__btn btn btn-primary"><?= Yii::t('db', 'Buy tokens'); ?></a>
-                <div class="btn__rounded">
-                    <img class="Menu-top__svg" src="/svg/login.svg" alt="" />
-                    <i
-                            class="Menu-top__chevron fa fa-chevron-down"
-                            aria-hidden="true"
-                    ></i>
-                    <div class="Menu-top__dropdown">
-                        <? if (Yii::$app->user->isGuest): ?>
-                            <a href="<?= yii\helpers\Url::to(['/site/login']) ?>" class="btn btn-default"> <?= Yii::t('db', 'Login'); ?> </a>
-                        <? else: ?>
-                            <a href="<?= yii\helpers\Url::to(['/site/account']) ?>" class="btn btn-default"> <?= Yii::t('db', 'My account'); ?> </a>
-                            <a href="javascript:submitLogoutForm()" class="btn btn-default"> <?= Yii::t('db', 'Log out'); ?> </a>
-                        <? endif; ?>
-                    </div>
-                </div>
-                <? if (MgHelpers::getSetting('facebook url')): ?>
-                    <a  href="<?= MgHelpers::getSetting('facebook url') ?>" target="_blank">
-                        <i class="Menu-top__icon fa fa-facebook" aria-hidden="true"></i>
-                    </a>
-                <? endif ?>
-                <? if (MgHelpers::getSetting('youtube url')): ?>
-                    <a  href="<?= MgHelpers::getSetting('youtube url') ?>" target="_blank">
-                        <i class="Menu-top__icon fa fa-youtube" aria-hidden="true"></i>
-                    </a>
-                <? endif ?>
-                <? if (MgHelpers::getSetting('twitter url')): ?>
-                    <a href="<?= MgHelpers::getSetting('twitter url') ?>" target="_blank">
-                        <i class="Menu-top__icon fa fa-twitter" aria-hidden="true"></i>
-                    </a>
-                <? endif ?>
-                <? if (MgHelpers::getSetting('linkedin url')): ?>
-                    <a href="<?= MgHelpers::getSetting('linkedin url') ?>" target="_blank">
-                        <i class="Menu-top__icon fa fa-linkedin" aria-hidden="true"></i>
-                    </a>
-                <? endif ?>
-                <? if (MgHelpers::getSetting('instagram url')): ?>
-                    <a href="<?= MgHelpers::getSetting('instagram url') ?>" target="_blank">
-                        <i class="Menu-top__icon fa fa-instagram" aria-hidden="true"></i>
-                    </a>
-                <? endif ?>
-
-                <div class="Select-custom whiteBg">
-                    <div class="btn__rounded"><?= strtoupper(Yii::$app->language) ?></div>
-                    <div class="Select-custom__options">
-                        <? foreach (Yii::$app->params['languagesDisplay'] as $language) : ?>
-                            <div class="Select-custom__options__option" data-value="<?= $language ?>">
-                                <a href="<?= yii\helpers\Url::to(['/', 'language' => $language]) ?>"
-                                   class="Select-custom__options__option"><?= strtoupper($language) ?></a>
-                            </div>
+                                <? endif ?>
+                            </li>
                         <? endforeach ?>
+
+                    </ul>
+                    <a href="#" class="btn btn-success"> TODO Zgłoś nieruchomość </a>
+                    <? if (Yii::$app->user->isGuest): ?>
+                        <a href="<?= yii\helpers\Url::to(['/site/login']) ?>" class="btn btn-default"> <?= Yii::t('db', 'Login'); ?> </a>
+                    <? else: ?>
+                        <a href="<?= yii\helpers\Url::to(['/site/account']) ?>" class="btn btn-default"> <?= Yii::t('db', 'My account'); ?> </a>
+                        <a href="javascript:submitLogoutForm()" class="btn btn-default"> <?= Yii::t('db', 'Log out'); ?> </a>
+                    <? endif; ?>
+
+                    <a href="#" class="Menu-top__search-btn d-noned">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </a>
+                    <div class="Social-icons">
+                        <? if (MgHelpers::getSetting('facebook url')): ?>
+                            <a  href="<?= MgHelpers::getSetting('facebook url') ?>" target="_blank" class="Social-icons__icon">
+                                <i class="Menu-top__icon fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        <? endif ?>
+                        <? if (MgHelpers::getSetting('youtube url')): ?>
+                            <a  href="<?= MgHelpers::getSetting('youtube url') ?>" target="_blank" class="Social-icons__icon">
+                                <i class="Menu-top__icon fa fa-youtube" aria-hidden="true"></i>
+                            </a>
+                        <? endif ?>
+                        <? if (MgHelpers::getSetting('twitter url')): ?>
+                            <a href="<?= MgHelpers::getSetting('twitter url') ?>" target="_blank" class="Social-icons__icon">
+                                <i class="Menu-top__icon fa fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        <? endif ?>
+                        <? if (MgHelpers::getSetting('linkedin url')): ?>
+                            <a href="<?= MgHelpers::getSetting('linkedin url') ?>" target="_blank" class="Social-icons__icon">
+                                <i class="Menu-top__icon fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                        <? endif ?>
+                        <? if (MgHelpers::getSetting('instagram url')): ?>
+                            <a href="<?= MgHelpers::getSetting('instagram url') ?>" target="_blank" class="Social-icons__icon">
+                                <i class="Menu-top__icon fa fa-instagram" aria-hidden="true"></i>
+                            </a>
+                        <? endif ?>
+
                     </div>
+                    <a href="#" class="btn btn-default"> EN </a>
+                    <a href="#" class="Menu-top__toggle-btn">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </a>
                 </div>
-
-                <a href="#" class="Menu-top__toggle-btn">
-                    <i class="fa fa-bars" aria-hidden="true"></i>
-                </a>
-
+            </div>
+        </div>
+        <div class="Search-box">
+            <div class="container">
+                <?= Html::beginForm(['/site/search'], 'get') ?>
+                    <div class="Search-box__form-wrpper">
+                        <input
+                                class="Search-box__input Form__input"
+                                placeholder="&nbsp;"
+                                name="q"
+                        />
+                        <label class="Form__label" for="phone"
+                        ><?= Yii::t('db', 'Enter phrase'); ?></label
+                        >
+                        <button class="Search-box__submit" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                        <a href="#" class="Search-box__close"> &#215; </a>
+                    </div>
+                <?= Html::endForm() ?>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <?= Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutForm']) ?>

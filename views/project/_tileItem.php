@@ -10,29 +10,42 @@ $model->language = Yii::$app->language;
 ?>
 
 
-<? if ($model->file && $model->file->isImage()): ?>
-    <div class="Projects__card__image-wrapper">
+<div class="Projects__card__image-wrapper">
+    <? if ($model->file && $model->file->isImage()): ?>
         <img src="<?= $model->file->getImageSrc(455, 303); ?>" alt=""/>
+    <? endif; ?>
+    <div class="Projects__card__text">
+        <?= $model->lead ?>
     </div>
-<? endif; ?>
+</div>
+
 <div class="Projects__card__header">
     <div class="Projects__card__heading">
         <?= $model->name ?>
     </div>
 </div>
-
 <div class="Projects__card__body">
     <ul class="List-custom__two">
         <li class="List-custom__two__item">
                   <span>
+                    <img
+                            class="List-custom__two_ico"
+                            src="/svg/lokalizacja.svg"
+                            alt=""
+                    />
+
+
                     <?= Yii::t('db', 'Localization'); ?>:
                   </span>
-            <span>
-                    <strong><?= $model->localization ?></strong>
-                  </span>
+            <span><strong><?= $model->localization ?></strong></span>
         </li>
         <li class="List-custom__two__item">
                   <span>
+                    <img
+                            class="List-custom__two_ico"
+                            src="/svg/inwestycja.svg"
+                            alt=""
+                    />
                     <?= Yii::t('db', 'Investition'); ?>:
                   </span>
             <span>
@@ -41,16 +54,18 @@ $model->language = Yii::$app->language;
         </li>
         <li class="List-custom__two__item">
                   <span>
-                   <?= Yii::t('db', 'Offered'); ?>:
+                    <img
+                            class="List-custom__two_ico"
+                            src="/svg/zwrot.svg"
+                            alt=""
+                    />
+                    <?= Yii::t('db', 'Offered'); ?>:
                   </span>
             <span>
-                    <strong><?= $model->percentage ?>%</strong>
+                    <strong><?= $model->percentage ?>% <?= Yii::t('db', 'refund'); ?></strong>
                   </span>
         </li>
     </ul>
-    <p class="Projects__card__text">
-        <?= $model->lead ?>
-    </p>
     <div class="Invest-counter">
         <? if ($model->money && $model->money_full): ?>
             <div class="Invest-counter__header">
@@ -100,5 +115,4 @@ $model->language = Yii::$app->language;
         <?= Yii::t('db', 'DETAILS OF INVESTITION'); ?>
     </a>
 </div>
-
 
