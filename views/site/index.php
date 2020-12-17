@@ -9,7 +9,11 @@ use app\models\mgcms\db\Project;
 
 <?=$this->render('/common/projects')?>
 
+<?=$this->render('index/section1')?>
 
+<?=$this->render('index/section2')?>
+
+<?=$this->render('index/section3')?>
 
 
 
