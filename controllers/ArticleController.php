@@ -100,6 +100,6 @@ class ArticleController extends \app\components\mgcms\MgCmsController
         /* -----------  SEO  ------------ */
         $isNewsSite = $article->category && $article->category->name == 'aktualności ' . Yii::$app->language;
 
-        return $this->render($article->type == Article::TYPE_GALLERY ? 'viewGallery' : 'view' . ($isNewsSite ? 'News' : ''), ['model' => $article]);
+        return $this->render($article->type == Article::TYPE_GALLERY ? 'viewGallery' : 'view' . ($isNewsSite ? '' : ''), ['model' => $article]);
     }
 }

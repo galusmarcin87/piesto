@@ -15,5 +15,6 @@ use app\models\mgcms\db\Project;
 
 <?=$this->render('index/section3')?>
 
+<?=$this->render('/common/movies')?>
 
-
+<?=$this->render('/common/news')?>

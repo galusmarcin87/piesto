@@ -58,15 +58,15 @@ $this->registerJs($search);
 
                         // Customzing CSS class for pager link
                         'linkOptions' => [
-                            'class' => 'page-link'
+                            'class' => 'page-link',
                         ],
                         'activePageCssClass' => 'page-link--active',
                         'pageCssClass' => 'page-item',
                         // Customzing CSS class for navigating link
-                        'prevPageCssClass' => 'page-item Pagination__arrow',
-                        'nextPageCssClass' => 'page-item Pagination__arrow',
-                        'firstPageCssClass' => 'page-item Pagination__arrow',
-                        'lastPageCssClass' => 'page-item Pagination__arrow',
+                        'prevPageCssClass' => 'page-item',
+                        'nextPageCssClass' => 'page-item',
+                        'firstPageCssClass' => 'page-item',
+                        'lastPageCssClass' => 'page-item',
                     ],
                 ])
 

@@ -8,30 +8,30 @@ use yii\widgets\DetailView;
 /* @var $model app\models\mgcms\db\Article */
 ?>
 
-<div class="item fadeIn animated">
-    <div class="Card">
-        <div class="Card__img-wrapper">
-            <a href="<?= $model->linkUrl ?>">
-                <? if ($model->file && $model->file->isImage()): ?>
-                    <img class="Card__img" src="<?= $model->file->getImageSrc(643, 447) ?>"/>
-                <? endif ?>
-            </a>
-        </div>
-        <div class="Card__body">
-            <div class="Card__date">
-                <?= date('d m Y', strtotime($model->created_on)) ?>
+<div class="Projects__card fadeIn animated item">
+    <a href="<?= $model->linkUrl ?>">
+        <div class="Projects__card__image-wrapper">
+            <div class="Projects__card__date">
+                <img
+                        src="/svg/kalendarz.svg"
+                        class="Projects__card__date__ico"
+                        alt=""
+                />
+                <?= date('d.m.Y', strtotime($model->created_on)) ?>
             </div>
-            <h4 class="Card__header">
+            <? if ($model->file && $model->file->isImage()): ?>
+                <img src="<?= $model->file->imageSrc ?>" alt=""/>
+            <? endif ?>
+        </div>
+        <div class="Projects__card__header">
+            <div class="Projects__card__heading">
                 <?= $model->title ?>
-            </h4>
-            <div class="card-text">
-                <?= $model->excerpt ?>
             </div>
-
-            <a class="Card__link btn btn-success btn-success--outline btn-success--reverse-colors"
-               href="<?= $model->linkUrl ?>">
-                <?= Yii::t('db', 'Read more'); ?> <span class="Card__arrow">→</span>
-            </a>
         </div>
-    </div>
+        <div class="Projects__card__body">
+            <p class="Project__card__body__text">
+                <?= $model->excerpt ?>
+            </p>
+        </div>
+    </a>
 </div>
