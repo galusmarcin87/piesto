@@ -20,3 +20,7 @@ use app\models\mgcms\db\Project;
 <?=$this->render('/common/news')?>
 
 <?=$this->render('index/team')?>
+
+<?=$this->render('index/cooperateWith')?>
+
+<?=$this->render('/common/faq')?>

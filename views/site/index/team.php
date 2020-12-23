@@ -4,7 +4,9 @@ use app\components\mgcms\MgHelpers;
 use \app\models\mgcms\db\User;
 
 $teamUsers = User::find()->where(['status' => User::STATUS_INACTIVE, 'role' => 'team'])->all();
-
+if(sizeof($teamUsers) == 0){
+    return false;
+}
 
 ?>
 
