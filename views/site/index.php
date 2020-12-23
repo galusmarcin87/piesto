@@ -18,3 +18,5 @@ use app\models\mgcms\db\Project;
 <?=$this->render('/common/movies')?>
 
 <?=$this->render('/common/news')?>
+
+<?=$this->render('index/team')?>

@@ -42,7 +42,7 @@ use mootensai\behaviors\UUIDBehavior;
 class User extends \app\models\mgcms\db\AbstractRecord
 {
 
-    
+
     /**
      * @inheritdoc
      */
@@ -58,10 +58,10 @@ class User extends \app\models\mgcms\db\AbstractRecord
   {
     return [
         'id' => Yii::t('app', 'ID'),
-        'username' => Yii::t('db', 'E-mail address'),
-        'password' => Yii::t('db', 'Password'),
-        'first_name' => Yii::t('db', 'First Name'),
-        'last_name' => Yii::t('db', 'Last Name'),
+        'username' => Yii::t('app', 'E-mail address'),
+        'password' => Yii::t('app', 'Password'),
+        'first_name' => Yii::t('app', 'First Name'),
+        'last_name' => Yii::t('app', 'Last Name'),
         'role' => Yii::t('app', 'Role'),
         'status' => Yii::t('app', 'Status'),
         'statusStr' => Yii::t('app', 'Status'),
@@ -73,7 +73,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
         'address' => Yii::t('app', 'Address'),
         'postcode' => Yii::t('db', 'Postcode'),
         'birthdate' => Yii::t('db', 'Birthdate'),
-        'city' => Yii::t('db', 'City'),
+        'city' => Yii::t('app', 'City'),
         'is_company' => Yii::t('db', 'Is company?'),
         'citizenship' => Yii::t('db', 'Citizenship'),
         'pesel' => Yii::t('db', 'Pesel'),
@@ -82,6 +82,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
         'street' => Yii::t('db', 'Street'),
         'house_no' => Yii::t('db', 'House number'),
         'flat_no' => Yii::t('db', 'Flat number'),
+        'file_id' => Yii::t('app', 'File'),
         'phone' => Yii::t('db', 'Phone'),
         'company_name' => Yii::t('db', 'Company name'),
         'company_id' => Yii::t('db', 'Company identifier'),
@@ -94,7 +95,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
         'oldPassword' => Yii::t('db', 'Old password'),
     ];
   }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -102,7 +103,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
     {
         return $this->hasOne(\app\models\mgcms\db\User::className(), ['id' => 'created_by']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -110,7 +111,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
     {
         return $this->hasMany(\app\models\mgcms\db\User::className(), ['created_by' => 'id']);
     }
-    
+
 
     /**
      * @inheritdoc

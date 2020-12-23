@@ -111,7 +111,7 @@ class ArticleController extends MgBackendController
   }
 
   /**
-   * 
+   *
    * Export Article information into PDF format.
    * @param integer $id
    * @return mixed
@@ -227,12 +227,5 @@ class ArticleController extends MgBackendController
     echo \yii\helpers\Json::encode([['id' => 1, 'name' => 'ddd'],['id' => 2, 'name' => 'bbbb']]);
   }
 
-    public function actionRemoveImage($id)
-    {
-        $model = $this->findModel($id);
 
-        $model->file_id = null;
-        $model->save();
-        $this->back();
-    }
 }

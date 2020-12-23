@@ -85,4 +85,13 @@ class MgBackendController extends MgCmsController
     }
   }
 
+    public function actionRemoveImage($id)
+    {
+        $model = $this->findModel($id);
+
+        $model->file_id = null;
+        $model->save();
+        $this->back();
+    }
+
 }
