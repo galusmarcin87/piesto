@@ -13,7 +13,13 @@ $isHomePage = $this->context->id == 'site' && $this->context->action->id == 'ind
 $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' => false]);
 
 ?>
-
+<style>
+    .Menu-top__search-btn{
+        width: var(--size);
+        height: var(--size);
+        line-height: var(--size);
+    }
+</style>
 <div class="Menu-top-wrapper">
     <div id="nav-container" class="Menu-top">
         <div class="container">
@@ -73,7 +79,11 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
                         <? endif ?>
                         <? if (MgHelpers::getSetting('instagram url')): ?>
                             <a href="<?= MgHelpers::getSetting('instagram url') ?>" target="_blank" class="Social-icons__icon">
-                                <i class="Menu-top__icon fa fa-instagram" aria-hidden="true"></i>
+                                <img
+                                        class="Social-icons__icon__img"
+                                        src="/svg/instagram.svg"
+                                        alt=""
+                                />
                             </a>
                         <? endif ?>
 
