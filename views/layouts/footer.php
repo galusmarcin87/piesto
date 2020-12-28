@@ -108,36 +108,15 @@ $menu2 = new NobleMenu(['name' => 'footer2_' . Yii::$app->language, 'loginLink' 
                         <div class="Footer__item">
                             Menu
                             <ul class="Footer__menu fadeIn animated">
-                                <li class="Footer__menu__item">
-                                    <a
-                                            class="Footer__menu__link"
-                                            href="./logowanie_rejestracja.html"
-                                    >Logowanie</a
-                                    >
-                                </li>
-                                <li class="Footer__menu__item">
-                                    <a
-                                            class="Footer__menu__link"
-                                            href="./logowanie_rejestracja.html"
-                                    >Rejestracja</a
-                                    >
-                                </li>
-                                <li class="Footer__menu__item">
-                                    <a class="Footer__menu__link" href=""
-                                    >Polityka prywatności</a
-                                    >
-                                </li>
-                                <li class="Footer__menu__item">
-                                    <a class="Footer__menu__link" href="">Aktualności</a>
-                                </li>
-                                <li class="Footer__menu__item">
-                                    <a class="Footer__menu__link" href="./kontakt.html"
-                                    >Nasz zespół</a
-                                    >
-                                </li>
-                                <li class="Footer__menu__item">
-                                    <a class="Footer__menu__link" href="">FAQ</a>
-                                </li>
+                                <? foreach ($menu2->getItems() as $item): ?>
+                                    <li class="Footer__menu__item">
+                                        <? if (isset($item['url'])): ?>
+                                            <a href="<?= \yii\helpers\Url::to($item['url']) ?>"
+                                               class="Footer__menu__link <? if (isset($item['active']) && $item['active']): ?>Footer__menu__link--active<? endif ?>"><?= $item['label'] ?></a>
+                                        <? endif ?>
+                                    </li>
+                                <? endforeach ?>
+
                             </ul>
                         </div>
                     </div>
