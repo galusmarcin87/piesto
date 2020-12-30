@@ -3,6 +3,7 @@
 use app\widgets\NobleMenu;
 use yii\helpers\Html;
 use app\components\mgcms\MgHelpers;
+use yii\bootstrap\ActiveForm;
 
 $menu = new NobleMenu(['name' => 'footer_' . Yii::$app->language, 'loginLink' => false]);
 $menu2 = new NobleMenu(['name' => 'footer2_' . Yii::$app->language, 'loginLink' => false]);
@@ -106,7 +107,7 @@ $menu2 = new NobleMenu(['name' => 'footer2_' . Yii::$app->language, 'loginLink' 
                     </div>
                     <div class="col-md-3 col-sm-6">
                         <div class="Footer__item">
-                            Menu
+                            <?= MgHelpers::getSetting('footer menu 2 header ' . Yii::$app->language, false, 'Menu') ?>
                             <ul class="Footer__menu fadeIn animated">
                                 <? foreach ($menu2->getItems() as $item): ?>
                                     <li class="Footer__menu__item">
@@ -122,30 +123,32 @@ $menu2 = new NobleMenu(['name' => 'footer2_' . Yii::$app->language, 'loginLink' 
                     </div>
                     <div class="col-md-3">
                         <div class="Footer__item">
-                            Sygnalizator inwestora
+                            <?= MgHelpers::getSettingTranslated('footer newsletter header',  'Sygnalizator inwestora') ?>
+
                             <div class="Newsletter animatedParent">
                                 <br/>
-                                Zapisz się i bądź na bieżąco
-                                <form class="fadeIn animated" method="POST">
+                                <?= MgHelpers::getSettingTranslated('footer newsletter text',  'Zapisz się i bądź na bieżąco') ?>
+
+                                <?php $form = ActiveForm::begin(['id' => 'newsletter-form', 'class' => 'fadeIn animated']); ?>
                                     <div class="Newsletter__inner">
                                         <div class="Form__group form-group">
                                             <input
                                                     class="Form__input form-control"
                                                     placeholder="&nbsp;"
                                                     id="phone"
-                                                    name="phone"
+                                                    name="newsletterEmail"
                                                     type="phone"
                                                     required
                                             />
-                                            <label class="Form__label">Twój e-mail</label>
+                                            <label class="Form__label"><?= Yii::t('db', 'Your email'); ?></label>
                                         </div>
                                     </div>
                                     <input
                                             class="btn btn-success lowercase Newsletter__button"
                                             type="submit"
-                                            value="Zapisz się"
+                                            value="<?= Yii::t('db', 'Subscribe'); ?>"
                                     />
-                                </form>
+                                <?php ActiveForm::end(); ?>
                             </div>
                         </div>
                     </div>
@@ -155,7 +158,8 @@ $menu2 = new NobleMenu(['name' => 'footer2_' . Yii::$app->language, 'loginLink' 
                 <div class="fadeIn animated">
                     <div class="row">
                         <div class="col-md-6">
-                            <p>&#169; 2020 Wszelkie prawa zastrzeżone - Piesto.io Sp. z o.o.</p>
+
+                            <p><?= MgHelpers::getSettingTranslated('footer copyright',  '&#169; 2020 Wszelkie prawa zastrzeżone - Piesto.io Sp. z o.o.') ?></p>
                         </div>
                         <div class="col-md-6 text-right">
                             <p>
@@ -169,61 +173,3 @@ $menu2 = new NobleMenu(['name' => 'footer2_' . Yii::$app->language, 'loginLink' 
     </div>
 </footer>
 
-
-<section class="Section Newsletter text-center animatedParent">
-
-    <?= $this->render('/common/newsletterForm') ?>
-
-
-    <footer>
-        <div class="Footer">
-            <div class="container">
-                <div class="animatedParent">
-                    <ul class="Footer__menu text-center fadeIn animated">
-                        <? foreach ($menu->getItems() as $item): ?>
-                            <li class="Footer__menu__item">
-                                <? if (isset($item['url'])): ?>
-                                    <a href="<?= \yii\helpers\Url::to($item['url']) ?>"
-                                       class="Footer__menu__link <? if (isset($item['active']) && $item['active']): ?>Footer__menu__link--active<? endif ?>"><?= $item['label'] ?></a>
-                                <? endif ?>
-                            </li>
-                        <? endforeach ?>
-                    </ul>
-                </div>
-                <div class="Cookies">
-                    <div class="container relative">
-                        <a class="Cookies__close Cookies__close-btn" href="#">
-                            &#215;
-                        </a>
-                        <?= MgHelpers::getSetting('footer cookie ' . Yii::$app->language, true, '<p>
-                            Serwis wykorzystuje pliki cookies. Korzystając ze strony
-                            wyrażasz zgodę na wykorzystywanie plików cookies.
-                            <a class="Cookies__more-btn" href="#">Dowiedz się więcej</a>
-                        </p>') ?>
-
-                    </div>
-                </div>
-                <div class="animatedParent">
-                    <div class="Footer__copy fadeIn animated">
-                        <div>
-                            <?= MgHelpers::getSetting('footer copyright 1' . Yii::$app->language, true, 'Wszelkie prawa zastrzeżone &#169; 2020 NOL restaurant
-                            &nbsp;|&nbsp;
-                            <a class="Footer__link" href="">Regulamin</a> &nbsp;|&nbsp;
-                            <a class="Footer__link" href="">Polityka&nbsp;prywatności</a>') ?>
-
-                        </div>
-                        <div>
-                            <?= MgHelpers::getSetting('footer copyright 2' . Yii::$app->language, true, 'Realizacja
-                            <a
-                                    class="Footer__link"
-                                    target="_blank"
-                                    href="https://www.vertesdesign.pl/"
-                            >Vertes Desing</a>') ?>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-</section>
