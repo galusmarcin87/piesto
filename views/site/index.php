@@ -19,7 +19,7 @@ use app\models\mgcms\db\Project;
 
 <?=$this->render('/common/news')?>
 
-<?=$this->render('index/team')?>
+<?=$this->render('/common/team')?>
 
 <?=$this->render('index/cooperateWith')?>
 

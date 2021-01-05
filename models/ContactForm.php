@@ -34,7 +34,7 @@ class ContactForm extends Model
             ['email', 'email'],
             // verifyCode needs to be entered correctly
 //            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
-            [['acceptTerms'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['acceptTerms','acceptTerms2'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
         ];
     }
 
@@ -45,12 +45,12 @@ class ContactForm extends Model
     {
         return [
             'name' => Yii::t('db', 'Name and surname'),
-            'email' => Yii::t('db', 'Email'),
+            'email' => Yii::t('db', 'Email address'),
             'subject' => Yii::t('db', 'Subject'),
             'phone' => Yii::t('db', 'Phone'),
             'body' => Yii::t('db', 'Message'),
             'acceptTerms' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text','I accept terms and conditions')),
-            'acceptTerms2' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text','I accept rules')),
+            'acceptTerms2' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text2','I accept rules')),
             'verifyCode' => 'Verification Code',
         ];
     }

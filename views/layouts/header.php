@@ -13,14 +13,15 @@ $isHomePage = $this->context->id == 'site' && $this->context->action->id == 'ind
 $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' => false]);
 
 ?>
-<style>
-    .Menu-top__search-btn{
-        width: var(--size);
-        height: var(--size);
-        line-height: var(--size);
-    }
-</style>
+
 <div class="Menu-top-wrapper">
+    <style>
+        .Menu-top__search-btn{
+            width: var(--size);
+            height: var(--size);
+            line-height: var(--size);
+        }
+    </style>
     <div id="nav-container" class="Menu-top">
         <div class="container">
             <div class="Menu-top__inner">
@@ -116,14 +117,16 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
             </div>
         </div>
     </div>
+    <?= Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutForm']) ?>
+    <?= Html::endForm() ?>
+    <script type="text/javascript">
+      function submitLogoutForm() {
+        $('#logoutForm').submit();
+      }
+    </script>
+
 </div>
 
 
 
-<?= Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutForm']) ?>
-<?= Html::endForm() ?>
-<script type="text/javascript">
-    function submitLogoutForm() {
-        $('#logoutForm').submit();
-    }
-</script>
+

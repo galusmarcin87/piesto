@@ -193,24 +193,6 @@ const mapStyles = [
   },
 ];
 
-const initMap = () => {
-  var myLatLng = { lat: 52.249502, lng: 21.0435739 };
-  // Create a map object and specify the DOM element for display.
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: myLatLng,
-    zoom: 15,
-    scrollwheel: false,
-    mapTypeControl: false,
-  });
-
-  // Create a marker and set its position.
-  var marker = new google.maps.Marker({
-    map: map,
-    position: myLatLng,
-    title: '',
-    icon: 'images/point.png',
-  });
-};
 
 $(document).ready(function () {
   APP.cookies.set('placeholder', 'true');

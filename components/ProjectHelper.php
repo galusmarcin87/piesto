@@ -31,11 +31,12 @@ class ProjectHelper extends \yii\base\Component
         } else {
             return [
 
+
                 'options' => [
                     'class' => "Contact-form__label",
                     'tag' => 'label',
                 ],
-                'template' => "{beginWrapper}{labelTitle}{input}\n\n{error}{endWrapper}",
+                'template' => "{beginWrapper}{input}\n\n{error}{endWrapper}",
                 'inputOptions' => ['class' => 'Contact-form__input form-control'],
                 'labelOptions' => [
                     'class' => "Contact-form__label",
