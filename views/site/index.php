@@ -14,7 +14,7 @@ use app\models\mgcms\db\Project;
 <?=$this->render('index/section2')?>
 
 <?=$this->render('index/section3')?>
-
+3
 <?=$this->render('/common/movies')?>
 
 <?=$this->render('/common/news')?>
