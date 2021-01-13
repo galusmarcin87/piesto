@@ -75,15 +75,14 @@ class GalleryController extends MgBackendController
     /**
      * Updates an existing Gallery model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id 
+     * @param integer $id
      * @return mixed
      */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        
+
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
-          $model->setFileOrder(Yii::$app->request->post('fileOrder',[]));
           \app\models\mgcms\db\FileRelation::setJsonAttributes(Yii::$app->request->post('FileRelation',[]));
           return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -106,7 +105,7 @@ class GalleryController extends MgBackendController
         return $this->redirect(['index']);
     }
 
-    
+
     /**
      * Finds the Gallery model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

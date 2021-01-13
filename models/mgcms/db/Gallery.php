@@ -97,7 +97,7 @@ class Gallery extends \app\models\mgcms\db\AbstractRecord
         ],
     ];
   }
-  
+
    /**
    * @return \yii\db\ActiveQuery
    */
@@ -105,12 +105,12 @@ class Gallery extends \app\models\mgcms\db\AbstractRecord
   {
     return $this->hasOne(\app\models\mgcms\db\File::className(), ['id' => 'file_id']);
   }
-  
+
   public function __toString()
   {
     return $this->name;
   }
-  
+
   public function getLinkUrl()
   {
 
@@ -123,21 +123,6 @@ class Gallery extends \app\models\mgcms\db\AbstractRecord
             $text ? $text : (string) $this, \yii\helpers\Url::toRoute(['/gallery/view', 'slug' => $this->slug]),
             ['target' => '_blank', 'data-pjax' => "0"]);
   }
-  
-  /**
-   * 
-   * @param array $fileIds
-   */
-  public function setFileOrder($fileIds){
-    $n = 1;
-    foreach($fileIds as $id => $null){
-      $fileRel = \app\models\mgcms\db\FileRelation::find()->where(['rel_id' => $this->id, 'file_id' => $id, 'model' => $this::className()])->one();
-      if($fileRel){
-        $fileRel->order = $n;
-        $fileRel->save();
-      }
-      $n++;
-    }
-  }
+
 
 }
