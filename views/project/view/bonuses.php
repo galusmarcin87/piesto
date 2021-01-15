@@ -8,17 +8,11 @@ use yii\web\View;
 
 ?>
 
-<ul class="List-custom__two">
-    <li class="List-custom__two__item">
-                  <span>
-                    <strong> <span><?= Yii::t('db', 'Bonus'); ?></span></strong>
-                  </span>
-        <div></div>
-    </li>
+<ul class="List-custm__checklist">
     <? foreach ($model->bonuses as $bonus): ?>
-        <li class="List-custom__two__item">
-            <span> <?= $bonus->from ?>-<?= $bonus->to ?> <?= Yii::t('db', 'tokens'); ?>: </span>
-            <span> $<?= $bonus->value ?> </span>
-        </li>
+    <li class="List-custm__checklist__item">
+        <strong><?= $bonus->from ?>-</strong> <?= $bonus->value ?>
+    </li>
     <? endforeach; ?>
+
 </ul>

@@ -6,21 +6,35 @@ use app\components\mgcms\MgHelpers;
 use app\models\mgcms\db\Project;
 
 ?>
+<section
+        class="Section Projects animatedParent"
+        style="padding-bottom: 75px"
+>
+    <div class="container fadeIn animated">
 
-<?=$this->render('/common/projects')?>
+        <div class="Projects__header__wrapper">
+            <h4 class="Projects__header text-center"><?= Yii::t('db', $header); ?></h4>
+            <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="btn btn--transparent btn--medium">
+                <?= Yii::t('db', 'SEE ALL'); ?>
+            </a>
+        </div>
 
-<?=$this->render('index/section1')?>
+        <?= $this->render('/common/projects') ?>
 
-<?=$this->render('index/section2')?>
 
-<?=$this->render('index/section3')?>
+</section>
+<?= $this->render('index/section1') ?>
+
+<?= $this->render('index/section2') ?>
+
+<?= $this->render('index/section3') ?>
 3
-<?=$this->render('/common/movies')?>
+<?= $this->render('/common/movies') ?>
 
-<?=$this->render('/common/news')?>
+<?= $this->render('/common/news') ?>
 
-<?=$this->render('/common/team')?>
+<?= $this->render('/common/team') ?>
 
-<?=$this->render('index/cooperateWith')?>
+<?= $this->render('index/cooperateWith') ?>
 
-<?=$this->render('/common/faq')?>
+<?= $this->render('/common/faq') ?>

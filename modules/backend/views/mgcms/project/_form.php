@@ -53,7 +53,10 @@ use app\components\mgcms\MgHelpers;
 
         <?= $form->field12md($model, 'text')->tinyMce() ?>
 
-        <?= $form->field12md($model, 'text2')->tinyMce() ?>
+        <div class="hidden">
+            <?= $form->field12md($model, 'text2')->tinyMce() ?>
+        </div>
+
 
 
 
@@ -77,9 +80,9 @@ use app\components\mgcms\MgHelpers;
 
 
             <?= $form->field6md($model, 'www')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
-        </div>
-        <?= $form->field6md($model, 'whitepaper')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
 
+        <?= $form->field6md($model, 'whitepaper')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
+        </div>
         <?= $form->field6md($model, 'money')->textInput(['placeholder' => '']) ?>
 
         <?= $form->field6md($model, 'money_full')->textInput(['placeholder' => '']) ?>
@@ -179,7 +182,7 @@ use app\components\mgcms\MgHelpers;
     <?php
     $forms = [
         [
-            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Bonusy')),
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Lista cech')),
             'content' => $this->render('_formBonus', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->bonuses),
             ]),

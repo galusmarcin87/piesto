@@ -23,9 +23,9 @@
         ],
         'attributes' => [
             "id" => ['type' => TabularForm::INPUT_HIDDEN_STATIC, 'columnOptions' => ['hidden' => true]],
-            'from' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Od'],
-            'to' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Do'],
-            'value' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Wartość'],
+            'from' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Nagłówek'],
+            //'to' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Do'],
+            'value' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Tekst'],
             'del' => [
                 'type' => 'raw',
                 'label' => '',

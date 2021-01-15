@@ -24,6 +24,46 @@ $index = 0;
         grid-column-gap: var(--gap);
         margin-bottom: 30px;
     }
+
+    .Project__info {
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 300px;
+        grid-template-columns: 1fr 300px;
+        grid-column-gap: var(--gap);
+        grid-row-gap: var(--gap);
+    }
+
+    .List-custm__checklist__item:before {
+        content: '';
+        width: var(--size);
+        height: var(--size);
+        background: #dbe3e9;
+        border-radius: 3px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+    .List-custm__checklist__item:after {
+        content: '\2713';
+        width: var(--size);
+        height: var(--size);
+        color: #35a1d9;
+        position: absolute;
+        font-size: 30px;
+        left: 0%;
+        font-weight: bold;
+        top: 0%;
+        display: -ms-grid;
+        display: grid;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
 </style>
 <?= $this->render('/common/breadcrumps') ?>
 
@@ -112,11 +152,11 @@ $index = 0;
             </div>
             <div class="Project__info">
                 <div class="Project__gallery__photo">
-                    <?if($model->file && $model->file->isImage()):?>
+                    <? if ($model->file && $model->file->isImage()): ?>
                         <a href="<?= $model->file->getImageSrc() ?>">
-                            <img src="<?=$model->file->getImageSrc(560, 410)?>" class="Project__photo"/>
+                            <img src="<?= $model->file->getImageSrc(560, 410) ?>" class="Project__photo"/>
                         </a>
-                    <?endif?>
+                    <? endif ?>
 
                 </div>
                 <div class="Project__slider">
@@ -126,7 +166,7 @@ $index = 0;
                                 <a
                                         class="item"
                                         href="<?= $file->getImageSrc() ?>"
-                                        style="background-image: url(<?= $file->getImageSrc(560, 410) ?>)"
+                                        style="background-image: url(<?= $file->getImageSrc(560, 410) ?>)">
                                 </a>
                             <? endif; ?>
                         <? endforeach; ?>
@@ -136,198 +176,30 @@ $index = 0;
                 <div class="Project__map" id="map"></div>
             </div>
         </div>
-        <p>
-            <b>
-                980 m kwadratowych luksusowych apartamentów zlokalizowanych w
-                pięknej, zielonej, spokojnej okolicy. Każdy z apartamentów ma dostęp
-                do (od 10 do 15 metrowych) balkonów, skąd można podziwiać wspaniały
-                widok na pobliskie lasy, a z dystansu na panoramę miasta. 980 m
-                kwadratowych luksusowych apartamentów zlokalizowanych w pięknej,
-                zielonej, spokojnej okolicy. Każdy z apartamentów ma dostęp do (od
-                10 do 15 metrowych) balkonów, skąd można podziwiać wspaniały widok
-                na pobliskie lasy, a z dystansu na panoramę miasta.
-            </b>
-        </p>
-        <ul class="List-custm__checklist">
-            <li class="List-custm__checklist__item">
-                <strong>Apartament w Warszawie</strong> z 52 mieszkaniami od 38m do
-                75 m oraz 12 garażami, dodatkowo plac zabaw, parking 50 miejscapi
-                oraz strefa zielona.
-            </li>
-            <li class="List-custm__checklist__item">
-                <strong> Budowa apartamentowca rozpocznie się w 2020 r.</strong>
 
-                będzie realizowana w 2 etapach, a każdy z nich nie będzie
-                przekraczał roku kalendarzowego.
-            </li>
-            <li class="List-custm__checklist__item">
-                <strong> Budowa apartamentowca rozpocznie się w 2020 r.</strong>
+        <?= $model->text ?>
 
-                będzie realizowana w 2 etapach, a każdy z nich nie będzie
-                przekraczał roku kalendarzowego.
-            </li>
-            <li class="List-custm__checklist__item">
-                <strong>Apartament w Warszawie</strong> z 52 mieszkaniami od 38m do
-                75 m oraz 12 garażami, dodatkowo plac zabaw, parking 50 miejscapi
-                oraz strefa zielona.
-            </li>
-        </ul>
+        <?= $this->render('view/bonuses', ['model' => $model]) ?>
+
         <div class="container">
             <div class="text-center">
-                <a class="btn btn-success btn--medium" href="#">ZAINWESTUJ</a>
+                <a class="btn btn-success btn--medium"
+                   href="<?= Url::to(['project/buy', 'id' => $model->id]) ?>"><?= Yii::t('db', 'INVEST'); ?></a>
             </div>
-            <div class="White-text-block">
-                <div>
-                    <h5 class="White-text-block__header">
-                        <strong>Masz pytania?</strong><br/>
-                        Chętnie odpowiemy.<br/>
-                        Skontaktuj się z nami.
-                    </h5>
-                </div>
-                <div>
-                    <div class="White-text-block__subheader">Adam Kowalski</div>
-                    <div class="White-text-block__role">
-                        Specjalista ds. inwestycji
-                    </div>
-                    <div class="White-text-block__desc">
-                        <a href="tel+48 502 502 502">+48 502 502 502</a>
-                        <br/>
-                        <a href="mailto:adam.kowalski@piesto.io"
-                        >adam.kowalski@piesto.io</a
-                        >
-                    </div>
-                </div>
-                <div>
-                    <div class="White-text-block__subheader">Jan Nowak</div>
-                    <div class="White-text-block__role">
-                        Specjalista ds. inwestycji
-                    </div>
-                    <div class="White-text-block__desc">
-                        <a href="tel+48 502 502 502">+48 502 502 502</a>
-                        <br/>
-                        <a href="mailto:jan.nowak@piesto.io"
-                        >jan.nowak@piesto.io</a
-                        >
-                    </div>
-                </div>
-            </div>
+            <?= $this->render('view/bottomInfoBar') ?>
         </div>
+
+
     </div>
 </section>
 
 <section
-        class="Section Section--big-padding-top Tokenomania"
-        style="padding-bottom: 0"
+        class="Section Projects animatedParent Projects--disabledBg"
+        style="padding-bottom: 65px"
 >
-    <div class="container">
-        <h2 class="O-projekcie__header"><?= Yii::t('db', 'Tokenomia'); ?></h2>
-        <div class="row">
-            <div class="col-lg-4">
-                <h6 class="O-projekcie__text text-left">
-                    <?= $model->lead ?>
-                </h6>
-                <div style="margin-top: 30px">
-                    <a class="btn btn-primary btn-full-width"
-                       href="<?= Url::to(['project/buy', 'id' => $model->id]) ?>"><?= Yii::t('db', 'INVEST'); ?></a>
-                    <a class="btn btn-black btn-full-width"
-                       href="<?= $model->whitepaper ?>"><?= Yii::t('db', 'WHITEPAPER'); ?></a>
-                    <a class="btn btn-black btn-full-width" href="#">ONEPAGER</a>
-                </div>
-            </div>
-            <div class="col-lg-8">
-                <section class="Counter Counter--small">
-                    <div class="container">
-
-
-                        <div class="Slider-counter">
-                            <div
-                                    data-date="<?= $model->date_crowdsale_end ?>"
-                                    class="Count-down-timer Count-down-timer--small"
-                            >
-                                <div class="Slider-counter__heading"><?= Yii::t('db', 'Left'); ?></div>
-                                <div class="Count-down-timer__day"><span></span> <?= Yii::t('db', 'days'); ?></div>
-                                <div class="Count-down-timer__hour">
-                                    <span></span> <?= Yii::t('db', 'hours'); ?>
-                                </div>
-                                <div class="Count-down-timer__minute">
-                                    <span></span> <?= Yii::t('db', 'minutes'); ?>
-                                </div>
-                                <div class="Count-down-timer__second">
-                                    <span></span> <?= Yii::t('db', 'seconds'); ?>
-                                </div>
-                            </div>
-                            <div class="Invest-counter">
-                                <div class="Invest-counter__header">
-                                    <div class="Invest-counter__source">
-                        <span class="Invest-counter__source__value"
-                        ><?= $model->money ?> PLN</span
-                        >
-                                        (<span
-                                                data-to="<?= round(($model->money / $model->money_full) * 100, 3) ?>"
-                                                class="Invest-counter__source__percent"
-                                        >0</span
-                                        >%)
-                                    </div>
-                                    <div class="Invest-counter__target">
-                                        cel: <?= $model->money_full ?> PLN
-                                    </div>
-                                </div>
-                                <div class="Invest-counter__value-line-wrapper">
-                                    <div
-                                            data-to="<?= $model->money ?>"
-                                            data-slide-to="<?= round(($model->money / $model->money_full) * 100, 3) ?>"
-                                            class="Invest-counter__value-line"
-                                            style="width: 0%"
-                                    ></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <section class="Section Project">
-        <div class="container">
-            <div class="Project__info">
-                <div>
-                    <div class="Carousel Single-image-slider">
-                        <div class="owl-carousel owl-theme animatedParent">
-                            <? foreach ($model->files as $file): ?>
-                                <? if ($file->isImage()): $index++; ?>
-                                    <a class="Image-slider__card item" href="<?= $file->getImageSrc(1360, 768) ?>">
-                                        <img
-                                                class="Image-slider__image fadeIn animated"
-                                                src="<?= $file->getImageSrc(822, 460) ?>"
-                                                alt=""
-                                        />
-                                    </a>
-                                <? endif; ?>
-                            <? endforeach; ?>
-                        </div>
-                        <div
-                                class="Custom-nav Custom-nav--color-black Single-image-slider__nav"
-                        ></div>
-                    </div>
-                    <?= $model->text ?>
-                </div>
-                <div class="Project__info__content">
-                    <?= $this->render('view/table', ['model' => $model]) ?>
-
-                    <?= $this->render('view/tokenTable', ['model' => $model]) ?>
-
-                    <?= $this->render('view/bonuses', ['model' => $model]) ?>
-
-
-                </div>
-            </div>
-        </div>
-    </section>
-</section>
-<section class="Section Analize animatedParent">
     <div class="container fadeIn animated">
-        <?= $model->text2 ?>
-    </div>
+        <h1 class="text-center"><?= Yii::t('db', 'See also'); ?></h1>
+
+        <?= $this->render('/common/projects') ?>
 </section>
-
-
+<?= $this->render('view/script', ['model' => $model]) ?>
