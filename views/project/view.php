@@ -122,32 +122,18 @@ $index = 0;
                         </div>
                     </div>
                 </div>
-                <b>Pliki do pobrania TODO</b>
+                <b><?= Yii::t('db', 'Files to download'); ?></b>
                 <div>
-                    <div class="Project__file">
-                        Nazwa pliku, który chcemy pobrać
-                        <div class="Project__file__ico">
-                            <img src="./svg/pdf.svg" alt=""/>
-                        </div>
-                    </div>
-                    <div class="Project__file">
-                        Nazwa pliku, który chcemy pobrać
-                        <div class="Project__file__ico">
-                            <img src="./svg/pdf.svg" alt=""/>
-                        </div>
-                    </div>
-                    <div class="Project__file">
-                        Nazwa pliku, który chcemy pobrać
-                        <div class="Project__file__ico">
-                            <img src="./svg/pdf.svg" alt=""/>
-                        </div>
-                    </div>
-                    <div class="Project__file">
-                        Nazwa pliku, który chcemy pobrać
-                        <div class="Project__file__ico">
-                            <img src="./svg/pdf.svg" alt=""/>
-                        </div>
-                    </div>
+                    <?foreach($model->fileRelations as $fileRelation):?>
+                    <?if($fileRelation->json != '1' || !$fileRelation->file) continue?>
+                        <a class="Project__file" href="<?=$fileRelation->file->linkUrl?>" target="_blank">
+                            <?=$fileRelation->file->origin_name?>
+                            <div class="Project__file__ico">
+                                <img src="/svg/pdf.svg" alt=""/>
+                            </div>
+                        </a>
+                    <?endforeach;?>
+
                 </div>
             </div>
             <div class="Project__info">

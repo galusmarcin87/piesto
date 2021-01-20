@@ -49,6 +49,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     use LanguageBehaviorTrait;
 
     public $languageAttributes = ['name', 'lead', 'text','text2', 'buy_token_info'];
+    public $downloadFiles;
 
     const STATUS_ACTIVE = 1;
     const STATUS_ENDED = 2;
@@ -71,7 +72,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             [['status', 'investition_time','token_currency'], 'string', 'max' => 45]
         ];
     }
-    
+
     /**
      * @inheritdoc
      */
@@ -117,9 +118,10 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             'uploadedFiles' => "Obrazki",
             'buy_token_info' => Yii::t('app', 'Buy Token Info'),
             'token_currency' => Yii::t('app', 'Token currency'),
+            'downloadFiles' => Yii::t('app', 'Files to download'),
         ];
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -127,7 +129,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     {
         return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -135,7 +137,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     {
         return $this->hasMany(\app\models\mgcms\db\Payment::className(), ['project_id' => 'id']);
     }
-        
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -151,7 +153,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     {
         return $this->hasOne(\app\models\mgcms\db\File::className(), ['id' => 'flag_id']);
     }
-    
+
     /**
      * @inheritdoc
      * @return \app\models\mgcms\db\ProjectQuery the active query used by this AR class.

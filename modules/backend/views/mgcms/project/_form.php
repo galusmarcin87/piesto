@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use app\components\mgcms\yii\ActiveForm;
 use app\components\mgcms\MgHelpers;
+use \app\models\mgcms\db\FileRelation;
+use kartik\icons\Icon;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\mgcms\db\Project */
@@ -24,6 +26,7 @@ use app\components\mgcms\MgHelpers;
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
+yii\jui\JuiAsset::register($this);
 ?>
 
 <div class="project-form">
@@ -58,9 +61,6 @@ use app\components\mgcms\MgHelpers;
         </div>
 
 
-
-
-
         <?= $form->field6md($model, 'file_id')->widget(\kartik\widgets\Select2::classname(), [
             'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\File::find()->orderBy('id')->asArray()->all(), 'id', 'origin_name'),
             'options' => ['placeholder' => Yii::t('app', 'Choose File')],
@@ -81,7 +81,7 @@ use app\components\mgcms\MgHelpers;
 
             <?= $form->field6md($model, 'www')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
 
-        <?= $form->field6md($model, 'whitepaper')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
+            <?= $form->field6md($model, 'whitepaper')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
         </div>
         <?= $form->field6md($model, 'money')->textInput(['placeholder' => '']) ?>
 
@@ -176,7 +176,40 @@ use app\components\mgcms\MgHelpers;
         </div>
 
         <legend><?= Yii::t('app', 'Images'); ?></legend>
-        <?= $this->render('/common/_images', ['model' => $model, 'editable' => true]) ?>
+        <?/*---------------specyfic for this project distinguish between files ------------------*/?>
+        <div class="row images itemsFlex">
+            <? foreach ($model->fileRelations as $relation): ?>
+
+                <?if ($relation->json == '1' || !$relation->file) continue?>
+                <div class="col-md-3 center bottom10">
+                    <?= \kartik\helpers\Html::hiddenInput("fileOrder[".$relation->file->id."]") ?>
+                    <? echo \yii\helpers\Html::a(Icon::show('trash', ['class' => 'gi-2x']), MgHelpers::createUrl(['backend/mgcms/file/delete-relation', 'relId' => $model->id, 'fileId' => $relation->file->id, 'model' => $model::className()]), ['onclick' => 'return confirm("' . Yii::t('app', 'Are you sure?') . '")', 'class' => 'deleteLink']) ?>
+                    <?= $relation->file->getThumb(250, 250, true, \Imagine\Image\ManipulatorInterface::THUMBNAIL_INSET, ['class' => 'img-responsive']) ?>
+                    <? \kartik\helpers\Html::textarea("FileRelation[$relation->file->id][$model->id][" . $model::className() . "][description]", 'aaa', ['class' => 'form-control']) ?>
+                </div>
+            <? endforeach ?>
+        </div>
+
+        <script type="text/javascript">
+          $(document).ready(function () {
+            $('.images').sortable()
+          })
+
+        </script>
+    </div>
+
+
+    <div class="col-md-12">
+        <?= $form->field($model, 'downloadFiles[]')->fileInput(['multiple' => true]) ?>
+        <legend><?= Yii::t('app', 'Files to download'); ?></legend>
+        <? foreach ($model->fileRelations as $relation): ?>
+            <?if ($relation->json != '1' || !$relation->file) continue?>
+            <div class="col-md-3 center bottom10">
+                <? echo \yii\helpers\Html::a(Icon::show('trash', ['class' => 'gi-2x']), MgHelpers::createUrl(['backend/mgcms/file/delete-relation', 'relId' => $model->id, 'fileId' => $relation->file->id, 'model' => $model::className()]), ['onclick' => 'return confirm("' . Yii::t('app', 'Are you sure?') . '")', 'class' => 'deleteLink']) ?>
+                <?= Html::a($relation->file->origin_name,$relation->file->linkUrl) ?>
+
+            </div>
+        <? endforeach ?>
     </div>
 
     <?php

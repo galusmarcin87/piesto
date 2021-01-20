@@ -10,6 +10,7 @@ use \yii\helpers\Json;
  * @property integer $file_id
  * @property integer $rel_id
  * @property string $model
+ * @property string $json
  * @property File $file
  */
 class FileRelation extends \app\models\mgcms\db\AbstractRecord
@@ -57,7 +58,7 @@ class FileRelation extends \app\models\mgcms\db\AbstractRecord
   {
     return new \app\models\mgcms\db\FileRelationQuery(get_called_class());
   }
-  
+
   /**
    * @return \yii\db\ActiveQuery
    */
@@ -67,7 +68,7 @@ class FileRelation extends \app\models\mgcms\db\AbstractRecord
   }
 
   /**
-   * 
+   *
    * @param type $data
    */
   public static function setJsonAttributes($data)
@@ -93,7 +94,7 @@ class FileRelation extends \app\models\mgcms\db\AbstractRecord
   }
 
   /**
-   * 
+   *
    * @param type $fileId
    * @param type $relId
    * @param type $model
@@ -109,7 +110,7 @@ class FileRelation extends \app\models\mgcms\db\AbstractRecord
   }
 
   /**
-   * 
+   *
    * @param type $fileId
    * @param type $relId
    * @param type $model

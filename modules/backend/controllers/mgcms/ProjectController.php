@@ -2,6 +2,8 @@
 
 namespace app\modules\backend\controllers\mgcms;
 
+use app\models\mgcms\db\File;
+use app\models\mgcms\db\FileRelation;
 use Yii;
 use app\models\mgcms\db\Project;
 use app\models\mgcms\db\ProjectSearch;
@@ -9,6 +11,7 @@ use app\modules\backend\components\mgcms\MgBackendController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\mgcms\MgHelpers;
+use yii\web\UploadedFile;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -97,12 +100,44 @@ class ProjectController extends MgBackendController
 
         $model->language = $lang;
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $this->_assignDownloadFiles($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
         }
+    }
+
+    private function _assignDownloadFiles($model)
+    {
+        $upladedFiles = UploadedFile::getInstances($model, 'downloadFiles');
+
+        if ($upladedFiles) {
+            foreach ($upladedFiles as $CUploadedFileModel) {
+                if ($CUploadedFileModel->hasError) {
+                    MgHelpers::setFlash(MgHelpers::FLASH_TYPE_ERROR, Yii::t('app', 'Error with uploading file - probably file is too big'));
+                    continue;
+                }
+                $fileModel = new File;
+                $file = $fileModel->push(new \rmrevin\yii\module\File\resources\UploadedResource($CUploadedFileModel));
+                if ($file) {
+                    if (FileRelation::find()->where(['file_id' => $file->id, 'rel_id' => $this->id, 'model' => $this::className()])->count()) {
+                        continue;
+                    }
+                    $fileRel = new FileRelation;
+                    $fileRel->file_id = $file->id;
+                    $fileRel->rel_id = $model->id;
+                    $fileRel->model = $model::className();
+                    $fileRel->json = 1;
+                    MgHelpers::saveModelAndLog($fileRel);
+                } else {
+                    MgHelpers::setFlashError('Błąd dodawania pliku powiązanego');
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -117,9 +152,9 @@ class ProjectController extends MgBackendController
 
         return $this->redirect(['index']);
     }
-    
+
     /**
-     * 
+     *
      * Export Project information into PDF format.
      * @param integer $id
      * @return mixed
@@ -171,7 +206,7 @@ class ProjectController extends MgBackendController
         if (Yii::$app->request->post('_asnew') != '1') {
             $model = $this->findModel($id);
         }
-    
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -180,7 +215,7 @@ class ProjectController extends MgBackendController
             ]);
         }
     }
-    
+
     /**
      * Finds the Project model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
@@ -196,7 +231,7 @@ class ProjectController extends MgBackendController
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
     }
-    
+
     /**
     * Action to load a tabular form grid
     * for Bonus
@@ -216,7 +251,7 @@ class ProjectController extends MgBackendController
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
     }
-    
+
     /**
     * Action to load a tabular form grid
     * for Payment

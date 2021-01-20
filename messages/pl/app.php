@@ -18,7 +18,7 @@ $arr = [
     'verified' => 'zweryfikowany',
     'Token currency' => 'Waluta tokenu',
     'gallery'=>'galeria',
-
+    'Files to download' => 'Pliki do pobrania',
 
 
 
@@ -65,8 +65,8 @@ $arr = [
     'Choose Project' => 'Wybierz projekt',
     'Token value' => 'Wartość tokenu',
     'suspended' => 'zawieszone',
-    
-    
+
+
     'Projects' => 'Projekty',
     'Project' => 'Projekt',
     'Create Project' => 'Dodaj Projekt',
@@ -95,12 +95,12 @@ $arr = [
     'Answer' => 'Odpowiedź',
     'Team Members' => 'Zespół',
     'Create Team Member' => 'Dodaj członka zespołu',
-    
+
     'Team Member' => 'Członek zespołu',
     'Update Team Member' => 'Aktualizuj członka zespołu',
-    
-    
-    
+
+
+
     'Users' => 'Użytkownicy',
     'User' => 'Użytkownik',
     'Welcome to MG CMS' => 'Witamy w MG CMS',
