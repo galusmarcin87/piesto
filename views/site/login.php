@@ -17,14 +17,11 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
 //https://yii2-framework.readthedocs.io/en/stable/guide/security-auth-clients/
 ?>
 
-
+<?= $this->render('/common/breadcrumps') ?>
 
 <section class="Section Section--big-padding-top Contact">
     <div class="container">
-        <? yii\authclient\widgets\AuthChoice::widget([
-            'baseAuthUrl' => ['site/auth'],
-            'popupMode' => false,
-        ]) ?>
+        <h1 class="text-center"><?= Yii::t('db', 'Log in / register'); ?></h1>
         <div class="Contact__grid">
             <div class="Contact-form">
                 <?php
@@ -35,17 +32,17 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
 
                 echo $form->errorSummary($model);
                 ?>
-                <h3 class="Header-icon Header-icon--small">
-                    <?= Yii::t('db', 'Log in'); ?>
-                    <img class="Header-icon__icon" src="/svg/znaczek.svg" alt=""/>
-                </h3>
+                <div class="Contact-form__header">
+                    <?= Yii::t('db', 'Login'); ?>
+                </div>
                 <div class="Contact-form__form-group form-group">
-                    <?= $form->field($model, 'username')->textInput(['type' => 'text', 'required' => true, 'placeholder' => ' ']) ?>
+                    <?= $form->field($model, 'username')->textInput(['type' => 'text', 'required' => true, 'placeholder' => $model->getAttributeLabel('username')]) ?>
+                </div>
 
-                </div>
                 <div class="Contact-form__form-group form-group">
-                    <?= $form->field($model, 'password')->passwordInput(['required' => true, 'placeholder' => ' ']) ?>
+                    <?= $form->field($model, 'password')->passwordInput(['required' => true, 'placeholder' => $model->getAttributeLabel('password')]) ?>
                 </div>
+
                 <div class="Form__group form-group text-left">
                     <input type="hidden" name="LoginForm[rememberMe]" value="0">
                     <input
@@ -61,18 +58,19 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
                     <?= Html::a(Yii::t('db', 'Forgotten password?'), ['site/forgot-password'], ['class' => 'Contact__remember-password pull-right']) ?>
 
                 </div>
+
+
                 <div class="text-center">
                     <input
-                            style="margin-top: 138px !important"
+                            style="margin-top: 117px !important"
                             type="submit"
-                            class="Contact-form__submit btn btn-primary btn-block"
+                            class="Contact-form__submit btn btn-success btn-block"
                             value="<?= Yii::t('db', 'Log in'); ?>"
                     />
                 </div>
+
                 <?php ActiveForm::end(); ?>
             </div>
-
-
             <div class="Contact-form">
                 <?php
                 $form = ActiveForm::begin([
@@ -82,21 +80,20 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
 
                 //          echo $form->errorSummary($model);
                 ?>
-                <h3 class="Header-icon Header-icon--small">
-                    <?= Yii::t('db', 'Register'); ?>
-                    <img class="Header-icon__icon" src="/svg/znaczek.svg" alt=""/>
-                </h3>
+                    <div class="Contact-form__header">
+                        <?= Yii::t('db', 'Register of account'); ?>
+                    </div>
                 <div class="Contact-form__form-group form-group">
-                    <?= $form->field($modelRegister, 'username')->textInput(['type' => 'email', 'required' => true, 'placeholder' => ' ']) ?>
+                    <?= $form->field($modelRegister, 'username')->textInput(['type' => 'email', 'required' => true, 'placeholder' => $modelRegister->getAttributeLabel('username')]) ?>
 
 
                 </div>
                 <div class="Contact-form__form-group form-group">
-                    <?= $form->field($modelRegister, 'password')->passwordInput(['required' => true, 'placeholder' => ' ']) ?>
+                    <?= $form->field($modelRegister, 'password')->passwordInput(['required' => true, 'placeholder' => $modelRegister->getAttributeLabel('password')]) ?>
 
                 </div>
                 <div class="Contact-form__form-group form-group">
-                    <?= $form->field($modelRegister, 'passwordRepeat')->passwordInput(['required' => true, 'placeholder' => ' ']) ?>
+                    <?= $form->field($modelRegister, 'passwordRepeat')->passwordInput(['required' => true, 'placeholder' => $modelRegister->getAttributeLabel('passwordRepeat')]) ?>
                 </div>
                 <div class="Contact-form__form-group form-group text-left">
                     <input type="hidden" name="RegisterForm[acceptTerms]" value="0">
@@ -114,16 +111,17 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
                     </label>
                 </div>
 
-                <div class="text-center">
-                    <input
-                            type="submit"
-                            class="Contact-form__submit btn btn-primary btn-block"
-                            value="<?= Yii::t('db', 'Register'); ?>"
-                    />
-                </div>
+                    <div class="text-center">
+                        <input
+                                type="submit"
+                                class="Contact-form__submit btn btn-success btn-block"
+                                value="<?= Yii::t('db', 'Register'); ?>"
+                        />
+                    </div>
 
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
     </div>
 </section>
+
