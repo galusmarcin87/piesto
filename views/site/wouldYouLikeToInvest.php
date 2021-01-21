@@ -6,84 +6,80 @@ use app\components\mgcms\MgHelpers;
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::t('db', 'Would you like to invest');
+$this->title = Yii::t('db', 'Would you like to invest?');
 
 ?>
 
 <?= $this->render('/common/breadcrumps') ?>
 
-    <section
-            style="background-image: url(./images/banner_01.jpg)"
-            class="Section Section--light-bg Section--fixed-bg animatedParent Section--fixed-bg-custom"
-    >
-        <div class="container fadeIn animated">
+<section class="Section Section--white animatedParent">
+    <div class="container">
+        <div class="text-center">
+            <b style="color: #11375f"><?= MgHelpers::getSetting('wanna invest header 1 ' . Yii::$app->language, false, 'CHCESZ') ?>
+                </b>
+            <h1><?= MgHelpers::getSetting('wanna invest header 2 ' . Yii::$app->language, false, 'Zainwestować?') ?></h1>
+        </div>
+        <div class="section-with-long-bg">
             <div class="row">
-                <div class="col-md-6 col-sm-8">
-                    <h2>
-                        <?= MgHelpers::getSettingTranslated('Invest - title', 'Invest - title') ?>
-
-                    </h2>
-                    <h6>
-                        <?= MgHelpers::getSettingTranslated('Invest - header', 'Invest - header') ?>
-                    </h6>
+                <div class="col-lg-6">
+                    <img src="<?= MgHelpers::getSetting('wanna invest image', false, '/images/img2.jpg') ?>" alt=""/>
                 </div>
-            </div>
-        </div>
-    </section>
-    <section class="Section Section--white animatedParent">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+                <div class="col-lg-6">
+                    <div class="uppercase-header"><?= MgHelpers::getSetting('wanna invest section 1 header 1 ' . Yii::$app->language, false, 'Innowacyjne rozwiązanie') ?></div>
                     <p>
-                        <strong>
-                            <?= MgHelpers::getSettingTranslated('Invest - left orange', 'Invest - left orange') ?>
-                        </strong>
-                        <?= MgHelpers::getSettingTranslated('Invest - left', 'Invest - left') ?>
+                        <?= MgHelpers::getSetting('wanna invest section 1 text 1 ' . Yii::$app->language, false, 'wanna invest section 1 text 1') ?>
                     </p>
+                    <div class="uppercase-header"><?= MgHelpers::getSetting('wanna invest section 1 header 2 ' . Yii::$app->language, false, 'BEZPIECZNE INWESTOWANIE') ?></div>
                     <p>
-                        <small>
-                            <?= MgHelpers::getSettingTranslated('Invest - left small', 'Invest - left small') ?>
-                        </small>
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    <p>
-                        <strong><?= MgHelpers::getSettingTranslated('Invest - right orange', 'Invest - right orange') ?></strong>
-                        <?= MgHelpers::getSettingTranslated('Invest - right', 'Invest - right') ?>
-                    </p>
-                    <p>
-                        <small>
-                            <?= MgHelpers::getSettingTranslated('Invest - right small', 'Invest - right small') ?>
-                        </small>
-                    </p>
-                </div>
-            </div>
-            <img class="Image--spacing" src="/images/banner_02.jpg" alt=""/>
-        </div>
-        <div class="container fadeIn animated">
-            <h4><?= Yii::t('db', 'How to invest'); ?></h4>
-            <div class="List-grid List-grid--numbers">
-                <div class="List-grid__item">
-                    <h6 class="List-grid__item__header"><?= MgHelpers::getSettingTranslated('Invest - 1 column header', 'Invest - 1 column header') ?></h6>
-                    <p class="List-grid__item__content">
-                        <?= MgHelpers::getSettingTranslated('Invest - 1 column text', 'Invest - 1 column text') ?>
-                    </p>
-                </div>
-                <div class="List-grid__item">
-                    <h6 class="List-grid__item__header"><?= MgHelpers::getSettingTranslated('Invest - 2 column header', 'Invest - 2 column header') ?></h6>
-                    <p class="List-grid__item__content">
-                        <?= MgHelpers::getSettingTranslated('Invest - 2 column text', 'Invest - 2 column text') ?>
-                    </p>
-                </div>
-                <div class="List-grid__item">
-                    <h6 class="List-grid__item__header"><?= MgHelpers::getSettingTranslated('Invest - 3 column header', 'Invest - 3 column header') ?></h6>
-                    <p class="List-grid__item__content">
-                        <?= MgHelpers::getSettingTranslated('Invest - 3 column text', 'Invest - 3 column text') ?>
+                        <?= MgHelpers::getSetting('wanna invest section 1 text 2 ' . Yii::$app->language, false, 'wanna invest section 1 text 2') ?>
                     </p>
                 </div>
             </div>
         </div>
-    </section>
+        <h6 class="h6-normal">
+            <?= MgHelpers::getSetting('wanna invest section 2 line 1 ' . Yii::$app->language, false, 'wanna invest section 2 line 1') ?>
+        </h6>
 
+        <p>
+            <?= MgHelpers::getSetting('wanna invest section 2 line 2 ' . Yii::$app->language, false, 'wanna invest section 2 line 2') ?>
+        </p>
+    </div>
+    <div class="container fadeIn animated">
+        <div class="text-center">
+            <b style="color: #11375f"><?= MgHelpers::getSetting('wanna invest section 3 header 1 ' . Yii::$app->language, false, 'JAK') ?></b>
+            <h1><?= MgHelpers::getSetting('wanna invest section 3 header 2 ' . Yii::$app->language, false, 'inwestować') ?></h1>
+        </div>
+        <div class="List-grid List-grid--numbers">
+            <div class="List-grid__item">
+                <h6 class="List-grid__item__header">
+                    <?= MgHelpers::getSetting('wanna invest section 3 column 1 header ' . Yii::$app->language, false, 'Wybierz <br/>
+                    inwestycję') ?>
 
-<?= $this->render('/common/newsletterForm') ?>
+                </h6>
+                <p class="List-grid__item__content">
+                    <?= MgHelpers::getSetting('wanna invest section 3 column 1 text ' . Yii::$app->language, false, 'wanna invest section 3 column 1 text') ?>
+                </p>
+            </div>
+            <div class="List-grid__item">
+                <h6 class="List-grid__item__header">
+                    <?= MgHelpers::getSetting('wanna invest section 3 column 2 header ' . Yii::$app->language, false, 'Wybierz <br/>
+                    inwestycję') ?>
+
+                </h6>
+                <p class="List-grid__item__content">
+                    <?= MgHelpers::getSetting('wanna invest section 3 column 2 text ' . Yii::$app->language, false, 'wanna invest section 3 column 2 text') ?>
+                </p>
+            </div>
+            <div class="List-grid__item">
+                <h6 class="List-grid__item__header">
+                    <?= MgHelpers::getSetting('wanna invest section 3 column 3 header ' . Yii::$app->language, false, 'Wybierz <br/>
+                    inwestycję') ?>
+
+                </h6>
+                <p class="List-grid__item__content">
+                    <?= MgHelpers::getSetting('wanna invest section 3 column 3 text ' . Yii::$app->language, false, 'wanna invest section 3 column 3 text') ?>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
