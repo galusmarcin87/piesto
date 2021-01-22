@@ -6,97 +6,90 @@ use app\components\mgcms\MgHelpers;
 
 /* @var $this yii\web\View */
 
-$this->title = Yii::t('db', 'Would you like to invest');
+$this->title = Yii::t('db', 'About us');
 
 ?>
 
 <?= $this->render('/common/breadcrumps') ?>
-
 <section class="Section">
     <div class="container">
-        <h2>
-            <?= Yii::t('db', 'About us'); ?>
-        </h2>
+        <div class="text-center">
+            <b><?= Yii::t('db', 'ABOUT US'); ?></b>
+        </div>
+        <h1 class="text-center"><?= Yii::t('db', 'and our experience'); ?></h1>
         <div class="row animatedParent">
-            <div
-                    class="col-md-6 Section__text fadeIn animated"
-                    style="padding-top: 20px;"
-            >
-                <?=MgHelpers::getSettingTypeText('about us - text '.Yii::$app->language, true, '<p>
-              <strong>
-                Platforma Riva Finance Crowdsale
-              </strong>
-              <b>
-              powstała w odpowiedzi na potrzeby branży nieruchomości. Od kilkunastu lat zajmuijemy 
-              się nowymi technologiami specjalizując się przede wszysstkim w Inwestycha
-              (ok. tysiąca zrealizowanych projektów programistycznych dla
-              znanych marek z niemal każdej branży) oraz Blockchain - 
-              tworzenie Smart Kontraktów i tokenizacja (ICO, STO) a także ich
-              zastosowania w biznesie, szczgólnie w branży nieruchomości.
-              </b>
-            </p>
-            <p>
-              Doświadczenie związane z Blockchain nabyliśmy biorąc udziaw i
-              tworząc projekty dla różnych branż m.in kamieni szlachetnych w
-              kontekście inwestycyjnym (piersza na świecie tokenizacja aktywów
-              dimentowych)
-            </p>')?>
+            <div class="col-md-6 fadeIn animated">
+                <p class="big">
+                    <?= MgHelpers::getSetting('about us section 1 column 1 header ' . Yii::$app->language, false, 'about us section 1 column 1 header') ?>
+                </p>
+                <p>
+                    <?= MgHelpers::getSetting('about us section 1 column 1 text ' . Yii::$app->language, false, 'about us section 1 column 1 text') ?>
+                </p>
             </div>
-            <div class="col-sm-6 fadeIn animated">
-                <img
-                        style="margin-left: -50px;"
-                        class="Section__image"
-                        src="/images/img_03.jpg"
-                        alt=""
-                />
+            <div class="col-md-6 fadeIn animated">
+                <p class="big">
+                    <?= MgHelpers::getSetting('about us section 1 column 2 header ' . Yii::$app->language, false, 'about us section 1 column 2 header') ?>
+                </p>
+                <p>
+                    <?= MgHelpers::getSetting('about us section 1 column 2 text ' . Yii::$app->language, false, 'about us section 1 column 2 text') ?>
+                </p>
             </div>
         </div>
     </div>
 </section>
+
+<section>
+    <div class="container">
+        <div class="section-with-long-bg">
+            <div class="row">
+                <div class="col-lg-6">
+                    <img src="<?= MgHelpers::getSetting('about us section 2 image', false, '/images/img3.jpg') ?>"
+                         alt=""/>
+                </div>
+                <div class="col-lg-6">
+                    <div class="uppercase-header"><?= MgHelpers::getSetting('about us section 2 header ' . Yii::$app->language, false, 'O platformie') ?></div>
+                    <p class="big">
+                        <?= MgHelpers::getSetting('about us section 2 text 1 ' . Yii::$app->language, false, 'about us section 2 text 1') ?>
+                    </p>
+                    <p class="small">
+                        <?= MgHelpers::getSetting('about us section 2 text 2 ' . Yii::$app->language, false, 'about us section 2 text 2') ?>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="Section Section--white">
     <div class="container">
-        <div class="List-grid-nth">
-            <div class="List-grid-nth__item">
-                <div>
-                    <img src="/images/ico_07.png" alt="">
-                </div>
-                <div>
-                    <p>
-                        <strong><?= MgHelpers::getSettingTranslated('about - us 1 header','about - us 1 header')?></strong><br>
-                        <?= MgHelpers::getSettingTranslated('about - us 1 text','about - us 1 text')?>
+        <div class="text-center">
+            <b><?= Yii::t('db', 'OUR COMPANY'); ?></b>
+        </div>
+        <h1 class="text-center"><?= Yii::t('db', 'with numbers'); ?></h1>
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="big-text">
+                    <?= MgHelpers::getSetting('about us section 3 number 1', false, '8') ?>
+                    <p class="small">
+                        <?= MgHelpers::getSetting('about us section 3 text 1 ' . Yii::$app->language, false, 'liczba<br /> emisji') ?>
+
                     </p>
                 </div>
             </div>
-            <div class="List-grid-nth__item">
-                <div>
-                    <img src="/images/ico_11.png" alt="">
-                </div>
-                <div>
-                    <p>
-                        <strong><?= MgHelpers::getSettingTranslated('about - us 12header','about - us 2 header')?></strong><br>
-                        <?= MgHelpers::getSettingTranslated('about - us 2 text','about - us 2 text')?>
+            <div class="col-md-4">
+                <div class="big-text">
+                    <?= MgHelpers::getSetting('about us section 3 number 2', false, '50') ?>
+                    <p class="small">
+                        <?= MgHelpers::getSetting('about us section 3 text 2 ' . Yii::$app->language, false, 'mln PLN - kwota<br /> pozyskanych środków') ?>
                     </p>
                 </div>
             </div>
-            <div class="List-grid-nth__item">
-                <div>
-                    <img src="/images/ico_13.png" alt="">
-                </div>
-                <div>
-                    <p>
-                        <strong><?= MgHelpers::getSettingTranslated('about - us 3 header','about - us 3 header')?></strong><br>
-                        <?= MgHelpers::getSettingTranslated('about - us 3 text','about - us 3 text')?>
-                    </p>
-                </div>
-            </div>
-            <div class="List-grid-nth__item">
-                <div>
-                    <img src="/images/ico_17.png" alt="">
-                </div>
-                <div>
-                    <p>
-                        <strong><?= MgHelpers::getSettingTranslated('about - us 4 header','about - us 4 header')?></strong><br>
-                        <?= MgHelpers::getSettingTranslated('about - us 4 text','about - us 4 text')?>
+            <div class="col-md-4">
+                <div class="big-text">
+                    <?= MgHelpers::getSetting('about us section 3 number 3', false, '10') ?>
+                    <p class="small">
+                        <?= MgHelpers::getSetting('about us section 3 text 3 ' . Yii::$app->language, false, 'lat doświadczenia<br/> w nieruchomościach') ?>
+
                     </p>
                 </div>
             </div>
@@ -105,5 +98,48 @@ $this->title = Yii::t('db', 'Would you like to invest');
 </section>
 
 
-<?= $this->render('/common/news') ?>
-<?= $this->render('/common/newsletterForm') ?>
+<section class="Section Section--white">
+    <div class="container">
+        <div class="text-center">
+            <b><?= MgHelpers::getSetting('about us section 4 header ' . Yii::$app->language, false, 'JAK DZIAŁAMY') ?></b>
+        </div>
+        <h1 class="text-center"><?= MgHelpers::getSetting('about us section 4 subheader ' . Yii::$app->language, false, 'na rynku inwestycji') ?></h1>
+        <ul class="List-custm__checklist">
+            <li class="List-custm__checklist__item">
+                <strong><?= MgHelpers::getSetting('about us section 4 header 1 ' . Yii::$app->language, false, 'Zakup tokenów') ?></strong>
+                <?= MgHelpers::getSetting('about us section 4 text 1 ' . Yii::$app->language, false, 'about us section 4 text 1') ?>
+            </li>
+            <li class="List-custm__checklist__item">
+                <strong><?= MgHelpers::getSetting('about us section 4 header 2 ' . Yii::$app->language, false, 'Zakup tokenów') ?></strong>
+                <?= MgHelpers::getSetting('about us section 4 text 2 ' . Yii::$app->language, false, 'about us section 4 text 2') ?>
+            </li>
+            <li class="List-custm__checklist__item">
+                <strong><?= MgHelpers::getSetting('about us section 4 header 3 ' . Yii::$app->language, false, 'Zakup tokenów') ?></strong>
+                <?= MgHelpers::getSetting('about us section 4 text 3 ' . Yii::$app->language, false, 'about us section 4 text 3') ?>
+            </li>
+            <li class="List-custm__checklist__item">
+                <strong><?= MgHelpers::getSetting('about us section 4 header 4 ' . Yii::$app->language, false, 'Zakup tokenów') ?></strong>
+                <?= MgHelpers::getSetting('about us section 4 text 4 ' . Yii::$app->language, false, 'about us section 4 text 4') ?>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<section class="Section" style="overflow: hidden">
+    <div class="container">
+        <div class="section-with-long-bg section-with-long-bg--right">
+            <div class="uppercase-header"><?= MgHelpers::getSetting('about us section 5 header ' . Yii::$app->language, false, 'O platformie') ?></div>
+
+            <p class="small">
+                <?= MgHelpers::getSetting('about us section 5 text 1 ' . Yii::$app->language, false, 'about us section 5 text 1') ?>
+            </p>
+            <p class="small">
+                <?= MgHelpers::getSetting('about us section 5 text 2 ' . Yii::$app->language, false, 'about us section 5 text 2') ?>
+            </p>
+        </div>
+    </div>
+</section>
+
+<?= $this->render('/common/movies')?>
+<?= $this->render('/common/team')?>
+<?= $this->render('/common/faq')?>
