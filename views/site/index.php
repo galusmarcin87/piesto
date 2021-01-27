@@ -13,7 +13,7 @@ use app\models\mgcms\db\Project;
     <div class="container fadeIn animated">
 
         <div class="Projects__header__wrapper">
-            <h4 class="Projects__header text-center"><?= Yii::t('db', $header); ?></h4>
+            <h4 class="Projects__header text-center"><?= Yii::t('db', 'Current projects'); ?></h4>
             <a href="<?= \yii\helpers\Url::to(['project/index']) ?>" class="btn btn--transparent btn--medium">
                 <?= Yii::t('db', 'SEE ALL'); ?>
             </a>
