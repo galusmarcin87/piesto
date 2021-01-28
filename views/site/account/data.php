@@ -13,7 +13,7 @@ use yii\bootstrap\Tabs;
 $form = ActiveForm::begin([
     'id' => 'login-form',
 
-    'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig(false),
+    'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig(true),
     'options' => ['enctype' => 'multipart/form-data', 'class' => 'User-Panel__form Contact-form animatedParent',]
 ]);
 

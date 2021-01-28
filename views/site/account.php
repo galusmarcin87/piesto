@@ -14,6 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 ?>
+<style>
+    .Register__input+label{
+        position: relative;
+    }
+</style>
 
 
 <section class="Section Section--big-padding-top Contact animatedParent">
