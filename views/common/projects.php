@@ -25,7 +25,18 @@ foreach ($tabsStatuses as $status) {
 
 ?>
 
-
+<style>
+    .Projects__sortable {
+        --gap: 30px;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: var(--gap);
+        grid-row-gap: 45px;
+        margin-top: 25px;
+    }
+</style>
 <?php
 
 $provider = $projectSearch->search([], Project::STATUS_ACTIVE);
