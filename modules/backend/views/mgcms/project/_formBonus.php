@@ -40,7 +40,7 @@
                 'type' => GridView::TYPE_DEFAULT,
                 'before' => false,
                 'footer' => false,
-                'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Dodaj Bonus'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowBonus()']),
+                'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Dodaj'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowBonus()']),
             ]
         ]
     ]);
