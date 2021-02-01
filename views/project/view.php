@@ -64,7 +64,9 @@ $index = 0;
         -ms-flex-pack: center;
         justify-content: center;
     }
-</style>
+    .Section strong{color: inherit;}
+</style
+>
 <?= $this->render('/common/breadcrumps') ?>
 
 <section class="Section Project">
