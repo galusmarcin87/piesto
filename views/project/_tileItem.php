@@ -71,12 +71,12 @@ $model->language = Yii::$app->language;
             <div class="Invest-counter__header">
                 <div class="Invest-counter__source">
 
-                    $<span class="Invest-counter__source__value"><?= MgHelpers::convertNumberToNiceString((int)$model->money) ?></span>
+                    <span class="Invest-counter__source__value"><?= MgHelpers::convertNumberToNiceString((int)$model->money) ?></span> PLN
                     (<span data-to="<?= round(($model->money / $model->money_full) * 100, 0) ?>"
                            class="Invest-counter__source__percent">0</span>%)
                 </div>
                 <div class="Invest-counter__target">
-                    $<?= MgHelpers::convertNumberToNiceString($model->money_full) ?>
+                    <?= MgHelpers::convertNumberToNiceString($model->money_full) ?> PLN
                 </div>
             </div>
             <div class="Invest-counter__value-line-wrapper">
