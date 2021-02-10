@@ -15,7 +15,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?= $this->render('/common/breadcrumps') ?>
-
+<style>
+    .Projects__sortable {
+        --gap: 30px;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-column-gap: var(--gap);
+        grid-row-gap: 45px;
+        margin-top: 25px;
+    }
+</style>
 <section class="Section Section--grey Projects Projects--with-pagination animatedParent">
     <div class="container fadeIn animated">
         <?=
