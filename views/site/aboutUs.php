@@ -41,7 +41,7 @@ $this->title = Yii::t('db', 'About us');
     }
 </style>
 <?= $this->render('/common/breadcrumps') ?>
-<section class="Section">
+<section class="Section  Section--white">
     <div class="container">
         <div class="text-center">
             <b><?= Yii::t('db', 'ABOUT US'); ?></b>
@@ -57,7 +57,7 @@ $this->title = Yii::t('db', 'About us');
                 </p>
             </div>
             <div class="col-md-6 fadeIn animated">
-                <p class="big">
+                <p>
                     <?= MgHelpers::getSetting('about us section 1 column 2 header ' . Yii::$app->language, false, 'about us section 1 column 2 header') ?>
                 </p>
                 <p>
