@@ -41,7 +41,7 @@ class ArticleController extends \app\components\mgcms\MgCmsController
         $dataProvider = new ActiveDataProvider([
             'query' => Article::find()->where($categoryId ? ['category_id' => $categoryId] : [])
                 ->andWhere(['status' => Article::STATUS_ACTIVE])
-                ->orderBy('created_on DESC'),
+                ->orderBy('order ASC , created_on DESC'),
         ]);
 
         return $this->render('index', [
