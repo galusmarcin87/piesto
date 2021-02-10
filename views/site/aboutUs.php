@@ -9,7 +9,37 @@ use app\components\mgcms\MgHelpers;
 $this->title = Yii::t('db', 'About us');
 
 ?>
-
+<style>
+    .List-custm__checklist__item:before {
+        content: '';
+        width: var(--size);
+        height: var(--size);
+        background: #dbe3e9;
+        border-radius: 3px;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .List-custm__checklist__item:after {
+        content: '\2713';
+        width: var(--size);
+        height: var(--size);
+        color: #35a1d9;
+        position: absolute;
+        font-size: 30px;
+        left: 0%;
+        font-weight: bold;
+        top: 0%;
+        display: -ms-grid;
+        display: grid;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    }
+</style>
 <?= $this->render('/common/breadcrumps') ?>
 <section class="Section">
     <div class="container">
