@@ -46,7 +46,7 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
                         <? endforeach ?>
 
                     </ul>
-                    <a href="#" class="btn btn-success"> TODO Zgłoś nieruchomość </a>
+                    
                     <? if (Yii::$app->user->isGuest): ?>
                         <a href="<?= yii\helpers\Url::to(['/site/login']) ?>" class="btn btn-default"> <?= Yii::t('db', 'Login'); ?> </a>
                     <? else: ?>

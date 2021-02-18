@@ -15,7 +15,7 @@ $dataProvider = new ActiveDataProvider([
     'pagination' => ['pageSize' => '3'],
     'query' => Article::find()->where(['category_id' => $category->id])
         ->andWhere(['status' => Article::STATUS_ACTIVE])
-        ->orderBy('created_on DESC'),
+        ->orderBy('order ASC , created_on DESC'),
 ]);
 
 $showAllButton = isset($showAllButton) ? $showAllButton : true;
