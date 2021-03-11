@@ -78,15 +78,20 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
                     'fieldConfig' => $fieldConfig
                 ]);
 
-                //          echo $form->errorSummary($model);
+
                 ?>
                     <div class="Contact-form__header">
                         <?= Yii::t('db', 'Register of account'); ?>
                     </div>
+                <? //echo $form->errorSummary($modelRegister);?>
+                <div class="Contact-form__form-group form-group">
+                    <?= $form->field($modelRegister, 'firstName')->textInput(['required' => true, 'placeholder' => $modelRegister->getAttributeLabel('firstName')]) ?>
+                </div>
+                <div class="Contact-form__form-group form-group">
+                    <?= $form->field($modelRegister, 'surname')->textInput(['required' => true, 'placeholder' => $modelRegister->getAttributeLabel('surname')]) ?>
+                </div>
                 <div class="Contact-form__form-group form-group">
                     <?= $form->field($modelRegister, 'username')->textInput(['type' => 'email', 'required' => true, 'placeholder' => $modelRegister->getAttributeLabel('username')]) ?>
-
-
                 </div>
                 <div class="Contact-form__form-group form-group">
                     <?= $form->field($modelRegister, 'password')->passwordInput(['required' => true, 'placeholder' => $modelRegister->getAttributeLabel('password')]) ?>
@@ -95,21 +100,14 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
                 <div class="Contact-form__form-group form-group">
                     <?= $form->field($modelRegister, 'passwordRepeat')->passwordInput(['required' => true, 'placeholder' => $modelRegister->getAttributeLabel('passwordRepeat')]) ?>
                 </div>
-                <div class="Contact-form__form-group form-group text-left">
-                    <input type="hidden" name="RegisterForm[acceptTerms]" value="0">
-                    <input
-                            name="RegisterForm[acceptTerms]"
-                            class="Form__checkbox"
-                            type="checkbox"
-                            id="agree"
-                            value="1"
-                            checked
-                            required
-                    />
-                    <label for="agree">
-                        <?= MgHelpers::getSettingTranslated('register_terms_label', '  Oświadczam, że zapoznałem się z <a href="#">Regulaminem</a><br>  i <a href="#">Polityką Prywatności.</a>') ?>
-                    </label>
-                </div>
+                <?= $this->render('login/acceptCheckbox',['number' => '','form'=> $form, 'modelRegister' => $modelRegister])?>
+                <?= $this->render('login/acceptCheckbox',['number' => 2,'form'=> $form, 'modelRegister' => $modelRegister])?>
+                <?= $this->render('login/acceptCheckbox',['number' => 3,'form'=> $form, 'modelRegister' => $modelRegister])?>
+                <?= $this->render('login/acceptCheckbox',['number' => 4,'form'=> $form, 'modelRegister' => $modelRegister])?>
+                <?= $this->render('login/acceptCheckbox',['number' => 5,'form'=> $form, 'modelRegister' => $modelRegister])?>
+                <?= $this->render('login/acceptCheckbox',['number' => 6,'form'=> $form, 'modelRegister' => $modelRegister])?>
+
+
 
                     <div class="text-center">
                         <input

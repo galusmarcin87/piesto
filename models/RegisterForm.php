@@ -15,6 +15,11 @@ class RegisterForm extends Model
     public $password;
     public $passwordRepeat;
     public $acceptTerms;
+    public $acceptTerms2;
+    public $acceptTerms3;
+    public $acceptTerms4;
+    public $acceptTerms5;
+    public $acceptTerms6;
     public $firstName;
     public $surname;
     public $phone;
@@ -27,9 +32,16 @@ class RegisterForm extends Model
     {
         return [
             // username and password are both required
-            [['username',  'password', 'passwordRepeat'], 'required'],
+            [['username', 'password', 'passwordRepeat', 'firstName', 'surname'], 'required'],
+            [['password'], StrengthValidator::className(),
+                'min' => 8,
+                'digit' => 1,
+                'upper' => 1,
+                'lower' => 1,
+                'special' => 0,
+                'userAttribute' => 'username'],
             ['passwordRepeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('db', "Passwords don't match")],
-            ['acceptTerms', 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['acceptTerms', 'acceptTerms2', 'acceptTerms3', 'acceptTerms4', 'acceptTerms5', 'acceptTerms6'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
             ['username', 'email'],
             ['phone', 'safe'],
 //        [['password'], StrengthValidator::className(), 'min' => 8, 'digit' => 1, 'special' => 1, 'upper' => 1, 'lower' => 1, 'userAttribute' => 'username'],
@@ -45,7 +57,12 @@ class RegisterForm extends Model
             'surname' => Yii::t('db', 'Surname'),
             'phone' => Yii::t('db', 'Phone'),
             'passwordRepeat' => Yii::t('db', 'Repeat password'),
-            'acceptTerms' => MgHelpers::getSettingTranslated('register_terms_label', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'acceptTerms' => MgHelpers::getSettingTranslated('register_terms_label1', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'acceptTerms2' => MgHelpers::getSettingTranslated('register_terms_label2', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'acceptTerms3' => MgHelpers::getSettingTranslated('register_terms_label3', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'acceptTerms4' => MgHelpers::getSettingTranslated('register_terms_label4', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'acceptTerms5' => MgHelpers::getSettingTranslated('register_terms_label5', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'acceptTerms5' => MgHelpers::getSettingTranslated('register_terms_label6', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
         ];
     }
 
@@ -73,7 +90,7 @@ class RegisterForm extends Model
                 'model' => $user
             ])
                 ->setTo($user->username)
-                ->setFrom([MgHelpers::getSetting('register_email') => MgHelpers::getSetting('register_email_name')])
+                ->setFrom(['asdas@wp.pl' => 'asds'])
                 ->setSubject(MgHelpers::getSettingTranslated('register_activation_email_subject', 'Noble Platform - activation'));
             $sent = $mailer->send();
 

@@ -3,7 +3,7 @@ use app\components\mgcms\MgHelpers;
 
 ?>
 
-<h1><?= Yii::t('db', 'Noble Platform - Activation'); ?></h1>
+<h1><?= Yii::t('db', 'Piesto - Activation'); ?></h1>
 <?= MgHelpers::getSetting('register_mail_' . Yii::$app->language) ?>
 <?= Yii::t('db', 'Your activation link:'); ?>
 <a href="<?=
