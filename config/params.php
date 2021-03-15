@@ -1,6 +1,6 @@
 <?php
 return [
-    'adminEmail' => 'admin@example.com',
+    'adminEmail' => 'galusmarcin87@gmail.com',
     'roles' => ['admin', 'front', 'team'],
     'languages' => ['pl', 'en', 'de', 'fr'],
     'languagesDisplay' => ['pl', 'en', 'de', 'fr'],
