@@ -343,7 +343,7 @@ $(document).ready(function () {
           youtube: {
             index: 'youtube.com/',
             id: 'v=',
-            src: 'http://www.youtube.com/embed/%id%?autoplay=1',
+            src: 'https://www.youtube.com/embed/%id%?autoplay=1',
           },
         },
         srcAction: 'iframe_src',
