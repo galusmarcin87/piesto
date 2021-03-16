@@ -19,7 +19,10 @@ if(sizeof($teamUsers) == 0){
                     <? if ($teamUser->file && $teamUser->file->isImage()): ?>
                         <img class="Team__item__photo" src="<?= $teamUser->file->getImageSrc(160, 160) ?>"/>
                     <? endif ?>
-                    <div class="Team__item__name"><?= $teamUser->first_name ?> <?= $teamUser->last_name ?></div>
+                    <div class="Team__item__name">
+                        <?= $teamUser->first_name ?> <?= $teamUser->last_name ?><br/>
+                        <?= $teamUser->getModelAttribute('position') ?>
+                    </div>
                     <div>
                         <a href="mailto:<?= $teamUser->username ?>"><?= $teamUser->username ?></a>
                     </div>

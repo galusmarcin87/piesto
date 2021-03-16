@@ -50,7 +50,7 @@ use app\components\mgcms\MgHelpers;
 class User extends BaseUser implements IdentityInterface
 {
 
-    public $modelAttributes = ['facebook','twitter','linkedin','instagram'];
+    public $modelAttributes = ['facebook','twitter','linkedin','instagram','position'];
 
 
     const ROLE_ADMIN = 'admin';
@@ -106,7 +106,7 @@ class User extends BaseUser implements IdentityInterface
 //        [['password'], StrengthValidator::className(), 'min' => 8, 'digit' => 1, 'special' => 1, 'upper' => 1, 'lower' => 1, 'userAttribute' => 'username'],
             [['city', 'first_name', 'last_name', 'citizenship', 'pesel', 'birthdate', 'birth_country', 'document_type', 'street', 'house_no', 'flat_no', 'postcode', 'email', 'phone'], 'required', 'on' => 'kyc'],
             ['acceptTerms', 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'account'],
-            [['facebook','twitter','linkedin','instagram','phone'], 'safe']
+            [['facebook','twitter','linkedin','instagram','phone','position'], 'safe']
         ];
     }
 

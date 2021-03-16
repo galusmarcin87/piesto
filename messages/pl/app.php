@@ -19,7 +19,7 @@ $arr = [
     'Token currency' => 'Waluta tokenu',
     'gallery'=>'galeria',
     'Files to download' => 'Pliki do pobrania',
-
+    'Position' => 'Stanowisko',
 
 
 

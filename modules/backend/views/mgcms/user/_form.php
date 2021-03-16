@@ -76,6 +76,9 @@ use yii\helpers\Url;
         <div class="col-md-4">
             <?= $form->field($model, 'instagram')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('instagram')]) ?>
         </div>
+        <div class="col-md-4">
+            <?= $form->field($model, 'position')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('position')]) ?>
+        </div>
 
         <div class="col-md-4">
             <?= $this->render('/common/_fileModalChooser', [

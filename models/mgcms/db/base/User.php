@@ -93,6 +93,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
         'acceptTerms' => MgHelpers::getSettingTranslated('account_terms_label', 'Zgoda na ....'),
         'country' => Yii::t('db', 'Country'),
         'oldPassword' => Yii::t('db', 'Old password'),
+        'position' => Yii::t('app', 'Position'),
     ];
   }
 
