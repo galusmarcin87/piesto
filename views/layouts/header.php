@@ -46,7 +46,7 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
                         <? endforeach ?>
 
                     </ul>
-                    
+
                     <? if (Yii::$app->user->isGuest): ?>
                         <a href="<?= yii\helpers\Url::to(['/site/login']) ?>" class="btn btn-default"> <?= Yii::t('db', 'Login'); ?> </a>
                     <? else: ?>
@@ -89,7 +89,6 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
                         <? endif ?>
 
                     </div>
-                    <a href="#" class="btn btn-default"> EN </a>
                     <a href="#" class="Menu-top__toggle-btn">
                         <i class="fa fa-bars" aria-hidden="true"></i>
                     </a>
