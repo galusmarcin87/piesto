@@ -83,5 +83,13 @@ return [
             ],
             'route' => '/site/about-our-platform',
         ],
+        [
+            'class' => 'geertw\Yii2\TranslatableUrlRule\TranslatableUrlRule',
+            'patterns' => [
+                'en' => '/real-estate-report',
+                'pl' => '/zglos-nieruchomosc',
+            ],
+            'route' => '/site/real-estate-report',
+        ],
     ],
 ];

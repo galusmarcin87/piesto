@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\mgcms\db\File;
+use app\models\ReportRealEstateForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -184,6 +185,25 @@ class SiteController extends \app\components\mgcms\MgCmsController
             return $this->refresh();
         }
         return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Displays contact page.
+     *
+     * @return Response|string
+     */
+    public function actionRealEstateReport()
+    {
+        $model = new ReportRealEstateForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->sendMail()) {
+            MgHelpers::setFlashSuccess(Yii::t('db', 'Mail has been sent'));
+
+            return $this->refresh();
+        }
+        return $this->render('realEstateReport', [
             'model' => $model,
         ]);
     }
