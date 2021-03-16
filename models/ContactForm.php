@@ -29,12 +29,13 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email','body'], 'required'],
+            [['name', 'email', 'body'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
+            ['phone', 'safe'],
             // verifyCode needs to be entered correctly
 //            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
-            [['acceptTerms','acceptTerms2'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['acceptTerms', 'acceptTerms2'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
         ];
     }
 
@@ -49,8 +50,8 @@ class ContactForm extends Model
             'subject' => Yii::t('db', 'Subject'),
             'phone' => Yii::t('db', 'Phone'),
             'body' => Yii::t('db', 'Message'),
-            'acceptTerms' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text','I accept terms and conditions')),
-            'acceptTerms2' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text2','I accept rules')),
+            'acceptTerms' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text', 'I accept terms and conditions')),
+            'acceptTerms2' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text2', 'I accept rules')),
             'verifyCode' => 'Verification Code',
         ];
     }
