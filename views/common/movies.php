@@ -37,7 +37,7 @@ if (MgHelpers::getSetting('home - filmy youtube') == '') {
             </div>
         </div>
         <div class="text-center">
-            <a href="<?=MgHelpers::getSetting('home - video - channe link')?>" class="btn btn-success"> <?= Yii::t('db', 'Visit our channel'); ?> </a>
+            <a href="<?=MgHelpers::getSetting('home - video - channe link')?>" class="btn btn-success" target="_blank"> <?= Yii::t('db', 'Visit our channel'); ?> </a>
         </div>
     </div>
 </section>
