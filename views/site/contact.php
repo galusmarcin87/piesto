@@ -90,6 +90,22 @@ $this->title = MgHelpers::getSettingTranslated('contact_header', 'Contact');
                                 'checkboxTemplate' => "{input}\n{label}\n{error}",
                             ]
                         )->checkbox(['class' => 'Form__checkbox']) ?>
+                        <?= $form->field($model, 'acceptTerms3',
+                            [
+                                'options' => [
+                                    'class' => "Form__group form-group",
+                                ],
+                                'checkboxTemplate' => "{input}\n{label}\n{error}",
+                            ]
+                        )->checkbox(['class' => 'Form__checkbox']) ?>
+                        <?= $form->field($model, 'acceptTerms4',
+                            [
+                                'options' => [
+                                    'class' => "Form__group form-group",
+                                ],
+                                'checkboxTemplate' => "{input}\n{label}\n{error}",
+                            ]
+                        )->checkbox(['class' => 'Form__checkbox']) ?>
                     </div>
 
 

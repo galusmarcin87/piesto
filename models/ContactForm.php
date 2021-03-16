@@ -20,6 +20,8 @@ class ContactForm extends Model
     public $reCaptcha;
     public $acceptTerms;
     public $acceptTerms2;
+    public $acceptTerms3;
+    public $acceptTerms4;
 
 
     /**
@@ -35,7 +37,7 @@ class ContactForm extends Model
             ['phone', 'safe'],
             // verifyCode needs to be entered correctly
 //            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
-            [['acceptTerms', 'acceptTerms2'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['acceptTerms', 'acceptTerms2','acceptTerms3', 'acceptTerms4'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
         ];
     }
 
@@ -52,6 +54,8 @@ class ContactForm extends Model
             'body' => Yii::t('db', 'Message'),
             'acceptTerms' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text', 'I accept terms and conditions')),
             'acceptTerms2' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text2', 'I accept rules')),
+            'acceptTerms3' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text3', 'I accept rules')),
+            'acceptTerms4' => Yii::t('db', MgHelpers::getSettingTranslated('contact_accept_terms_text4', 'I accept rules')),
             'verifyCode' => 'Verification Code',
         ];
     }
