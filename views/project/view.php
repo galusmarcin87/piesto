@@ -169,10 +169,12 @@ $index = 0;
 
         <?= $this->render('view/bonuses', ['model' => $model]) ?>
 
+
+        <?Url::to(['project/buy', 'id' => $model->id])?>
         <div class="container">
             <div class="text-center">
                 <a class="btn btn-success btn--medium"
-                   href="<?= Url::to(['project/buy', 'id' => $model->id]) ?>"><?= Yii::t('db', 'INVEST'); ?></a>
+                   href="<?= MgHelpers::getSetting('buy_link') ?>"><?= Yii::t('db', 'INVEST'); ?></a>
             </div>
             <?= $this->render('view/bottomInfoBar') ?>
         </div>
