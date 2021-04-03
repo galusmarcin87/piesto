@@ -7,6 +7,7 @@ use app\models\mgcms\db\FileRelation;
 use Yii;
 use yii\base\Model;
 use \app\components\mgcms\MgHelpers;
+use yii\validators\Validator;
 use yii\web\UploadedFile;
 
 /**
@@ -16,13 +17,23 @@ class ReportRealEstateForm extends Model
 {
 
     public $name;
+    public $nip;
+    public $pesel;
     public $surname;
     public $email;
     public $companyName;
     public $phone;
     public $body;
+    public $localization;
     public $reCaptcha;
     public $acceptTerms;
+
+    public $financePlan;
+    public $estateType;
+    public $campaignTime;
+    public $minimalLoanAmount;
+    public $maximalLoanAmount;
+    public $intrestRate;
 
     public $uploadedFiles;
 
@@ -34,10 +45,11 @@ class ReportRealEstateForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'surname', 'email', 'body', 'companyName'], 'required'],
+            [['name',  'email'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
-            ['phone', 'safe'],
+            [['nip', 'pesel', 'phone', 'minimalLoanAmount', 'maximalLoanAmount', 'intrestRate'], 'integer'],
+            [['phone', 'localization', 'estateType', 'financePlan', 'campaignTime'], 'safe'],
             [['uploadedFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, doc, docx', 'maxFiles' => 4],
             // verifyCode needs to be entered correctly
 //            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
@@ -51,7 +63,8 @@ class ReportRealEstateForm extends Model
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('db', 'Name'),
+            'name' => Yii::t('db', 'Name of company / name and surname'),
+            'pesel' => Yii::t('db', 'PESEL/KRS'),
             'surname' => Yii::t('db', 'Surname'),
             'email' => Yii::t('db', 'Email address'),
             'companyName' => Yii::t('db', 'Company name'),
@@ -59,6 +72,13 @@ class ReportRealEstateForm extends Model
             'body' => Yii::t('db', 'Real estate description'),
             'acceptTerms' => Yii::t('db', MgHelpers::getSettingTranslated('report_real_estate_accept_terms_text', 'I accept terms and conditions')),
             'verifyCode' => 'Verification Code',
+            'localization' => Yii::t('db', 'Localization'),
+            'estateType' => Yii::t('db', 'Real estate type'),
+            'financePlan' => Yii::t('db', 'Finance plan'),
+            'campaignTime' => Yii::t('db', 'Campaign time'),
+            'minimalLoanAmount' => Yii::t('db', 'Minimal loan amount'),
+            'maximalLoanAmount' => Yii::t('db', 'Maximal loan amount'),
+            'intrestRate' => Yii::t('db', 'Intrest rate'),
         ];
     }
 
