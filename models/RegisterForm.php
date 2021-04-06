@@ -84,8 +84,6 @@ class RegisterForm extends Model
                 MgHelpers::setFlashError(Yii::t('db', 'Error during registration:') . MgHelpers::getErrorsString($user->getErrors()));
                 return false;
             }
-            MgHelpers::setFlashSuccess(Yii::t('db', 'Account successfully created'));
-            return true;
 
             /* @var $mailer \yii\swiftmailer\Mailer */
             $mailer = Yii::$app->mailer->compose('activation', [
