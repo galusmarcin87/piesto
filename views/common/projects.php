@@ -36,6 +36,12 @@ foreach ($tabsStatuses as $status) {
         grid-row-gap: 45px;
         margin-top: 25px;
     }
+
+    @media (max-width: 768px) {
+        .Projects__sortable {
+            display: block;
+        }
+    }
 </style>
 <?php
 
