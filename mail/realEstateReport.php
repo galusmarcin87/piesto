@@ -23,11 +23,12 @@
 <p>MAKSYMALNA KWOTA POŻYCZKI : <?= $model->maximalLoanAmount ?></p>
 <p>OPROCENTOWANIE POŻYCZKI WG UMOWY  : <?= $model->intrestRate ?></p>
 
+<?if($files):?>
 <h6>Załaczniki:</h6>
 <ul>
     <? foreach ($files as $file): ?>
         <li><a href="<?= \yii\helpers\Url::base(true) . $file->getWebPath() ?>"><?= $file->origin_name ?></a></li>
     <? endforeach; ?>
 </ul>
-
+<?endif?>
 
