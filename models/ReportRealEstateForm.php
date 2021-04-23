@@ -45,7 +45,7 @@ class ReportRealEstateForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name',  'email'], 'required'],
+            [['name',  'email', 'nip','phone','localization','estateType','financePlan','campaignTime','minimalLoanAmount','maximalLoanAmount','intrestRate'], 'required'],
             // email has to be a valid email address
             ['email', 'email'],
             [['nip', 'pesel', 'phone', 'minimalLoanAmount', 'maximalLoanAmount', 'intrestRate'], 'integer'],
