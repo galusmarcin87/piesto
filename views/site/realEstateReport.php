@@ -75,6 +75,9 @@ $this->title = MgHelpers::getSettingTranslated('real_estate_report_header', 'Rea
                     <div class="Contact-form__form-group form-group">
                         <?= $form->field($model, 'intrestRate')->textInput(['placeholder' => $model->getAttributeLabel('intrestRate')]) ?>
                     </div>
+                    <div class="Contact-form__form-group form-group">
+                        <?= $form->field($model, 'description')->textarea(['placeholder' => $model->getAttributeLabel('description')]) ?>
+                    </div>
 
                     <h3><?= Yii::t('db', 'Required documents'); ?></h3>
 

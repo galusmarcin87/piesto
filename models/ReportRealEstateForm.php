@@ -25,6 +25,7 @@ class ReportRealEstateForm extends Model
     public $phone;
     public $body;
     public $localization;
+    public $description;
     public $reCaptcha;
     public $acceptTerms;
 
@@ -49,7 +50,7 @@ class ReportRealEstateForm extends Model
             // email has to be a valid email address
             ['email', 'email'],
             [['nip', 'pesel', 'phone', 'minimalLoanAmount', 'maximalLoanAmount', 'intrestRate'], 'integer'],
-            [['phone', 'localization', 'estateType', 'financePlan', 'campaignTime'], 'safe'],
+            [['phone', 'localization', 'estateType', 'financePlan', 'campaignTime', 'description'], 'safe'],
             [['uploadedFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, doc, docx, jpeg, calc', 'maxFiles' => 4],
             // verifyCode needs to be entered correctly
 //            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
@@ -79,6 +80,7 @@ class ReportRealEstateForm extends Model
             'minimalLoanAmount' => Yii::t('db', 'Minimal loan amount'),
             'maximalLoanAmount' => Yii::t('db', 'Maximal loan amount'),
             'intrestRate' => Yii::t('db', 'Intrest rate'),
+            'description' => Yii::t('db', 'Description'),
         ];
     }
 

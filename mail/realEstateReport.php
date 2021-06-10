@@ -22,6 +22,7 @@
 <p>MINIMALNA KWOTA POŻYCZKI : <?= $model->minimalLoanAmount ?></p>
 <p>MAKSYMALNA KWOTA POŻYCZKI : <?= $model->maximalLoanAmount ?></p>
 <p>OPROCENTOWANIE POŻYCZKI WG UMOWY  : <?= $model->intrestRate ?></p>
+<p>OPIS  : <?= $model->description ?></p>
 
 <?if($files):?>
 <h6>Załaczniki:</h6>
