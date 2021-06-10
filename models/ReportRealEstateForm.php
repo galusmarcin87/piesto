@@ -50,7 +50,7 @@ class ReportRealEstateForm extends Model
             ['email', 'email'],
             [['nip', 'pesel', 'phone', 'minimalLoanAmount', 'maximalLoanAmount', 'intrestRate'], 'integer'],
             [['phone', 'localization', 'estateType', 'financePlan', 'campaignTime'], 'safe'],
-            [['uploadedFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, doc, docx', 'maxFiles' => 4],
+            [['uploadedFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, doc, docx, jpeg, calc', 'maxFiles' => 4],
             // verifyCode needs to be entered correctly
 //            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
             //[['acceptTerms'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
