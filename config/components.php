@@ -104,12 +104,12 @@ $arr = [
     'languageSwitcher' => [
         'class' => 'app\components\mgcms\languageSwitcher',
     ],
-    'reCaptcha' => [
-        'name' => 'reCaptcha',
-        'class' => 'app\components\mgcms\recaptcha\ReCaptcha',
-        'siteKey' => '6LcCfnMUAAAAAK49iLvZsS3l8U84d1dgYhzAylqw',
-        'secret' => '6LcCfnMUAAAAADjB424a0TuxZKDgobV38I_Q6xHV',
-    ],
+//    'reCaptcha' => [
+//        'name' => 'reCaptcha',
+//        'class' => 'app\components\mgcms\recaptcha\ReCaptcha',
+//        'siteKey' => '6LeA-CUbAAAAACVgBPUjUY2PfRo3HOaK3gVzVyPj',
+//        'secret' => '6LeA-CUbAAAAAErEaliKQa3oKkP7uVxJCP6x7mg2',
+//    ],
     'authClientCollection' => [
         'class' => 'yii\authclient\Collection',
         'clients' => [

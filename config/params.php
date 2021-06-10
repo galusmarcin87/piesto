@@ -12,6 +12,9 @@ return [
     'tokeneoShopId' => 22,
     'tokeneoEndpointUrl' => 'https://sandbox.pay.tokeneo.com/v1/order',
     'tokeneoIp' => '18.158.21.113',
-    'tokeneoIp2' => '18.158.184.206'
-
+    'tokeneoIp2' => '18.158.184.206',
+    'recaptcha' => [
+        'siteKey' => '6LeA-CUbAAAAACVgBPUjUY2PfRo3HOaK3gVzVyPj',
+        'secretKey' => '6LeA-CUbAAAAAErEaliKQa3oKkP7uVxJCP6x7mg2'
+    ]
 ];

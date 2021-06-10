@@ -53,7 +53,7 @@ class ReportRealEstateForm extends Model
             [['phone', 'localization', 'estateType', 'financePlan', 'campaignTime', 'description'], 'safe'],
             [['uploadedFiles'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, doc, docx, jpeg, calc', 'maxFiles' => 4],
             // verifyCode needs to be entered correctly
-//            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => MgHelpers::getConfigParam('recaptcha')['secretKey']],
             //[['acceptTerms'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
         ];
     }

@@ -37,6 +37,7 @@ class ContactForm extends Model
             ['phone', 'safe'],
             // verifyCode needs to be entered correctly
 //            [['reCaptcha'], \app\components\mgcms\recaptcha\ReCaptchaValidator::className()],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => MgHelpers::getConfigParam('recaptcha')['secretKey']],
             [['acceptTerms', 'acceptTerms2','acceptTerms3', 'acceptTerms4'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
         ];
     }
