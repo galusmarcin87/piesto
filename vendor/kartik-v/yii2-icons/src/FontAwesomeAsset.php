@@ -1,9 +1,9 @@
 <?php
 
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2020
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2021
  * @package yii2-icons
- * @version 1.4.6
+ * @version 1.4.7
  */
 
 namespace kartik\icons;
@@ -26,7 +26,7 @@ class FontAwesomeAsset extends AssetBundle
      */
     public $js = [
         // font awesome free version (can be overridden from yii2 asset manager)
-        'https://use.fontawesome.com/releases/v5.13.0/js/all.js'
+        'https://use.fontawesome.com/releases/v5.15.1/js/all.js'
     ];
 
     /**

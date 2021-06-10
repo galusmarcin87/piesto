@@ -91,9 +91,16 @@ $this->title = MgHelpers::getSettingTranslated('real_estate_report_header', 'Rea
                             ->fileInput(['multiple' => true, 'accept' => 'image/*,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document']); ?>
                     </div>
 
+
                     <div id="uploaderPlaceholder"></div>
                     <button type="button" class="btn btn-success" style="margin-top: 10px;" onclick="addUploader()"><?= Yii::t('db', 'Add another file'); ?></button>
 
+                    <br/> <br/>
+
+                    <?= $form->field($model, 'reCaptcha')->widget(
+                        \himiklab\yii2\recaptcha\ReCaptcha::className(),
+                        ['siteKey' => MgHelpers::getConfigParam('recaptcha')['siteKey']]
+                    ) ?>
 
 
                     <div class="text-right">

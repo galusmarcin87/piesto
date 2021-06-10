@@ -21,15 +21,6 @@ return array (
       '@geertw/Yii2/TranslatableUrlRule' => $vendorDir . '/geertw/yii2-translatable-url-rule/src',
     ),
   ),
-  'kartik-v/yii2-krajee-base' => 
-  array (
-    'name' => 'kartik-v/yii2-krajee-base',
-    'version' => '2.0.5.0',
-    'alias' => 
-    array (
-      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base/src',
-    ),
-  ),
   'kartik-v/yii2-bootstrap4-dropdown' => 
   array (
     'name' => 'kartik-v/yii2-bootstrap4-dropdown',
@@ -138,15 +129,6 @@ return array (
       '@kartik/affix' => $vendorDir . '/kartik-v/yii2-widget-affix',
     ),
   ),
-  'kartik-v/yii2-widget-alert' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-alert',
-    'version' => '1.1.1.0',
-    'alias' => 
-    array (
-      '@kartik/alert' => $vendorDir . '/kartik-v/yii2-widget-alert',
-    ),
-  ),
   'kartik-v/yii2-widget-datepicker' => 
   array (
     'name' => 'kartik-v/yii2-widget-datepicker',
@@ -174,15 +156,6 @@ return array (
       '@kartik/depdrop' => $vendorDir . '/kartik-v/yii2-widget-depdrop/src',
     ),
   ),
-  'kartik-v/yii2-widget-growl' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-growl',
-    'version' => '1.1.1.0',
-    'alias' => 
-    array (
-      '@kartik/growl' => $vendorDir . '/kartik-v/yii2-widget-growl',
-    ),
-  ),
   'kartik-v/yii2-widget-rangeinput' => 
   array (
     'name' => 'kartik-v/yii2-widget-rangeinput',
@@ -199,15 +172,6 @@ return array (
     'alias' => 
     array (
       '@kartik/rating' => $vendorDir . '/kartik-v/yii2-widget-rating/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-sidenav' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-sidenav',
-    'version' => '1.0.0.0',
-    'alias' => 
-    array (
-      '@kartik/sidenav' => $vendorDir . '/kartik-v/yii2-widget-sidenav',
     ),
   ),
   'kartik-v/yii2-widget-spinner' => 
@@ -347,33 +311,6 @@ return array (
     ),
     'bootstrap' => 'rmrevin\\yii\\module\\File\\Bootstrap',
   ),
-  'yiisoft/yii2-httpclient' => 
-  array (
-    'name' => 'yiisoft/yii2-httpclient',
-    'version' => '2.0.12.0',
-    'alias' => 
-    array (
-      '@yii/httpclient' => $vendorDir . '/yiisoft/yii2-httpclient/src',
-    ),
-  ),
-  'kartik-v/yii2-widget-select2' => 
-  array (
-    'name' => 'kartik-v/yii2-widget-select2',
-    'version' => '2.2.0.0',
-    'alias' => 
-    array (
-      '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2/src',
-    ),
-  ),
-  'kartik-v/yii2-icons' => 
-  array (
-    'name' => 'kartik-v/yii2-icons',
-    'version' => 'dev-master',
-    'alias' => 
-    array (
-      '@kartik/icons' => $vendorDir . '/kartik-v/yii2-icons/src',
-    ),
-  ),
   'kartik-v/yii2-mpdf' => 
   array (
     'name' => 'kartik-v/yii2-mpdf',
@@ -381,15 +318,6 @@ return array (
     'alias' => 
     array (
       '@kartik/mpdf' => $vendorDir . '/kartik-v/yii2-mpdf/src',
-    ),
-  ),
-  'kartik-v/yii2-password' => 
-  array (
-    'name' => 'kartik-v/yii2-password',
-    'version' => 'dev-master',
-    'alias' => 
-    array (
-      '@kartik/password' => $vendorDir . '/kartik-v/yii2-password/src',
     ),
   ),
   'kartik-v/yii2-widget-colorinput' => 
@@ -417,15 +345,6 @@ return array (
     'alias' => 
     array (
       '@kartik/export' => $vendorDir . '/kartik-v/yii2-export/src',
-    ),
-  ),
-  'skeeks/yii2-assets-auto-compress' => 
-  array (
-    'name' => 'skeeks/yii2-assets-auto-compress',
-    'version' => '1.4.3.2',
-    'alias' => 
-    array (
-      '@skeeks/yii2/assetsAuto' => $vendorDir . '/skeeks/yii2-assets-auto-compress/src',
     ),
   ),
   'vintage/yii2-i18n' => 
@@ -490,6 +409,97 @@ return array (
     'alias' => 
     array (
       '@yii/swiftmailer' => $vendorDir . '/yiisoft/yii2-swiftmailer',
+    ),
+  ),
+  'yiisoft/yii2-httpclient' => 
+  array (
+    'name' => 'yiisoft/yii2-httpclient',
+    'version' => '2.0.13.0',
+    'alias' => 
+    array (
+      '@yii/httpclient' => $vendorDir . '/yiisoft/yii2-httpclient/src',
+    ),
+  ),
+  'himiklab/yii2-recaptcha-widget' => 
+  array (
+    'name' => 'himiklab/yii2-recaptcha-widget',
+    'version' => '2.1.1.0',
+    'alias' => 
+    array (
+      '@himiklab/yii2/recaptcha' => $vendorDir . '/himiklab/yii2-recaptcha-widget/src',
+      '@himiklab/yii2/recaptcha/tests' => $vendorDir . '/himiklab/yii2-recaptcha-widget/tests',
+    ),
+  ),
+  'kartik-v/yii2-krajee-base' => 
+  array (
+    'name' => 'kartik-v/yii2-krajee-base',
+    'version' => '2.0.6.0',
+    'alias' => 
+    array (
+      '@kartik/base' => $vendorDir . '/kartik-v/yii2-krajee-base/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-select2' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-select2',
+    'version' => '2.2.1.0',
+    'alias' => 
+    array (
+      '@kartik/select2' => $vendorDir . '/kartik-v/yii2-widget-select2/src',
+    ),
+  ),
+  'kartik-v/yii2-icons' => 
+  array (
+    'name' => 'kartik-v/yii2-icons',
+    'version' => 'dev-master',
+    'alias' => 
+    array (
+      '@kartik/icons' => $vendorDir . '/kartik-v/yii2-icons/src',
+    ),
+  ),
+  'kartik-v/yii2-password' => 
+  array (
+    'name' => 'kartik-v/yii2-password',
+    'version' => 'dev-master',
+    'alias' => 
+    array (
+      '@kartik/password' => $vendorDir . '/kartik-v/yii2-password/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-growl' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-growl',
+    'version' => '1.1.2.0',
+    'alias' => 
+    array (
+      '@kartik/growl' => $vendorDir . '/kartik-v/yii2-widget-growl/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-alert' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-alert',
+    'version' => '1.1.4.0',
+    'alias' => 
+    array (
+      '@kartik/alert' => $vendorDir . '/kartik-v/yii2-widget-alert/src',
+    ),
+  ),
+  'kartik-v/yii2-widget-sidenav' => 
+  array (
+    'name' => 'kartik-v/yii2-widget-sidenav',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@kartik/sidenav' => $vendorDir . '/kartik-v/yii2-widget-sidenav',
+    ),
+  ),
+  'skeeks/yii2-assets-auto-compress' => 
+  array (
+    'name' => 'skeeks/yii2-assets-auto-compress',
+    'version' => '1.4.3.3',
+    'alias' => 
+    array (
+      '@skeeks/yii2/assetsAuto' => $vendorDir . '/skeeks/yii2-assets-auto-compress/src',
     ),
   ),
 );

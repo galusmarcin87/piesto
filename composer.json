@@ -29,7 +29,8 @@
     "lodash-php/lodash-php": "0.0.6",
     "rvkulikov/yii2-getresponse": "*",
     "bower-asset/lightbox2": "*",
-    "yiisoft/yii2-authclient": "2.2.7"
+    "yiisoft/yii2-authclient": "2.2.7",
+    "himiklab/yii2-recaptcha-widget" : "*"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

@@ -108,6 +108,11 @@ $this->title = MgHelpers::getSettingTranslated('contact_header', 'Contact');
                         )->checkbox(['class' => 'Form__checkbox']) ?>
                     </div>
 
+                    <?= $form->field($model, 'reCaptcha')->widget(
+                        \himiklab\yii2\recaptcha\ReCaptcha::className(),
+                        ['siteKey' => MgHelpers::getConfigParam('recaptcha')['siteKey']]
+                    ) ?>
+
 
                     <div class="text-right">
                         <button

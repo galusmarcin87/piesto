@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2020
+ * @copyright Copyright &copy; Kartik Visweswaran, Krajee.com, 2014 - 2021
  * @package yii2-icons
- * @version 1.4.6
+ * @version 1.4.7
  */
 
 namespace kartik\icons;
