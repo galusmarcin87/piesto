@@ -30,15 +30,6 @@ return array (
       '@kartik/bs4dropdown' => $vendorDir . '/kartik-v/yii2-bootstrap4-dropdown/src',
     ),
   ),
-  'kartik-v/yii2-datecontrol' => 
-  array (
-    'name' => 'kartik-v/yii2-datecontrol',
-    'version' => '9999999-dev',
-    'alias' => 
-    array (
-      '@kartik/datecontrol' => $vendorDir . '/kartik-v/yii2-datecontrol/src',
-    ),
-  ),
   'kartik-v/yii2-dialog' => 
   array (
     'name' => 'kartik-v/yii2-dialog',
@@ -500,6 +491,15 @@ return array (
     'alias' => 
     array (
       '@skeeks/yii2/assetsAuto' => $vendorDir . '/skeeks/yii2-assets-auto-compress/src',
+    ),
+  ),
+  'kartik-v/yii2-datecontrol' => 
+  array (
+    'name' => 'kartik-v/yii2-datecontrol',
+    'version' => 'dev-master',
+    'alias' => 
+    array (
+      '@kartik/datecontrol' => $vendorDir . '/kartik-v/yii2-datecontrol/src',
     ),
   ),
 );

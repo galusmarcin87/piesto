@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '105c2c4d603eada6b66aa52c5f134d1d4fa85eb7',
+    'reference' => '96b9eaf2b9723f8fbc53f985d765c2aa2071ac59',
     'name' => 'mg/cms',
   ),
   'versions' => 
@@ -200,6 +200,15 @@
       ),
       'reference' => 'ed22aee8d17c7b396f74a58b1e7fefa4f90d5ef1',
     ),
+    'fiberpay/fiberpay-php' => 
+    array (
+      'pretty_version' => '0.1.3',
+      'version' => '0.1.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cb8d7fd2d9ff754517295d3b8c18fa99adf28dd4',
+    ),
     'geertw/yii2-translatable-url-rule' => 
     array (
       'pretty_version' => 'v1.2.1',
@@ -247,12 +256,12 @@
     ),
     'kartik-v/bootstrap-fileinput' => 
     array (
-      'pretty_version' => 'v5.2.1',
-      'version' => '5.2.1.0',
+      'pretty_version' => 'v5.2.2',
+      'version' => '5.2.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '277dc8dfd5e1a89888129a4d252efdab9751b738',
+      'reference' => 'c05214460c4f61fe34d9015a8939e3d3eb498435',
     ),
     'kartik-v/bootstrap-popover-x' => 
     array (
@@ -334,7 +343,7 @@
       array (
         0 => '1.9.x-dev',
       ),
-      'reference' => '0e7057f644fb178c9a949836c2b0dc7325d07e02',
+      'reference' => '83abdbe6e6f7b52a705e4649fae027a80670c04a',
     ),
     'kartik-v/yii2-dialog' => 
     array (
@@ -679,7 +688,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '105c2c4d603eada6b66aa52c5f134d1d4fa85eb7',
+      'reference' => '96b9eaf2b9723f8fbc53f985d765c2aa2071ac59',
     ),
     'monolog/monolog' => 
     array (
@@ -1018,8 +1027,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0',
-        1 => '1.0.0',
+        0 => '1.0.0',
+        1 => '1.0',
       ),
     ),
     'psr/simple-cache' => 

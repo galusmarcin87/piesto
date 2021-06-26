@@ -104,6 +104,7 @@ return array(
     'Leafo\\ScssPhp\\' => array($vendorDir . '/leafo/scssphp/src'),
     'Intervention\\Httpauth\\' => array($vendorDir . '/intervention/httpauth/src/Intervention/Httpauth'),
     'GuzzleHttp\\Psr7\\' => array($vendorDir . '/guzzlehttp/psr7/src'),
+    'FiberPay\\' => array($vendorDir . '/fiberpay/fiberpay-php/lib'),
     'Faker\\' => array($vendorDir . '/fakerphp/faker/src/Faker'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),

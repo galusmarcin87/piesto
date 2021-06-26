@@ -59,6 +59,7 @@ use yii\web\View;
             />
         </div>
 
+        <br/>
 
         <?php ActiveForm::end(); ?>
     </div>

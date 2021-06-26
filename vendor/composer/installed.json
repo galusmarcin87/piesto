@@ -931,6 +931,43 @@
             "install-path": "../fakerphp/faker"
         },
         {
+            "name": "fiberpay/fiberpay-php",
+            "version": "0.1.3",
+            "version_normalized": "0.1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/fiberpay/fiberpay-php.git",
+                "reference": "cb8d7fd2d9ff754517295d3b8c18fa99adf28dd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/fiberpay/fiberpay-php/zipball/cb8d7fd2d9ff754517295d3b8c18fa99adf28dd4",
+                "reference": "cb8d7fd2d9ff754517295d3b8c18fa99adf28dd4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "time": "2021-03-25T21:38:16+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "FiberPay\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "homepage": "https://fiberpay.pl/",
+            "support": {
+                "issues": "https://github.com/fiberpay/fiberpay-php/issues",
+                "source": "https://github.com/fiberpay/fiberpay-php/tree/0.1.3"
+            },
+            "install-path": "../fiberpay/fiberpay-php"
+        },
+        {
             "name": "geertw/yii2-translatable-url-rule",
             "version": "v1.2.1",
             "version_normalized": "1.2.1.0",
@@ -1233,20 +1270,20 @@
         },
         {
             "name": "kartik-v/bootstrap-fileinput",
-            "version": "v5.2.1",
-            "version_normalized": "5.2.1.0",
+            "version": "v5.2.2",
+            "version_normalized": "5.2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "277dc8dfd5e1a89888129a4d252efdab9751b738"
+                "reference": "c05214460c4f61fe34d9015a8939e3d3eb498435"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/277dc8dfd5e1a89888129a4d252efdab9751b738",
-                "reference": "277dc8dfd5e1a89888129a4d252efdab9751b738",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/c05214460c4f61fe34d9015a8939e3d3eb498435",
+                "reference": "c05214460c4f61fe34d9015a8939e3d3eb498435",
                 "shasum": ""
             },
-            "time": "2021-05-19T12:58:26+00:00",
+            "time": "2021-06-19T08:30:18+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -1287,7 +1324,7 @@
             ],
             "support": {
                 "issues": "https://github.com/kartik-v/bootstrap-fileinput/issues",
-                "source": "https://github.com/kartik-v/bootstrap-fileinput/tree/v5.2.1"
+                "source": "https://github.com/kartik-v/bootstrap-fileinput/tree/v5.2.2"
             },
             "funding": [
                 {
@@ -1737,19 +1774,20 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-datecontrol.git",
-                "reference": "0e7057f644fb178c9a949836c2b0dc7325d07e02"
+                "reference": "83abdbe6e6f7b52a705e4649fae027a80670c04a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-datecontrol/zipball/0e7057f644fb178c9a949836c2b0dc7325d07e02",
-                "reference": "0e7057f644fb178c9a949836c2b0dc7325d07e02",
+                "url": "https://api.github.com/repos/kartik-v/yii2-datecontrol/zipball/83abdbe6e6f7b52a705e4649fae027a80670c04a",
+                "reference": "83abdbe6e6f7b52a705e4649fae027a80670c04a",
                 "shasum": ""
             },
             "require": {
                 "kartik-v/php-date-formatter": ">1.3",
                 "kartik-v/yii2-krajee-base": ">=1.9"
             },
-            "time": "2020-02-03T06:37:57+00:00",
+            "time": "2021-06-12T11:11:36+00:00",
+            "default-branch": true,
             "type": "yii2-extension",
             "extra": {
                 "branch-alias": {
@@ -1783,6 +1821,10 @@
                 "yii",
                 "yii2"
             ],
+            "support": {
+                "issues": "https://github.com/kartik-v/yii2-datecontrol/issues",
+                "source": "https://github.com/kartik-v/yii2-datecontrol/tree/v1.9.8"
+            },
             "install-path": "../kartik-v/yii2-datecontrol"
         },
         {

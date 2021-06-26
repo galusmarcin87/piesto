@@ -14,6 +14,7 @@ use \app\components\mgcms\MgHelpers;
 use app\models\mgcms\db\Payment;
 use __;
 use yii\web\Session;
+use f
 
 class ProjectController extends \app\components\mgcms\MgCmsController
 {
@@ -54,7 +55,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         }
 
         $user = MgHelpers::getUserModel();
-        if(!$user->first_name || !$user->last_name || !$user->street || !$user->flat_no || !$user->postcode || !$user->city){
+        if (!$user->first_name || !$user->last_name || !$user->street || !$user->flat_no || !$user->postcode || !$user->city) {
             MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'Fill your account data please first'));
             return $this->redirect(['site/account']);
         }
@@ -81,12 +82,56 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $payment->percentage = rand(1000, 10000); //sessionId
             $payment->user_token = 'aaa';
             $payment->save();
-            $toHash = (int)$payment->percentage . number_format($payment->amount, 2,'.','') . $payment->id . MgHelpers::getConfigParam('tokeneoShopId') . MgHelpers::getConfigParam('tokeneoToken');
+            $toHash = (int)$payment->percentage . number_format($payment->amount, 2, '.', '') . $payment->id . MgHelpers::getConfigParam('tokeneoShopId') . MgHelpers::getConfigParam('tokeneoToken');
             $payment->user_token = hash('sha256', $toHash);
             $payment->save();
-            
 
-            return $this->render('buyTokeneo', ['payment' => $payment, 'user' => $this->getUserModel()]);
+
+            $ch = curl_init();
+
+            curl_setopt($ch, CURLOPT_URL, "https://apitest.fiberpay.pl/1.0");
+            curl_setopt($ch, CURLOPT_POST, 1);
+
+            $nonce = time();
+            $message = 'nie wiem';
+            $apikey = '';
+            $payload = json_encode( array(
+                'amount'=> 2,
+                'currency' => 'PLN',
+                'toName' => 'name',
+                'toIban' => '324324'
+            ) );
+            $secretkey = '';
+            $implodeParams = implode( '', [$message, $nonce, $apikey, $payload]);
+            hash_hmac('sha512', $implodeParams, $secretkey);
+
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Accept: application/json',
+                'X-API-Key: '.$apikey,
+                'X-API-Nonce: '.$nonce,
+                'X-API-Method-And-Uri: POST /orders/direct'
+            ));
+
+
+            curl_setopt($ch, CURLOPT_POSTFIELDS,
+                $payload
+            );
+
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+            $info = curl_getinfo($ch);
+
+            $server_output = curl_exec($ch);
+
+            curl_close($ch);
+
+            echo '<pre>';
+            echo var_dump($info);
+            echo '</pre>';
+            exit;
+
+            //return $this->render('buyTokeneo', ['payment' => $payment, 'user' => $this->getUserModel()]);
 
         }
 
@@ -108,7 +153,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         if (Yii::$app->request->post('session_id') && Yii::$app->request->remoteIP == MgHelpers::getConfigParam('tokeneoIp')) {
             $status = Yii::$app->request->post('status');
             $payment = Payment::find()->where(['percentage' => Yii::$app->request->post('session_id')])->one();
-            if(!$payment){
+            if (!$payment) {
                 \Yii::info('No payment found for session id ' . Yii::$app->request->post('session_id'), 'own');
                 return 'error';
             }
@@ -136,8 +181,8 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             \Yii::info('saved ' . $saved, 'own');
 
             return 'OK';
-        }else{
-            \Yii::info('Wrong IP '.Yii::$app->request->remoteIP, 'own');
+        } else {
+            \Yii::info('Wrong IP ' . Yii::$app->request->remoteIP, 'own');
         }
     }
 
