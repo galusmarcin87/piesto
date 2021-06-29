@@ -14,7 +14,7 @@ use \app\components\mgcms\MgHelpers;
 use app\models\mgcms\db\Payment;
 use __;
 use yii\web\Session;
-use f
+use FiberPay\FiberPayClient;
 
 class ProjectController extends \app\components\mgcms\MgCmsController
 {
@@ -73,6 +73,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
                 return $this->render('buy', []);
             }
 
+
             $payment = new Payment();
             $payment->amount = $tokensToInvest * MgHelpers::getSetting('token rate', false, 2);
 
@@ -80,59 +81,22 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $payment->status = Payment::STATUS_NEW;
             $payment->project_id = $project->id;
             $payment->percentage = rand(1000, 10000); //sessionId
-            $payment->user_token = 'aaa';
-            $payment->save();
-            $toHash = (int)$payment->percentage . number_format($payment->amount, 2, '.', '') . $payment->id . MgHelpers::getConfigParam('tokeneoShopId') . MgHelpers::getConfigParam('tokeneoToken');
-            $payment->user_token = hash('sha256', $toHash);
+            $hash = MgHelpers::encrypt(JSON::encode(['userId' => $payment->user_id, 'paymentId' => $payment->id]));
+            $payment->user_token = $hash;
             $payment->save();
 
 
-            $ch = curl_init();
+            $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
+            $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
+            $collect = $fiberClient->createCollect($fiberPayConfig['toName'], $fiberPayConfig['iban'], 'PLN');
 
-            curl_setopt($ch, CURLOPT_URL, "https://apitest.fiberpay.pl/1.0");
-            curl_setopt($ch, CURLOPT_POST, 1);
+            $collectObj = Json::decode($collect);
+            $code = $collectObj['data']['code'];
+            
+            $item = $fiberClient->addCollectItem($code, 'Piesto', $payment->amount, 'PLN', Url::to('project/notify', true), $hash);
+            $itemObj = Json::decode($item);
 
-            $nonce = time();
-            $message = 'nie wiem';
-            $apikey = '';
-            $payload = json_encode( array(
-                'amount'=> 2,
-                'currency' => 'PLN',
-                'toName' => 'name',
-                'toIban' => '324324'
-            ) );
-            $secretkey = '';
-            $implodeParams = implode( '', [$message, $nonce, $apikey, $payload]);
-            hash_hmac('sha512', $implodeParams, $secretkey);
-
-            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Accept: application/json',
-                'X-API-Key: '.$apikey,
-                'X-API-Nonce: '.$nonce,
-                'X-API-Method-And-Uri: POST /orders/direct'
-            ));
-
-
-            curl_setopt($ch, CURLOPT_POSTFIELDS,
-                $payload
-            );
-
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-            $info = curl_getinfo($ch);
-
-            $server_output = curl_exec($ch);
-
-            curl_close($ch);
-
-            echo '<pre>';
-            echo var_dump($info);
-            echo '</pre>';
-            exit;
-
-            //return $this->render('buyTokeneo', ['payment' => $payment, 'user' => $this->getUserModel()]);
-
+            $this->redirect($itemObj['data']['redirect']);
         }
 
 
@@ -150,6 +114,9 @@ class ProjectController extends \app\components\mgcms\MgCmsController
     public function actionNotify()
     {
         \Yii::info("notify", 'own');
+        \Yii::info("notifyhe", JSON::encode($this->request->headers));
+        \Yii::info("notifybody", JSON::encode($this->request->rawBody));
+
         if (Yii::$app->request->post('session_id') && Yii::$app->request->remoteIP == MgHelpers::getConfigParam('tokeneoIp')) {
             $status = Yii::$app->request->post('status');
             $payment = Payment::find()->where(['percentage' => Yii::$app->request->post('session_id')])->one();
