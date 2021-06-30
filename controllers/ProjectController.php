@@ -15,6 +15,7 @@ use app\models\mgcms\db\Payment;
 use __;
 use yii\web\Session;
 use FiberPay\FiberPayClient;
+use JWT;
 
 class ProjectController extends \app\components\mgcms\MgCmsController
 {
@@ -82,6 +83,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $payment->status = Payment::STATUS_NEW;
             $payment->project_id = $project->id;
             $payment->percentage = rand(1000, 10000); //sessionId
+            $payment->save();
             $hash = MgHelpers::encrypt(JSON::encode(['userId' => $payment->user_id, 'paymentId' => $payment->id]));
             $payment->user_token = $hash;
             $payment->save();
@@ -114,43 +116,46 @@ class ProjectController extends \app\components\mgcms\MgCmsController
     public function actionNotify($hash)
     {
         \Yii::info("notify", 'own');
+
+//        $headers = JSON::decode('{"user-agent":["Apache-HttpClient/4.1.1 (java 1.5)"],"content-type":["application/json"],"accept":["application/json"],"api-key":["dNlZtEJrvaJDJ5EX"],"content-length":["1484"],"connection":["close"],"host":["piesto.vertesprojekty.pl"]}');
+//        $body = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7Im9yZGVySXRlbSI6eyJkYXRhIjp7ImNvZGUiOiJhM3h2NnpnOSIsInN0YXR1cyI6InJlY2VpdmVkIiwidHlwZSI6ImNvbGxlY3RfaXRlbSIsImN1cnJlbmN5IjoiUExOIiwiYW1vdW50IjoiOC4wMCIsImZlZXMiOltdLCJ0b05hbWUiOiJhc2RzYSIsInBhcmVudENvZGUiOiJheWsyZ3FqczZoZDUiLCJkZXNjcmlwdGlvbiI6IlBpZXN0byIsIm1ldGFkYXRhIjpudWxsLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTMwIDIxOjUyOjA3IiwidXBkYXRlZEF0IjoiMjAyMS0wNi0zMCAyMTo1MjoyMCIsInJlZGlyZWN0IjoiaHR0cHM6XC9cL3Rlc3QuZmliZXJwYXkucGxcL29yZGVyXC9hM3h2NnpnOSJ9LCJpbnZvaWNlIjp7ImFtb3VudCI6IjguMDAiLCJjdXJyZW5jeSI6IlBMTiIsImliYW4iOiJQTDE5MTk0MDEwNzYzMjAyODAxMDAwMDJURVNUIiwiYmJhbiI6IjE5MTk0MDEwNzYzMjAyODAxMDAwMDJURVNUIiwiZGVzY3JpcHRpb24iOiJhM3h2NnpnOSJ9LCJsaW5rcyI6eyJyZWwiOiJzZWxmIiwiaHJlZiI6Imh0dHBzOlwvXC9hcGl0ZXN0LmZpYmVycGF5LnBsXC8xLjBcL29yZGVyc1wvY29sbGVjdFwvaXRlbVwvYTN4djZ6ZzkifX0sInRyYW5zYWN0aW9uIjp7ImRhdGEiOnsiY29udHJhY3Rvck5hbWUiOiJGaWJlclBheSAtIHphcFx1MDE0MmFjb25vIHByemV6IHRlc3RlciIsImNvbnRyYWN0b3JJYmFuIjoiRmliZXJQYXkiLCJhbW91bnQiOiI4LjAwIiwiY3VycmVuY3kiOiJQTE4iLCJkZXNjcmlwdGlvbiI6ImEzeHY2emc5IiwiYmFua1JlZmVyZW5jZUNvZGUiOiJURVNUX2FrNGJobmVjIiwib3BlcmF0aW9uQ29kZSI6bnVsbCwiYWNjb3VudEliYW4iOiIiLCJib29rZWRBdCI6IjIwMjEtMDYtMzAgMjE6NTI6MjAiLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTMwIDIxOjUyOjIwIiwidXBkYXRlZEF0IjoiMjAyMS0wNi0zMCAyMTo1MjoyMCJ9LCJ0eXBlIjoiYmFua1RyYW5zYWN0aW9uIn0sInR5cGUiOiJjb2xsZWN0X29yZGVyX2l0ZW1fcmVjZWl2ZWQiLCJjdXN0b21QYXJhbXMiOm51bGx9LCJpc3MiOiJGaWJlcnBheSIsImlhdCI6MTYyNTA4Mjc4NH0.5UqfPL-CF-58Si1wAEQ1fiZjwknxPxLu08cWgfJMm80';
         \Yii::info(JSON::encode($this->request->headers), 'own');
         \Yii::info(JSON::encode($this->request->rawBody), 'own');
 
-        if (Yii::$app->request->post('session_id') && Yii::$app->request->remoteIP == MgHelpers::getConfigParam('tokeneoIp')) {
-            $status = Yii::$app->request->post('status');
-            $payment = Payment::find()->where(['percentage' => Yii::$app->request->post('session_id')])->one();
-            if (!$payment) {
-                \Yii::info('No payment found for session id ' . Yii::$app->request->post('session_id'), 'own');
-                return 'error';
-            }
-            switch ($status) {
-                case 'Confirmed':
-                    $payment->status = Payment::STATUS_PAYMENT_CONFIRMED;
-                    $project = Project::find()
-                        ->where(['status' => Project::STATUS_ACTIVE])
-                        ->one();
-                    $project->money += $payment->amount;
-                    $project->save();
-
-                    break;
-                case 'Canceled':
-                    $payment->status = Payment::STATUS_SUSPENDED;
-                    break;
-                default:
-                    $payment->status = Payment::STATUS_UNKNOWN;
-                    break;
-            }
-            $saved = $payment->save();
-
-            \Yii::info('session id ' . Yii::$app->request->post('session_id'), 'own');
-            \Yii::info($status, 'own');
-            \Yii::info('saved ' . $saved, 'own');
-
-            return 'OK';
-        } else {
-            \Yii::info('Wrong IP ' . Yii::$app->request->remoteIP, 'own');
+        $body =  $this->request->rawBody;
+        $headers = $this->request->headers;
+        $jwtDecoded = JWT::decode($body);
+        $status = $jwtDecoded->payload->orderItem->data->status;
+        \Yii::info($status, 'own');
+        $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
+        $apiKey = $headers['api-key'][0];
+        if($apiKey != $fiberPayConfig['apikey']){
+            $this->throw404();
         }
+        $hashDecoded = JSON::decode(MgHelpers::decrypt($hash));
+        $paymentId = $hashDecoded['paymentId'];
+        $userId = $hashDecoded['userId'];
+        $payment = Payment::find()->where(['id' => $paymentId,'user_id'=>$userId])->one();
+        if(!$payment){
+            $this->throw404();
+        }
+
+        switch ($status) {
+            case 'received':
+                $payment->status = Payment::STATUS_PAYMENT_CONFIRMED;
+                break;
+            case 'Canceled':
+                $payment->status = Payment::STATUS_SUSPENDED;
+                break;
+            default:
+                $payment->status = Payment::STATUS_UNKNOWN;
+                break;
+        }
+        $saved = $payment->save();
+
+        \Yii::info('saved ' . $saved, 'own');
+
+        return 'OK';
     }
 
     public function actionBuyThankYou($hash)

@@ -761,6 +761,7 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'BeforeValidException' => __DIR__ . '/..' . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/BeforeValidException.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'CssAtCharsetParserPlugin' => __DIR__ . '/..' . '/natxet/cssmin/src/CssMin.php',
         'CssAtCharsetToken' => __DIR__ . '/..' . '/natxet/cssmin/src/CssMin.php',
@@ -820,8 +821,10 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
         'CssVariablesMinifierFilter' => __DIR__ . '/..' . '/natxet/cssmin/src/CssMin.php',
         'CssVariablesMinifierPlugin' => __DIR__ . '/..' . '/natxet/cssmin/src/CssMin.php',
         'CssWhitesmithsFormatter' => __DIR__ . '/..' . '/natxet/cssmin/src/CssMin.php',
+        'ExpiredException' => __DIR__ . '/..' . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/ExpiredException.php',
         'HTTP_ConditionalGet' => __DIR__ . '/..' . '/mrclay/minify/lib/HTTP/ConditionalGet.php',
         'HTTP_Encoder' => __DIR__ . '/..' . '/mrclay/minify/lib/HTTP/Encoder.php',
+        'JWT' => __DIR__ . '/..' . '/firebase/php-jwt/Firebase/PHP-JWT/Authentication/JWT.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Minify' => __DIR__ . '/..' . '/mrclay/minify/lib/Minify.php',
         'Minify\\App' => __DIR__ . '/..' . '/mrclay/minify/lib/Minify/App.php',
@@ -1481,6 +1484,7 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
         'SebastianBergmann\\Timer\\RuntimeException' => __DIR__ . '/..' . '/phpunit/php-timer/src/RuntimeException.php',
         'SebastianBergmann\\Timer\\Timer' => __DIR__ . '/..' . '/phpunit/php-timer/src/Timer.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'SignatureInvalidException' => __DIR__ . '/..' . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/SignatureInvalidException.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
         'TheSeer\\Tokenizer\\Exception' => __DIR__ . '/..' . '/theseer/tokenizer/src/Exception.php',

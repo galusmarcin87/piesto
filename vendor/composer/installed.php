@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '96b9eaf2b9723f8fbc53f985d765c2aa2071ac59',
+    'reference' => '737b49ae30eee32c8719f86da571f82101dae4c4',
     'name' => 'mg/cms',
   ),
   'versions' => 
@@ -208,6 +208,15 @@
       array (
       ),
       'reference' => 'cb8d7fd2d9ff754517295d3b8c18fa99adf28dd4',
+    ),
+    'firebase/php-jwt' => 
+    array (
+      'pretty_version' => '2.0.0',
+      'version' => '2.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ffcfd888ce1e4f2d70cac2dc9b7301038332fe57',
     ),
     'geertw/yii2-translatable-url-rule' => 
     array (
@@ -688,7 +697,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '96b9eaf2b9723f8fbc53f985d765c2aa2071ac59',
+      'reference' => '737b49ae30eee32c8719f86da571f82101dae4c4',
     ),
     'monolog/monolog' => 
     array (
@@ -1222,12 +1231,12 @@
     ),
     'symfony/console' => 
     array (
-      'pretty_version' => 'v4.4.25',
-      'version' => '4.4.25.0',
+      'pretty_version' => 'v4.4.26',
+      'version' => '4.4.26.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'a62acecdf5b50e314a4f305cd01b5282126f3095',
+      'reference' => '9aa1eb46c1b12fada74dc0c529e93d1ccef22576',
     ),
     'symfony/css-selector' => 
     array (
@@ -1355,12 +1364,12 @@
     ),
     'symfony/yaml' => 
     array (
-      'pretty_version' => 'v4.4.25',
-      'version' => '4.4.25.0',
+      'pretty_version' => 'v4.4.26',
+      'version' => '4.4.26.0',
       'aliases' => 
       array (
       ),
-      'reference' => '81cdac5536925c1c4b7b50aabc9ff6330b9eb5fc',
+      'reference' => 'e096ef4b4c4c9a2f72c2ac660f54352cd31c60f8',
     ),
     'tedivm/jshrink' => 
     array (

@@ -32,6 +32,9 @@ class FiberPayClient {
             curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "PUT");
         }
 
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
         $response = curl_exec($curl);
 
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
@@ -118,7 +121,7 @@ class FiberPayClient {
     }
 
     public function addSplitItem($orderCode, $toName, $toIban, $description, $amount,
-                                 $currency = 'PLN', $callbackUrl = null, $callbackParams = null, 
+                                 $currency = 'PLN', $callbackUrl = null, $callbackParams = null,
                                  $metadata = null) {
 
         $data = [
@@ -173,7 +176,7 @@ class FiberPayClient {
     }
 
     public function addCollectItem($orderCode, $description, $amount, $currency = 'PLN',
-                                   $callbackUrl = null, $callbackParams = null, 
+                                   $callbackUrl = null, $callbackParams = null,
                                    $metadata = null) {
         $data = [
             'amount' => $amount,
@@ -243,11 +246,11 @@ class FiberPayClient {
 
     //FiberForward methods
 
-    public function createForward($targetName, $targetIban, $brokerName, $brokerIban, 
+    public function createForward($targetName, $targetIban, $brokerName, $brokerIban,
                                  $description, $sourceAmount, $targetAmount,
-                                 $currency = 'PLN', $callbackUrl = null, 
+                                 $currency = 'PLN', $callbackUrl = null,
                                  $callbackParams = null, $metadata = null,
-                                 $redirectUrl = null, $beforePaymentInfo = null, 
+                                 $redirectUrl = null, $beforePaymentInfo = null,
                                  $afterPaymentInfo = null) {
         $data = [
             'sourceAmount' => $sourceAmount,

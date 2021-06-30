@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+    'BeforeValidException' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/BeforeValidException.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'CssAtCharsetParserPlugin' => $vendorDir . '/natxet/cssmin/src/CssMin.php',
     'CssAtCharsetToken' => $vendorDir . '/natxet/cssmin/src/CssMin.php',
@@ -66,8 +67,10 @@ return array(
     'CssVariablesMinifierFilter' => $vendorDir . '/natxet/cssmin/src/CssMin.php',
     'CssVariablesMinifierPlugin' => $vendorDir . '/natxet/cssmin/src/CssMin.php',
     'CssWhitesmithsFormatter' => $vendorDir . '/natxet/cssmin/src/CssMin.php',
+    'ExpiredException' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/ExpiredException.php',
     'HTTP_ConditionalGet' => $vendorDir . '/mrclay/minify/lib/HTTP/ConditionalGet.php',
     'HTTP_Encoder' => $vendorDir . '/mrclay/minify/lib/HTTP/Encoder.php',
+    'JWT' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Authentication/JWT.php',
     'JsonException' => $vendorDir . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
     'Minify' => $vendorDir . '/mrclay/minify/lib/Minify.php',
     'Minify\\App' => $vendorDir . '/mrclay/minify/lib/Minify/App.php',
@@ -727,6 +730,7 @@ return array(
     'SebastianBergmann\\Timer\\RuntimeException' => $vendorDir . '/phpunit/php-timer/src/RuntimeException.php',
     'SebastianBergmann\\Timer\\Timer' => $vendorDir . '/phpunit/php-timer/src/Timer.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
+    'SignatureInvalidException' => $vendorDir . '/firebase/php-jwt/Firebase/PHP-JWT/Exceptions/SignatureInvalidException.php',
     'Stringable' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
     'TheSeer\\Tokenizer\\Exception' => $vendorDir . '/theseer/tokenizer/src/Exception.php',
