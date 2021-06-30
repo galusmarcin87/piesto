@@ -128,7 +128,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $status = $jwtDecoded->payload->orderItem->data->status;
         \Yii::info($status, 'own');
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
-        $apiKey = $headers['api-key'][0];
+        $apiKey = $headers['api-key'];
         \Yii::info($apiKey, 'own');
         if($apiKey != $fiberPayConfig['apikey']){
             $this->throw404();
