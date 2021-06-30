@@ -74,6 +74,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             }
 
 
+
             $payment = new Payment();
             $payment->amount = $tokensToInvest * MgHelpers::getSetting('token rate', false, 2);
 
@@ -85,15 +86,14 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $payment->user_token = $hash;
             $payment->save();
 
-
             $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
             $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
             $collect = $fiberClient->createCollect($fiberPayConfig['toName'], $fiberPayConfig['iban'], 'PLN');
 
             $collectObj = Json::decode($collect);
             $code = $collectObj['data']['code'];
-            
-            $item = $fiberClient->addCollectItem($code, 'Piesto', $payment->amount, 'PLN', Url::to('project/notify', true), $hash);
+
+            $item = $fiberClient->addCollectItem($code, 'Piesto', $payment->amount, 'PLN', Url::to(['project/notify','hash'=>$hash], true), $hash);
             $itemObj = Json::decode($item);
 
             $this->redirect($itemObj['data']['redirect']);
@@ -111,11 +111,11 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         return true;
     }
 
-    public function actionNotify()
+    public function actionNotify($hash)
     {
         \Yii::info("notify", 'own');
-        \Yii::info("notifyhe", JSON::encode($this->request->headers));
-        \Yii::info("notifybody", JSON::encode($this->request->rawBody));
+        \Yii::info(JSON::encode($this->request->headers), 'own');
+        \Yii::info(JSON::encode($this->request->rawBody), 'own');
 
         if (Yii::$app->request->post('session_id') && Yii::$app->request->remoteIP == MgHelpers::getConfigParam('tokeneoIp')) {
             $status = Yii::$app->request->post('status');
