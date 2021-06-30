@@ -129,10 +129,12 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         \Yii::info($status, 'own');
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
         $apiKey = $headers['api-key'][0];
+        \Yii::info($apiKey, 'own');
         if($apiKey != $fiberPayConfig['apikey']){
             $this->throw404();
         }
         $hashDecoded = JSON::decode(MgHelpers::decrypt($hash));
+        \Yii::info($hashDecoded, 'own');
         $paymentId = $hashDecoded['paymentId'];
         $userId = $hashDecoded['userId'];
         $payment = Payment::find()->where(['id' => $paymentId,'user_id'=>$userId])->one();
