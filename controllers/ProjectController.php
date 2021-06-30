@@ -83,7 +83,8 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $payment->status = Payment::STATUS_NEW;
             $payment->project_id = $project->id;
             $payment->percentage = rand(1000, 10000); //sessionId
-            $payment->save();
+            $payment->user_token = 'aaa';
+            $saved = $payment->save();
             $hash = MgHelpers::encrypt(JSON::encode(['userId' => $payment->user_id, 'paymentId' => $payment->id]));
             $payment->user_token = $hash;
             $payment->save();
