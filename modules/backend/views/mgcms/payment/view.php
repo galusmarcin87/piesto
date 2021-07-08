@@ -18,8 +18,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <h2><?= Yii::t('app', 'Payment').' '. Html::encode($this->title) ?></h2>
         </div>
         <div class="col-sm-4" style="margin-top: 15px">
-<?=             
-             Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> ' . Yii::t('app', 'PDF'), 
+<?=
+             Html::a('<i class="fa glyphicon glyphicon-hand-up"></i> ' . Yii::t('app', 'PDF'),
                 ['pdf', 'id' => $model->id],
                 [
                     'class' => 'btn btn-danger',
@@ -29,11 +29,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             )?>
 <? $controller = Yii::$app->controller->id;
-        if(\app\components\mgcms\MgHelpers::getUserModel()->checkAccess($controller, 'save-as-new')):?>   
+        if(\app\components\mgcms\MgHelpers::getUserModel()->checkAccess($controller, 'save-as-new')):?>
         <?= Html::a(Yii::t('app', 'Save As New'), ['save-as-new', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
-    <?endif?>          
-          
-            
+    <?endif?>
+
+
               <? $controller = Yii::$app->controller->id;
                 if(\app\components\mgcms\MgHelpers::getUserModel()->checkAccess($controller, 'update')):?>
                 <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -53,14 +53,14 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="row">
-<?php 
+<?php
     $gridColumn = [
         ['attribute' => 'id', 'visible' => false],
         'created_on',
-//        [
-//            'attribute' => 'project.name',
-//            'label' => Yii::t('app', 'Project'),
-//        ],
+        [
+            'attribute' => 'project.name',
+            'label' => Yii::t('app', 'Project'),
+        ],
         [
             'attribute' => 'user.username',
             'label' => Yii::t('app', 'User'),
@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
     echo DetailView::widget([
         'model' => $model,
         'attributes' => $gridColumn
-    ]); 
+    ]);
 ?>
     </div>
 </div>

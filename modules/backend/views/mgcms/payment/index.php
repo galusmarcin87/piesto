@@ -45,19 +45,19 @@ $this->registerJs($search);
 //        ],
       ['attribute' => 'id', 'visible' => false],
       'created_on',
-//      [
-//          'attribute' => 'project_id',
-//          'label' => Yii::t('app', 'Project'),
-//          'value' => function($model) {
-//            return $model->project->name;
-//          },
-//          'filterType' => GridView::FILTER_SELECT2,
-//          'filter' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\Project::find()->asArray()->all(), 'id', 'name'),
-//          'filterWidgetOptions' => [
-//              'pluginOptions' => ['allowClear' => true],
-//          ],
-//          'filterInputOptions' => ['placeholder' => Yii::t('app', 'Project'), 'id' => 'grid-payment-search-project_id']
-//      ],
+      [
+          'attribute' => 'project_id',
+          'label' => Yii::t('app', 'Project'),
+          'value' => function($model) {
+            return $model->project->name;
+          },
+          'filterType' => GridView::FILTER_SELECT2,
+          'filter' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\Project::find()->asArray()->all(), 'id', 'name'),
+          'filterWidgetOptions' => [
+              'pluginOptions' => ['allowClear' => true],
+          ],
+          'filterInputOptions' => ['placeholder' => Yii::t('app', 'Project'), 'id' => 'grid-payment-search-project_id']
+      ],
       [
           'attribute' => 'user_id',
           'label' => Yii::t('app', 'User'),
