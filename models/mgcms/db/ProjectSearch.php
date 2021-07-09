@@ -21,7 +21,7 @@ use app\components\mgcms\MgHelpers;
     public function rules()
     {
         return [
-            [['id', 'file_id', 'percentage', 'percentage_presale_bonus', 'token_value', 'token_to_sale', 'token_minimal_buy', 'token_left'], 'integer'],
+            [['id', 'file_id', 'percentage', 'percentage_presale_bonus', 'token_value', 'token_to_sale', 'token_minimal_buy', 'token_left', 'created_by'], 'integer'],
             [['name', 'status', 'localization', 'lead', 'text', 'whitepaper', 'www', 'investition_time', 'date_presale_start', 'date_presale_end', 'date_crowdsale_start', 'date_crowdsale_end', 'date_realization_profit', 'token_blockchain'], 'safe'],
             [['gps_lat', 'gps_long', 'money', 'money_full'], 'number'],
         ];
@@ -80,6 +80,7 @@ use app\components\mgcms\MgHelpers;
             'token_to_sale' => $this->token_to_sale,
             'token_minimal_buy' => $this->token_minimal_buy,
             'token_left' => $this->token_left,
+            'created_by' => $this->created_by,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

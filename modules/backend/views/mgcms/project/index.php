@@ -23,8 +23,8 @@ $this->registerJs($search);
 
     <h1><?= Html::encode($this->title) ?></h1>
     <p>
-        <? $controller = Yii::$app->controller->id;
-        if (\app\components\mgcms\MgHelpers::getUserModel()->checkAccess($controller, 'create')):?>
+        <?
+        if (\app\components\mgcms\MgHelpers::getUserModel()->checkAccess('project', 'create')):?>
             <?= Html::a(Yii::t('app', 'Create Project'), ['create'], ['class' => 'btn btn-success']) ?>
         <? endif ?>
     </p>

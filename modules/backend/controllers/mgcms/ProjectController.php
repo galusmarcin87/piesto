@@ -4,6 +4,7 @@ namespace app\modules\backend\controllers\mgcms;
 
 use app\models\mgcms\db\File;
 use app\models\mgcms\db\FileRelation;
+use app\models\mgcms\db\User;
 use Yii;
 use app\models\mgcms\db\Project;
 use app\models\mgcms\db\ProjectSearch;
@@ -37,6 +38,9 @@ class ProjectController extends MgBackendController
     public function actionIndex()
     {
         $searchModel = new ProjectSearch();
+        if($this->getUserModel()->role == User::ROLE_PROJECT_OWNER){
+            $searchModel->created_by = $this->getUserModel()->id;
+        }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
