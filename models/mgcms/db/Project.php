@@ -121,6 +121,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             'buy_token_info' => Yii::t('app', 'Buy Token Info'),
             'token_currency' => Yii::t('app', 'Token currency'),
             'downloadFiles' => Yii::t('app', 'Files to download'),
+            'created_by' => Yii::t('app', 'Created by'),
         ];
     }
 

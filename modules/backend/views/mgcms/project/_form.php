@@ -164,6 +164,16 @@ yii\jui\JuiAsset::register($this);
 
         <?= $form->field6md($model, 'token_left')->textInput(['placeholder' => '']) ?>
 
+        <?if(MgHelpers::getUserModel()->role === 'admin'):?>
+            <?= $form->field6md($model, 'created_by')->widget(\kartik\widgets\Select2::classname(), [
+                'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\User::find()->orderBy('id')->all(), 'id', 'toString'),
+                'options' => ['placeholder' => Yii::t('app', 'Wybierz użytkownika')],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); ?>
+        <?endif?>
+
         <div class="hidden">
             <?= $form->field12md($model, 'buy_token_info')->tinyMce(['rows' => 6]) ?>
         </div>
