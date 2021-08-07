@@ -39,6 +39,7 @@ use app\models\mgcms\db\User;
  * @property integer $token_left
  * @property string $buy_token_info
  * @property string $token_currency
+ * @property string $fiber_collect_id
  * @property integer $created_by
  *
  * @property \app\models\mgcms\db\Bonus[] $bonuses
@@ -67,7 +68,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
         return [
             [['name', 'file_id'], 'required'],
             [['gps_lat', 'gps_long', 'money', 'money_full'], 'number'],
-            [['lead', 'text','text2', 'buy_token_info'], 'string'],
+            [['lead', 'text','text2', 'buy_token_info', 'fiber_collect_id'], 'string'],
             [['file_id', 'percentage', 'percentage_presale_bonus', 'token_value', 'token_to_sale', 'token_minimal_buy', 'token_left', 'flag_id', 'created_by'], 'integer'],
             [['date_presale_start', 'date_presale_end', 'date_crowdsale_start', 'date_crowdsale_end', 'date_realization_profit'], 'safe'],
             [['name', 'localization', 'whitepaper', 'www', 'token_blockchain'], 'string', 'max' => 245],

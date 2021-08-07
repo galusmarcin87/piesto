@@ -47,7 +47,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         return $this->render('view', ['model' => $model]);
     }
 
-    public function actionBuy()
+    public function actionBuy($id)
     {
 
         if (!MgHelpers::getUserModel()) {
@@ -63,13 +63,17 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
 
         $project = Project::find()
-            ->where(['status' => Project::STATUS_ACTIVE])
+            ->where(['status' => Project::STATUS_ACTIVE, 'id' => $id])
             ->one();
 
+        if(!$project->fiber_collect_id){
+            MgHelpers::setFlashError(Yii::t('db', 'Project does not have fiber collect id'));
+            return $this->back();
+        }
 
-        if (Yii::$app->request->post('tokensToInvest')) {
-            $tokensToInvest = str_replace(',', '.', Yii::$app->request->post('tokensToInvest'));
-            if (!is_numeric($tokensToInvest)) {
+        if (Yii::$app->request->post('plnToInvest')) {
+            $plnToInvest = str_replace(',', '.', Yii::$app->request->post('plnToInvest'));
+            if (!is_numeric($plnToInvest)) {
                 MgHelpers::setFlashError(Yii::t('db', 'Invalid value'));
                 return $this->render('buy', []);
             }
@@ -77,7 +81,8 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
 
             $payment = new Payment();
-            $payment->amount = $tokensToInvest * MgHelpers::getSetting('token rate', false, 2);
+            //$payment->amount = $tokensToInvest * MgHelpers::getSetting('token rate', false, 2);
+            $payment->amount = $plnToInvest;
 
             $payment->user_id = $this->getUserModel()->id;
             $payment->status = Payment::STATUS_NEW;
@@ -91,13 +96,12 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
             $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
             $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
-            $collect = $fiberClient->createCollect($fiberPayConfig['toName'], $fiberPayConfig['iban'], 'PLN');
 
-            $collectObj = Json::decode($collect);
-            $code = $collectObj['data']['code'];
-
-            $item = $fiberClient->addCollectItem($code, 'Piesto', $payment->amount, 'PLN', Url::to(['project/notify','hash'=>$hash], true), $hash);
+            $item = $fiberClient->addCollectItem($project->fiber_collect_id, 'Piesto', $payment->amount, 'PLN', Url::to(['project/notify','hash'=>$hash], true), $hash);
             $itemObj = Json::decode($item);
+
+            $project->money_full += $plnToInvest;
+            $saved = $project->save();
 
             $this->redirect($itemObj['data']['redirect']);
         }

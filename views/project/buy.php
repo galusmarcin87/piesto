@@ -29,7 +29,7 @@ use yii\web\View;
         <div class="fadeIn animated">
             <div class="User-Panel__form-group">
                 <label class="Contact-form__label field-user-first_name">
-                    <div class="Contact-form__label">
+                    <div class="Contact-form__label" style="display: none">
                         <?= Yii::t('db', 'Tokens to invest'); ?>
                         <input type="text" id="tokensToInvest"
                                class="Contact-form__input form-control"

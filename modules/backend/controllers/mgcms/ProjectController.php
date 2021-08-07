@@ -9,10 +9,12 @@ use Yii;
 use app\models\mgcms\db\Project;
 use app\models\mgcms\db\ProjectSearch;
 use app\modules\backend\components\mgcms\MgBackendController;
+use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\components\mgcms\MgHelpers;
 use yii\web\UploadedFile;
+use FiberPay\FiberPayClient;
 
 /**
  * ProjectController implements the CRUD actions for Project model.
@@ -80,6 +82,15 @@ class ProjectController extends MgBackendController
         $model = new Project();
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+            $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
+            $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
+            $collect = $fiberClient->createCollect($fiberPayConfig['toName'], $fiberPayConfig['iban'], 'PLN');
+
+            $collectObj = Json::decode($collect);
+            $code = $collectObj['data']['code'];
+
+           $model->fiber_collect_id = $code;
+           $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
