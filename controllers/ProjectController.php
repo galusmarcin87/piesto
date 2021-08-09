@@ -104,7 +104,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $saved = $project->save();
 
             echo '<pre>';
-            echo var_dump($itemObj);
+            echo var_dump($fiberPayConfig['apikey']);
             echo '</pre>';
             exit;
 
