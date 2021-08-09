@@ -103,11 +103,6 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $project->money_full += $plnToInvest;
             $saved = $project->save();
 
-            echo '<pre>';
-            echo var_dump($fiberPayConfig['apikey'], $itemObj, $project->fiber_collect_id);
-            echo '</pre>';
-            exit;
-
             $this->redirect($itemObj['data']['redirect']);
         }
 
