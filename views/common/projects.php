@@ -45,7 +45,7 @@ foreach ($tabsStatuses as $status) {
 </style>
 <?php
 
-$provider = $projectSearch->search([], Project::STATUS_ACTIVE);
+$provider = $projectSearch->search([], [Project::STATUS_ACTIVE,Project::STATUS_PLANNED]);
 $provider->pagination = false;
 $provider->query->limit(3);
 echo ListView::widget([

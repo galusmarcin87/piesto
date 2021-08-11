@@ -43,12 +43,12 @@ use app\components\mgcms\MgHelpers;
      *
      * @return ActiveDataProvider
      */
-    public function search($params, $status = false)
+    public function search($params, $statuses = false)
     {
         $query = Project::find();
 
-        if($status){
-            $this->status = $status;
+        if($statuses){
+            $query->andFilterWhere(['in', 'status', $statuses]);
         }
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
