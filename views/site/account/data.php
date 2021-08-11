@@ -55,6 +55,11 @@ $form = ActiveForm::begin([
                 value="<?= Yii::t('db', 'SAVE CHANGES'); ?>"
         />
 
+        <a href="<?= \yii\helpers\Url::to('site/verify-fiber-id')?>"
+                class="btn btn-primary"
+                style="margin-top: 0"
+        ><?= Yii::t('db', 'VERIFY YOUR DATA BY FIBER ID'); ?></a>
+
     </div>
     <div class="fadeIn animated">
         <div class="User-Panel_profile"  style="display: none">
@@ -105,6 +110,8 @@ $form = ActiveForm::begin([
                         name="passwordChanging"
                         value="<?= Yii::t('db', 'SAVE CHANGES'); ?>"
                 />
+
+
             </div>
         </div>
     </div>

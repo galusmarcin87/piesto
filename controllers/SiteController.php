@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\mgcms\db\File;
 use app\models\ReportRealEstateForm;
+use FiberPay\FiberPayClient;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -385,6 +386,13 @@ class SiteController extends \app\components\mgcms\MgCmsController
     public function actionAboutProject(){
 
         return $this->render('aboutProject');
+    }
+
+    public function actionVerifyFiberId()
+    {
+        $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
+        $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
+
     }
 
 

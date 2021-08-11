@@ -83,6 +83,13 @@ $this->params['breadcrumbs'][] = $this->title;
 //            'token_minimal_buy',
 //            'token_left',
 //            'buy_token_info:raw',
+            [
+                'attribute' => 'emails',
+                'value' => function($model) {
+                    return $model->getModelAttribute('emails');
+                },
+                'format' => 'raw'
+            ],
         ];
         echo DetailView::widget([
             'model' => $model,

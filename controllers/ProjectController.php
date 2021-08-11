@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\mgcms\db\User;
 use Yii;
 use yii\console\widgets\Table;
 use yii\helpers\Json;
@@ -16,6 +17,7 @@ use __;
 use yii\web\Session;
 use FiberPay\FiberPayClient;
 use JWT;
+use yii\validators\EmailValidator;
 
 class ProjectController extends \app\components\mgcms\MgCmsController
 {
@@ -44,6 +46,18 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
         }
 
+        $emailSubscribe = $this->request->post('emailSubscribe');
+        if($emailSubscribe){
+            $validator = new EmailValidator();
+            $valid = $validator->validate($emailSubscribe);
+            if(!$valid){
+                MgHelpers::setFlashError(Yii::t('db', 'Email is incorrect'));
+                return $this->refresh();
+            }
+            $emails = $model->getModelAttribute('emails');
+            $model->setModelAttribute('emails', $emails.$emailSubscribe.';');
+        }
+
         return $this->render('view', ['model' => $model]);
     }
 
@@ -58,6 +72,10 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $user = MgHelpers::getUserModel();
         if (!$user->first_name || !$user->last_name || !$user->street || !$user->flat_no || !$user->postcode || !$user->city) {
             MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'Fill your account data please first'));
+            return $this->redirect(['site/account']);
+        }
+        if ($user->status != User::STATUS_VERIFIED) {
+            MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'You need to verify by Fiber ID'));
             return $this->redirect(['site/account']);
         }
 

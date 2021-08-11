@@ -1,11 +1,14 @@
 <?php
 /* @var $model app\models\mgcms\db\Project */
+/* @var $form app\components\mgcms\yii\ActiveForm */
 
 /* @var $this yii\web\View */
 
 use app\components\mgcms\MgHelpers;
 use yii\web\View;
 use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
+
 
 $this->title = $model->name;
 $model->language = Yii::$app->language;
@@ -64,7 +67,10 @@ $index = 0;
         -ms-flex-pack: center;
         justify-content: center;
     }
-    .Section strong{color: inherit;}
+
+    .Section strong {
+        color: inherit;
+    }
 </style
 >
 <?= $this->render('/common/breadcrumps') ?>
@@ -126,15 +132,15 @@ $index = 0;
                 </div>
                 <b><?= Yii::t('db', 'Files to download'); ?></b>
                 <div>
-                    <?foreach($model->fileRelations as $fileRelation):?>
-                    <?if($fileRelation->json != '1' || !$fileRelation->file) continue?>
-                        <a class="Project__file" href="<?=$fileRelation->file->linkUrl?>" target="_blank">
-                            <?=$fileRelation->file->origin_name?>
+                    <? foreach ($model->fileRelations as $fileRelation): ?>
+                        <? if ($fileRelation->json != '1' || !$fileRelation->file) continue ?>
+                        <a class="Project__file" href="<?= $fileRelation->file->linkUrl ?>" target="_blank">
+                            <?= $fileRelation->file->origin_name ?>
                             <div class="Project__file__ico">
                                 <img src="/svg/pdf.svg" alt=""/>
                             </div>
                         </a>
-                    <?endforeach;?>
+                    <? endforeach; ?>
 
                 </div>
             </div>
@@ -171,8 +177,53 @@ $index = 0;
 
         <div class="container">
             <div class="text-center">
-                <a class="btn btn-success btn--medium"
-                   href="<?= Url::to(['project/buy', 'id' => $model->id]) ?>"><?= Yii::t('db', 'INVEST'); ?></a>
+
+
+                <? if ($model->status == \app\models\mgcms\db\Project::STATUS_ACTIVE): ?>
+                    <a class="btn btn-success btn--medium"
+                       href="<?= Url::to(['project/buy', 'id' => $model->id]) ?>"><?= Yii::t('db', 'INVEST'); ?></a>
+                <? endif; ?>
+                <? if ($model->status == \app\models\mgcms\db\Project::STATUS_PLANNED): ?>
+
+                    <?php
+                    $form = ActiveForm::begin([
+                        'id' => 'login-form',
+                    ]);
+
+                    ?>
+
+
+                    <div class="User-Panel__form-group">
+                        <label class="Contact-form__label field-user-first_name">
+                        </label>
+
+                            <div class="Contact-form__label">
+                                <?= Yii::t('db', 'Your email'); ?>
+                                <input type="text" id="plnToInvest"
+                                       class="Contact-form__input form-control"
+                                       name="emailSubscribe"
+                                       placeholder=" ">
+
+                                <p class="help-block help-block-error"></p>
+                            </div>
+
+                    </div>
+
+                <div class="User-Panel__form-group">
+                    <label class="Contact-form__label field-user-first_name">
+                    </label>
+                    <div class="text-center">
+                        <input
+                                type="submit"
+                                class="Contact-form__submit btn btn-primary btn-block"
+                                value="<?= Yii::t('db', 'Subscribe'); ?>"
+                        />
+                    </div>
+                </div>
+
+
+                    <?php ActiveForm::end(); ?>
+                <? endif; ?>
             </div>
             <?= $this->render('view/bottomInfoBar') ?>
         </div>
