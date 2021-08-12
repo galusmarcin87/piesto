@@ -56,6 +56,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             }
             $emails = $model->getModelAttribute('emails');
             $model->setModelAttribute('emails', $emails.$emailSubscribe.';');
+            MgHelpers::setFlashSuccess(MgHelpers::getSettingTranslated('email project subscription','Thank you for subscribing'));
         }
 
         return $this->render('view', ['model' => $model]);
