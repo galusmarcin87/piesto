@@ -67,7 +67,7 @@ $model->language = Yii::$app->language;
         </li>
     </ul>
     <div class="Invest-counter">
-        <? if ($model->money && $model->money_full): ?>
+        <? if ($model->money_full): ?>
             <div class="Invest-counter__header">
                 <div class="Invest-counter__source">
 
