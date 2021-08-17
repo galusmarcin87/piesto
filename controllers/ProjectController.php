@@ -26,7 +26,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
     {
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Project::find()->where(['status' => Project::STATUS_ACTIVE]),
+            'query' => Project::find()->where(['status' => [Project::STATUS_ACTIVE, Project::STATUS_PLANNED]]),
         ]);
 
         return $this->render('index', [
