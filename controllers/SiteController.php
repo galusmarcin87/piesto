@@ -6,6 +6,7 @@ use app\models\mgcms\db\File;
 use app\models\ReportRealEstateForm;
 use FiberPay\FiberPayClient;
 use Yii;
+use yii\base\BaseObject;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
@@ -126,6 +127,35 @@ class SiteController extends \app\components\mgcms\MgCmsController
         ]);
     }
 
+    /**
+     * Login action.
+     *
+     * @return Response|string
+     */
+    public function actionFillAccount()
+    {
+
+        $model = $this->getUserModel();
+        $type = $model->type;
+        $step = $model->step ? $model->step : 0;
+        // $model->scenario = 'step' . $step;
+        if ($model->load(Yii::$app->request->post())) {
+            $model->step = $step++;
+            $saved = $model->save();
+            if (!$saved) {
+                \app\components\mgcms\MgHelpers::setFlashError(Yii::t('db', $model->getErrorSummary()));
+                return $this->refresh();
+            } else {
+                $this->redirect(['site/fill-account']);
+            }
+        }
+        return $this->render('fillAccount/step_' . $type . '_' . $step, [
+            'model' => $model,
+            'type' => $type,
+            'step' => $step
+        ]);
+    }
+
     public function actionForgotPassword()
     {
         $model = new \app\models\ForgotPasswordForm();
@@ -224,10 +254,14 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $model = new LoginForm();
         $modelRegister = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            if ($this->getUserModel()->step != User::STEP_VERIFIED) {
+                return $this->redirect(['site/fill-account', 'step' => $this->getUserModel()->step]);
+            }
             return $this->goBack();
         }
         if ($modelRegister->load(Yii::$app->request->post()) && $modelRegister->register()) {
             MgHelpers::setFlashSuccess(MgHelpers::getSettingTranslated('register_after_message', 'Thank you for registration, email with activation of account has been sent.'));
+
             return $this->refresh();
         }
         return $this->render('login', [
@@ -303,6 +337,12 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
 
         $model = $this->getUserModel();
+
+        if ($this->getUserModel()->step != User::STEP_VERIFIED) {
+            return $this->redirect(['site/fill-account']);
+        }
+
+
         $model->scenario = 'account';
         if ($backUrl) {
             $model->scenario = 'kyc';
@@ -368,22 +408,26 @@ class SiteController extends \app\components\mgcms\MgCmsController
         ]);
     }
 
-    public function actionWouldYouLikeToInvest(){
+    public function actionWouldYouLikeToInvest()
+    {
 
         return $this->render('wouldYouLikeToInvest');
     }
 
-    public function actionAboutUs(){
+    public function actionAboutUs()
+    {
 
         return $this->render('aboutUs');
     }
 
-    public function actionAboutOurPlatform(){
+    public function actionAboutOurPlatform()
+    {
 
         return $this->render('aboutOurPlatform');
     }
 
-    public function actionAboutProject(){
+    public function actionAboutProject()
+    {
 
         return $this->render('aboutProject');
     }
@@ -391,7 +435,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
     public function actionVerifyFiberId()
     {
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
-        $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
+        $fiberClient = new FiberPayClient($fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
 
     }
 

@@ -33,14 +33,36 @@ use app\components\mgcms\MgHelpers;
  * @property string $birth_country
  * @property string $document_type
  * @property string $street
- * @property string $house_no
  * @property string $flat_no
  * @property string $phone
- * @property string $company_name
  * @property string $company_id
  * @property boolean $is_kyc_filled
  * @property string $language
  * @property string $country
+ * @property string $type
+ * @property string $company_name
+ * @property string $company_nip
+ * @property string $company_regon
+ * @property string $company_country
+ * @property string $company_voivodeship
+ * @property string $company_postcode
+ * @property string $company_city
+ * @property string $company_street
+ * @property string $company_house_no
+ * @property string $company_flat_no
+ * @property string $house_no
+ * @property string $cor_first_name
+ * @property string $cor_last_name
+ * @property string $cor_country
+ * @property string $cor_voivodeship
+ * @property string $cor_postcode
+ * @property string $cor_city
+ * @property string $cor_street
+ * @property string $cor_house_no
+ * @property string $cor_flat_no
+ * @property string $bank_no
+ * @property string $step
+ *
  *
  *
  * @property User $createdBy
@@ -73,6 +95,8 @@ class User extends BaseUser implements IdentityInterface
         self::STATUS_VERIFIED => 'verified',
         self::STATUS_SUSPENDED => 'suspended',
     ];
+
+    const STEP_VERIFIED = 'verified';
 
     public $auths = false;
     public $passwordRepeat;
@@ -108,7 +132,8 @@ class User extends BaseUser implements IdentityInterface
 //        [['password'], StrengthValidator::className(), 'min' => 8, 'digit' => 1, 'special' => 1, 'upper' => 1, 'lower' => 1, 'userAttribute' => 'username'],
             [['city', 'first_name', 'last_name', 'citizenship', 'pesel', 'birthdate', 'birth_country', 'document_type', 'street', 'house_no', 'flat_no', 'postcode', 'email', 'phone'], 'required', 'on' => 'kyc'],
             ['acceptTerms', 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'account'],
-            [['facebook','twitter','linkedin','instagram','phone','position'], 'safe']
+            [['facebook','twitter','linkedin','instagram','phone','position', 'step', 'type'], 'safe'],
+            [['first_name','last_name','linkedin','instagram','phone','position'], 'required', 'on' => 'person']
         ];
     }
 
