@@ -41,7 +41,7 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
             </div>
 
             <div class="text-right">
-                <button type="submit" class="btn">
+                <button type="submit" class="btn arr-right-blue">
                     <?= Yii::t('db','NEXT')?>
                 </button>
             </div>

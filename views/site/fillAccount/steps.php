@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 ?>
 <ul id="progressbar">
-    <li class="<?= $step === 0 ? 'active' : ''?>"><?= Yii::t('db', 'step')?> 1</li>
-    <li class="<?= $step === 1 ? 'active' : ''?>"><?= Yii::t('db', 'step')?> 2</li>
-    <li class="<?= $step === 2 ? 'active' : ''?>"><?= Yii::t('db', 'step')?> 3</li>
+    <li class="active"><?= Yii::t('db', 'step')?> 1</li>
+    <li class="<?= $step >=1? 'active' : ''?>"><?= Yii::t('db', 'step')?> 2</li>
+    <li class="<?= $step == 2 ? 'active' : ''?>"><?= Yii::t('db', 'step')?> 3</li>
 </ul>

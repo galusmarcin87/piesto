@@ -118,3 +118,18 @@
 .fillAccount .buttons .btn.btn-success {
   color: white;
 }
+.arr-right-blue {
+  padding-right: 40px;
+  position: relative;
+  color: #11375f;
+}
+.arr-right-blue:after {
+  content: '';
+  width: 34px;
+  height: 11px;
+  background: url('/images/arr-right-blue.png');
+  right: 0;
+  position: absolute;
+  display: block;
+  bottom: 18px;
+}

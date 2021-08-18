@@ -2,7 +2,7 @@
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
 
-/* @var $model app\models\LoginForm */
+/* @var $model \app\models\mgcms\db\User */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -12,7 +12,7 @@ use yii\authclient\widgets\AuthChoice;
 
 $this->title = Yii::t('db', 'Register');
 $this->params['breadcrumbs'][] = $this->title;
-$fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
+$fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false);
 
 //https://yii2-framework.readthedocs.io/en/stable/guide/security-auth-clients/
 ?>
@@ -23,27 +23,48 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
     <div class="container">
         <h1 class="text-center"><?= Yii::t('db', 'Register'); ?></h1>
         <div class="Contact__grid">
-            <?= $this->render('steps',['step' => $step]) ?>
+            <?= $this->render('steps', ['step' => $step]) ?>
             <?php
             $form = ActiveForm::begin([
                 'id' => 'login-form',
                 'class' => 'fadeInUpShort animated delay-250',
-                'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig()
+                'fieldConfig' => $fieldConfig
             ]);
 
             //          echo $form->errorSummary($model);
             ?>
-            <?= $form->field($model, 'type')->hiddenInput()->label(false) ?>
-            <div class="buttons">
-                <button class="btn btn-default" type="button" data-type="1"> <?= Yii::t('db','A natural person')?> </button>
-                <button class="btn btn-default" type="button" data-type="2"> <?= Yii::t('db','Sole proprietorship')?> </button>
-                <button class="btn btn-default" type="button" data-type="3"> <?= Yii::t('db','A natural person')?> </button>
+            <div class="row">
+                <?= $this->render('_field', ['width' => 6, 'form' => $form, 'model' => $model, 'attribute' => 'first_name', 'required' => true]) ?>
+                <?= $this->render('_field', ['width' => 6, 'form' => $form, 'model' => $model, 'attribute' => 'last_name', 'required' => true]) ?>
+
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'country', 'required' => true]) ?>
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'voivodeship', 'required' => true]) ?>
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'postcode', 'required' => true]) ?>
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'city', 'required' => true]) ?>
+
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'street', 'required' => true]) ?>
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'house_no', 'required' => true]) ?>
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'flat_no', 'required' => false]) ?>
+                <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'birthdate', 'required' => true, 'type' => 'date']) ?>
             </div>
 
-            <div class="text-right">
-                <button type="submit" class="btn">
-                    <?= Yii::t('db','NEXT')?>
-                </button>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="text-left">
+                        <button type="submit" class="btn arr-right-blue">
+                            <?= Yii::t('db', 'BACK') ?>
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="col-md-6">
+                    <div class="text-right">
+                        <button type="submit" class="btn arr-right-blue">
+                            <?= Yii::t('db', 'NEXT') ?>
+                        </button>
+                    </div>
+                </div>
             </div>
 
             <?php ActiveForm::end(); ?>
@@ -54,9 +75,9 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
 
 <script>
 
-  $('.buttons .btn').click(function(e){
+  $('.buttons .btn').click(function (e) {
     $('.buttons .btn').removeClass('btn-success');
     $(this).addClass('btn-success');
     $('#user-type').val($(this).data('type'));
-  })
+  });
 </script>

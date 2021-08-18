@@ -140,14 +140,16 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $step = $model->step ? $model->step : 0;
         // $model->scenario = 'step' . $step;
         if ($model->load(Yii::$app->request->post())) {
-            $model->step = $step++;
-            $saved = $model->save();
-            if (!$saved) {
-                \app\components\mgcms\MgHelpers::setFlashError(Yii::t('db', $model->getErrorSummary()));
+            $model->validateSteps();
+            if (!$model->hasErrors()) {
+                $model->step++;
+                $saved = $model->save();
+                if (!$saved) {
+                    \app\components\mgcms\MgHelpers::setFlashError(Yii::t('db', $model->getErrorSummary()));
+                }
                 return $this->refresh();
-            } else {
-                $this->redirect(['site/fill-account']);
             }
+
         }
         return $this->render('fillAccount/step_' . $type . '_' . $step, [
             'model' => $model,

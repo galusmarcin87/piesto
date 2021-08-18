@@ -234,6 +234,14 @@ class User extends BaseUser implements IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
+    public function validateSteps()
+    {
+        if(!$this->type){
+            $this->addError('type','type is required');
+        }
+    }
+
+
     private function setAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString(60);
