@@ -37,7 +37,7 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
             <div class="buttons">
                 <button class="btn btn-default" type="button" data-type="1"> <?= Yii::t('db','A natural person')?> </button>
                 <button class="btn btn-default" type="button" data-type="2"> <?= Yii::t('db','Sole proprietorship')?> </button>
-                <button class="btn btn-default" type="button" data-type="3"> <?= Yii::t('db','A natural person')?> </button>
+                <button class="btn btn-default" type="button" data-type="3"> <?= Yii::t('db','A company')?> </button>
             </div>
 
             <div class="text-right">

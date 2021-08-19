@@ -29,6 +29,9 @@
 .bottom10 {
   margin-bottom: 10px;
 }
+.top10 {
+  margin-top: 10px;
+}
 /*progressbar*/
 #progressbar {
   margin-bottom: 30px;
@@ -46,6 +49,7 @@
   position: relative;
   letter-spacing: 1px;
   text-align: center;
+  font-family: "Montserrat", sans-serif;
 }
 #progressbar li:before {
   content: '';
@@ -118,6 +122,13 @@
 .fillAccount .buttons .btn.btn-success {
   color: white;
 }
+.fillAccount h3 {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+}
 .arr-right-blue {
   padding-right: 40px;
   position: relative;
@@ -132,4 +143,24 @@
   position: absolute;
   display: block;
   bottom: 18px;
+}
+.arr-left-blue {
+  padding-left: 40px;
+  position: relative;
+  color: #11375f;
+}
+.arr-left-blue:before {
+  content: '';
+  width: 34px;
+  height: 11px;
+  background: url('/images/arr-right-blue.png');
+  left: 0;
+  position: absolute;
+  display: block;
+  bottom: 18px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }

@@ -94,6 +94,28 @@ class User extends \app\models\mgcms\db\AbstractRecord
         'country' => Yii::t('db', 'Country'),
         'oldPassword' => Yii::t('db', 'Old password'),
         'position' => Yii::t('app', 'Position'),
+        'cor_first_name' => Yii::t('app', 'First Name'),
+        'cor_last_name' => Yii::t('app', 'Last Name'),
+        'cor_postcode' => Yii::t('db', 'Postcode'),
+        'cor_city' => Yii::t('app', 'City'),
+        'birth_country' => Yii::t('db', 'Birth country'),
+        'document_type' => Yii::t('db', 'Type of identity document'),
+        'cor_street' => Yii::t('db', 'Street'),
+        'cor_house_no' => Yii::t('db', 'House number'),
+        'cor_flat_no' => Yii::t('db', 'Flat number'),
+        'cor_voivodeship' => Yii::t('db', 'Voivodeship'),
+        'cor_country' => Yii::t('db', 'Country'),
+
+        'company_name' => Yii::t('db', 'Company name'),
+        'company_regon' => Yii::t('db', 'REGON'),
+        'company_nip' => Yii::t('db', 'NIP'),
+        'company_street' => Yii::t('db', 'Street'),
+        'company_house_no' => Yii::t('db', 'House number'),
+        'company_flat_no' => Yii::t('db', 'Flat number'),
+        'company_voivodeship' => Yii::t('db', 'Voivodeship'),
+        'company_country' => Yii::t('db', 'Country'),
+        'company_postcode' => Yii::t('db', 'Postcode'),
+        'company_city' => Yii::t('app', 'City'),
     ];
   }
 

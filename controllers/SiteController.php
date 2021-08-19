@@ -132,12 +132,18 @@ class SiteController extends \app\components\mgcms\MgCmsController
      *
      * @return Response|string
      */
-    public function actionFillAccount()
+    public function actionFillAccount($back = 0)
     {
 
         $model = $this->getUserModel();
         $type = $model->type;
         $step = $model->step ? $model->step : 0;
+
+        if($back){
+            $model->step--;
+            $model->save();
+            return $this->redirect(['site/fill-account']);
+        }
         // $model->scenario = 'step' . $step;
         if ($model->load(Yii::$app->request->post())) {
             $model->validateSteps();

@@ -62,6 +62,7 @@ use app\components\mgcms\MgHelpers;
  * @property string $cor_flat_no
  * @property string $bank_no
  * @property string $step
+ * @property integer $is_corespondence
  *
  *
  *
@@ -72,13 +73,13 @@ use app\components\mgcms\MgHelpers;
 class User extends BaseUser implements IdentityInterface
 {
 
-    public $modelAttributes = ['facebook','twitter','linkedin','instagram','position'];
+    public $modelAttributes = ['facebook', 'twitter', 'linkedin', 'instagram', 'position'];
 
 
     const ROLE_ADMIN = 'admin';
     const ROLE_CLIENT = 'client';
     const ROLE_TEAM = 'team';
-    const ROLE_PROJECT_OWNER= 'project owner';
+    const ROLE_PROJECT_OWNER = 'project owner';
     const ROLES = [
         self::ROLE_ADMIN,
         self::ROLE_CLIENT,
@@ -121,7 +122,7 @@ class User extends BaseUser implements IdentityInterface
             [['username'], 'required'],
             [['status', 'created_by', 'file_id'], 'integer'],
             [['created_on', 'last_login', 'birthdate', 'country', 'voivodeship', 'street', 'flat_no', 'citizenship', 'id_document_no', 'id_document_type', 'pesel', 'oldPassword'], 'safe'],
-            [['username', 'password', 'first_name', 'last_name', 'email', 'address', 'postcode', 'city'], 'string', 'max' => 245],
+            [['username', 'password', 'first_name', 'last_name', 'email', 'address', 'postcode', 'city', 'cor_first_name', 'cor_last_name', 'cor_country', 'cor_voivodeship', 'cor_street', 'cor_flat_no', 'cor_house_no', 'cor_city', 'cor_postcode'], 'string', 'max' => 245],
             [['role', 'language'], 'string', 'max' => 45],
             [['username', 'auth_key'], 'unique'],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -132,8 +133,9 @@ class User extends BaseUser implements IdentityInterface
 //        [['password'], StrengthValidator::className(), 'min' => 8, 'digit' => 1, 'special' => 1, 'upper' => 1, 'lower' => 1, 'userAttribute' => 'username'],
             [['city', 'first_name', 'last_name', 'citizenship', 'pesel', 'birthdate', 'birth_country', 'document_type', 'street', 'house_no', 'flat_no', 'postcode', 'email', 'phone'], 'required', 'on' => 'kyc'],
             ['acceptTerms', 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'account'],
-            [['facebook','twitter','linkedin','instagram','phone','position', 'step', 'type'], 'safe'],
-            [['first_name','last_name','linkedin','instagram','phone','position'], 'required', 'on' => 'person']
+            [['facebook', 'twitter', 'linkedin', 'instagram', 'phone', 'position', 'step', 'type', 'is_corespondence', 'house_no'], 'safe'],
+            [['first_name', 'last_name', 'linkedin', 'instagram', 'phone', 'position'], 'required', 'on' => 'person'],
+            [['company_name','company_nip','company_regon', 'company_country', 'company_voivodeship', 'company_street', 'company_flat_no', 'company_house_no', 'company_city', 'company_postcode'], 'safe'],
         ];
     }
 
@@ -236,8 +238,8 @@ class User extends BaseUser implements IdentityInterface
 
     public function validateSteps()
     {
-        if(!$this->type){
-            $this->addError('type','type is required');
+        if (!$this->type) {
+            $this->addError('type', 'type is required');
         }
     }
 
