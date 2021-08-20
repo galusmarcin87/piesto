@@ -27,7 +27,6 @@ tests/_output/*
 tests/_support/_generated
 /runtime/*
 
-/web/assets/*
 /config/db.php
 /web/storage/*
 /web/upload/*
