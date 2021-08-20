@@ -31,7 +31,8 @@ use app\components\mgcms\MgHelpers;
  * @property string $citizenship
  * @property string $pesel
  * @property string $birth_country
- * @property string $document_type
+ * @property string $id_document_type
+ * @property string $id_document_no
  * @property string $street
  * @property string $flat_no
  * @property string $phone
@@ -135,7 +136,7 @@ class User extends BaseUser implements IdentityInterface
             ['acceptTerms', 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'account'],
             [['facebook', 'twitter', 'linkedin', 'instagram', 'phone', 'position', 'step', 'type', 'is_corespondence', 'house_no'], 'safe'],
             [['first_name', 'last_name', 'linkedin', 'instagram', 'phone', 'position'], 'required', 'on' => 'person'],
-            [['company_name','company_nip','company_regon', 'company_country', 'company_voivodeship', 'company_street', 'company_flat_no', 'company_house_no', 'company_city', 'company_postcode'], 'safe'],
+            [['company_name','company_nip','company_regon', 'company_country', 'company_voivodeship', 'company_street', 'company_flat_no', 'company_house_no', 'company_city', 'company_postcode', 'bank_no'], 'safe'],
         ];
     }
 

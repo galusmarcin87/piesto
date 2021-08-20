@@ -139,6 +139,11 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $type = $model->type;
         $step = $model->step ? $model->step : 0;
 
+        if($step == 3){
+
+            return $this->redirect(['site/index']);
+        }
+
         if($back){
             $model->step--;
             $model->save();
