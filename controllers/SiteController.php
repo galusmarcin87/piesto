@@ -454,7 +454,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $fiberClient = new FiberIdClient($fiberPayConfig['fiberIdApiKey'], $fiberPayConfig['fiberIdSecret'], $fiberPayConfig['testServer']);
         $order = $fiberClient->createOrder('individual', 'asdas', Url::to('site/verify-fiber-id-callback', true), Url::to('site/account', true));
 
-        if ($order['url']) {
+        if ($order->url) {
             return $this->redirect($order['url']);
         } else {
             MgHelpers::setFlashError('error during creating fiber id request');
