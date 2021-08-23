@@ -865,7 +865,6 @@ class Model extends Component implements StaticInstanceInterface, IteratorAggreg
     {
         $scope = $formName === null ? $this->formName() : $formName;
         if ($scope === '' && !empty($data)) {
-
             $this->setAttributes($data);
 
             return true;

@@ -2,12 +2,14 @@
 
 namespace app\controllers;
 
+use FiberPay\FiberIdClient;
 use app\models\mgcms\db\File;
 use app\models\ReportRealEstateForm;
 use FiberPay\FiberPayClient;
 use Yii;
 use yii\base\BaseObject;
 use yii\filters\AccessControl;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\filters\VerbFilter;
@@ -139,12 +141,12 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $type = $model->type;
         $step = $model->step ? $model->step : 0;
 
-        if($step == 3){
+        if ($step == 3) {
 
             return $this->redirect(['site/index']);
         }
 
-        if($back){
+        if ($back) {
             $model->step--;
             $model->save();
             return $this->redirect(['site/fill-account']);
@@ -351,9 +353,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
         $model = $this->getUserModel();
 
-        if ($this->getUserModel()->step != User::STEP_VERIFIED) {
-            return $this->redirect(['site/fill-account']);
-        }
+//        if ($this->getUserModel()->step != User::STEP_VERIFIED) {
+//            return $this->redirect(['site/fill-account']);
+//        }
 
 
         $model->scenario = 'account';
@@ -448,8 +450,13 @@ class SiteController extends \app\components\mgcms\MgCmsController
     public function actionVerifyFiberId()
     {
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
-        $fiberClient = new FiberPayClient($fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
+        $fiberClient = new FiberIdClient($fiberPayConfig['fiberIdApiKey'], $fiberPayConfig['fiberIdSecret'], $fiberPayConfig['testServer']);
+        $order = $fiberClient->createOrder('individual','asdas', Url::to('site/verify-fiber-id',true), Url::to('site/verify-fiber-id',true));
 
+        echo '<pre>';
+        echo var_dump($order);
+        echo '</pre>';
+        exit;
     }
 
 

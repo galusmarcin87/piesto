@@ -164,3 +164,34 @@
   -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
+.myAccount .Register__input + label {
+  position: relative;
+}
+.myAccount h1 {
+  font-size: 36px;
+}
+.myAccount .userMain {
+  margin-bottom: 30px;
+}
+.myAccount .userMain p {
+  margin: 0;
+}
+.myAccount .btn {
+  margin-top: 0;
+}
+.myAccount .tabs .nav-tabs {
+  border-bottom: none;
+}
+.myAccount .tabs .nav-tabs li {
+  margin-right: 10px;
+}
+.myAccount .tabs .nav-tabs li.active a {
+  background-color: #12446f;
+  background: -moz-linear-gradient(left, #12446f 0%, #1a8dc7 100%);
+  background: -webkit-linear-gradient(left, #12446f 0%, #1a8dc7 100%);
+  background: linear-gradient(to right, #12446f 0%, #1a8dc7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#12446f", endColorstr="#1a8dc7", GradientType=1);
+  border: none;
+  box-shadow: 0 5px 12px 0px #0000000d;
+  color: white;
+}
