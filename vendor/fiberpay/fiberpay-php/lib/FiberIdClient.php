@@ -116,10 +116,6 @@ class FiberIdClient
     private function decodeAndDecrypt(string $payload)
     {
         $decoded = $this->decodeJWT($payload);
-        echo '<pre>';
-        echo var_dump($decoded);
-        echo '</pre>';
-        exit;
         $data = $this->decrypt($decoded->payload, hex2bin($this->secret), hex2bin($decoded->iv));
         return json_decode($data);
     }
