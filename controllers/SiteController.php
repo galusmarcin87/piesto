@@ -9,6 +9,7 @@ use FiberPay\FiberPayClient;
 use Yii;
 use yii\base\BaseObject;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
@@ -451,12 +452,24 @@ class SiteController extends \app\components\mgcms\MgCmsController
     {
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
         $fiberClient = new FiberIdClient($fiberPayConfig['fiberIdApiKey'], $fiberPayConfig['fiberIdSecret'], $fiberPayConfig['testServer']);
-        $order = $fiberClient->createOrder('individual','asdas', Url::to('site/verify-fiber-id',true), Url::to('site/verify-fiber-id',true));
+        $order = $fiberClient->createOrder('individual', 'asdas', Url::to('site/verify-fiber-id-callback', true), Url::to('site/account', true));
 
-        echo '<pre>';
-        echo var_dump($order);
-        echo '</pre>';
-        exit;
+        if ($order['url']) {
+            return $this->redirect($order['url']);
+        } else {
+            MgHelpers::setFlashError('error during creating fiber id request');
+            return $this->redirect('/');
+        }
+    }
+
+    public function actionVerifyFiberIdCallback()
+    {
+        \Yii::info("notify", 'own');
+
+        $body =  $this->request->rawBody;
+        $headers = $this->request->headers;
+        $jwtDecoded = JWT::decode($body);
+        \Yii::info(JSON::encode($jwtDecoded), 'own');
     }
 
 
