@@ -322,32 +322,32 @@ class User extends BaseUser implements IdentityInterface
         if ($this->language) {
             Yii::$app->language = $this->language;
         }
-        if ($this->getOldAttribute('status') != self::STATUS_SUSPENDED && $this->getAttribute('status') == self::STATUS_SUSPENDED) {
-
-            Yii::$app->mailer->compose('suspendedAccount', ['model' => $this])
-                ->setTo($this->username)
-                ->setFrom([MgHelpers::getSetting('register_email') => MgHelpers::getSetting('register_email_name')])
-                ->setSubject(MgHelpers::getSettingTranslated('user_account_suspended_mail_subject', 'Your account has been suspended'))
-                ->send();
-        }
-
-        if ($this->getOldAttribute('status') == self::STATUS_ACTIVE && $this->getAttribute('status') == self::STATUS_VERIFIED) {
-
-            Yii::$app->mailer->compose('verifiedAccount', ['model' => $this])
-                ->setTo($this->username)
-                ->setFrom([MgHelpers::getSetting('register_email') => MgHelpers::getSetting('register_email_name')])
-                ->setSubject(MgHelpers::getSettingTranslated('user_account_verified_mail_subject', 'Your account has been verified'))
-                ->send();
-        }
-
-        if ($this->getOldAttribute('status') == self::STATUS_SUSPENDED && $this->getAttribute('status') == self::STATUS_VERIFIED) {
-
-            Yii::$app->mailer->compose('reverifiedAccount', ['model' => $this])
-                ->setTo($this->username)
-                ->setFrom([MgHelpers::getSetting('register_email') => MgHelpers::getSetting('register_email_name')])
-                ->setSubject(MgHelpers::getSettingTranslated('user_account_verified_mail_subject', 'Your account has been reverified'))
-                ->send();
-        }
+//        if ($this->getOldAttribute('status') != self::STATUS_SUSPENDED && $this->getAttribute('status') == self::STATUS_SUSPENDED) {
+//
+//            Yii::$app->mailer->compose('suspendedAccount', ['model' => $this])
+//                ->setTo($this->username)
+//                ->setFrom([MgHelpers::getSetting('register_email') => MgHelpers::getSetting('register_email_name')])
+//                ->setSubject(MgHelpers::getSettingTranslated('user_account_suspended_mail_subject', 'Your account has been suspended'))
+//                ->send();
+//        }
+//
+//        if ($this->getOldAttribute('status') == self::STATUS_ACTIVE && $this->getAttribute('status') == self::STATUS_VERIFIED) {
+//
+//            Yii::$app->mailer->compose('verifiedAccount', ['model' => $this])
+//                ->setTo($this->username)
+//                ->setFrom([MgHelpers::getSetting('register_email') => MgHelpers::getSetting('register_email_name')])
+//                ->setSubject(MgHelpers::getSettingTranslated('user_account_verified_mail_subject', 'Your account has been verified'))
+//                ->send();
+//        }
+//
+//        if ($this->getOldAttribute('status') == self::STATUS_SUSPENDED && $this->getAttribute('status') == self::STATUS_VERIFIED) {
+//
+//            Yii::$app->mailer->compose('reverifiedAccount', ['model' => $this])
+//                ->setTo($this->username)
+//                ->setFrom([MgHelpers::getSetting('register_email') => MgHelpers::getSetting('register_email_name')])
+//                ->setSubject(MgHelpers::getSettingTranslated('user_account_verified_mail_subject', 'Your account has been reverified'))
+//                ->send();
+//        }
 
         Yii::$app->language = $currentLanguage;
 
