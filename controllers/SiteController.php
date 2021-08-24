@@ -143,8 +143,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $step = $model->step ? $model->step : 0;
 
         if ($step == 3) {
-
-            return $this->redirect(['site/index']);
+            return $this->redirect(['site/verify-fiber-id']);
         }
 
         if ($back) {

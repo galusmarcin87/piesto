@@ -42,7 +42,6 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false);
 
 
                 <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'phone', 'required' => true]) ?>
-                <?= $this->render('_field', ['width' => 6, 'form' => $form, 'model' => $model, 'attribute' => 'bank_no', 'required' => true]) ?>
 
             </div>
 
