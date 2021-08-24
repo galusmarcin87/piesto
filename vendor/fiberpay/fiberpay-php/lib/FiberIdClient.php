@@ -113,7 +113,7 @@ class FiberIdClient
         return $plaintext;
     }
 
-    private function decodeAndDecrypt(string $payload)
+    public function decodeAndDecrypt(string $payload)
     {
         $decoded = $this->decodeJWT($payload);
         $data = $this->decrypt($decoded->payload, hex2bin($this->secret), hex2bin($decoded->iv));

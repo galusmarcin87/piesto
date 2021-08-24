@@ -452,7 +452,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
     {
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
         $fiberClient = new FiberIdClient($fiberPayConfig['fiberIdApiKey'], $fiberPayConfig['fiberIdSecret'], $fiberPayConfig['testServer']);
-        $order = $fiberClient->createOrder('individual', 'asdas', Url::to('site/verify-fiber-id-callback', true), Url::to('site/account', true));
+        $order = $fiberClient->createOrder('individual', 'asdas', Url::to(['site/verify-fiber-id-callback', 'hash' => MgHelpers::encrypt(serialize(['userId' => $this->getUserModel()->id]))], true), Url::to('site/account', true));
 
         if ($order->url) {
             return $this->redirect($order->url);
@@ -470,14 +470,49 @@ class SiteController extends \app\components\mgcms\MgCmsController
         return true;
     }
 
-    public function actionVerifyFiberIdCallback()
+    public function actionVerifyFiberIdCallback($hash)
     {
-        \Yii::info("notify", 'own');
+        $data = unserialize(MgHelpers::decrypt($hash));
+        $userId = $data['userId'];
+        $user = User::findOne($userId);
 
+        if(!$user){
+            $this->throw404();
+        }
+
+        \Yii::info("actionVerifyFiberIdCallback", 'own');
+
+        //$body = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjoiSXNPTU15YlNBOTZTbjA0TGxWckJEenhSWHdoU05ZbTUxUlh6Z0l2VU44WGtNZ3JKbGYzNHdSTmJiaHV4UTdHSGQwbE56ZHNIUW9cL3FPTUFsMHhBVzhOWlJUR3QydldzTWQ1S0IxRVA3VnNuYVE5YWdJdk9FNjNzXC82eUh1T0JWVWhwOGhuaEZ3YlVta1hWV3Zka0xyekVabGpCWTVjVTRHUVZmQ0s0b0JxK0JkUlwvSENyeWExVXpcL3ZIRDRaa2RxbGJDMXpcL3A1YVRSTDFhNWxsRnB3dFdNdUJFaU4zbVJpcTUrQUQwckFYQWw0a3Y1YnlpeU1wRFpIS1wvMUphSGJ6bTA0RDNcL2R1b2xNYXkyVTJjc284OFNZRnlGTjFDQWhVN1JKY216VzRXSmVRRDRuMktrSVcyK3pnMUNNTkZySjZhcndudXRFcklVK2gzUnRpWmYwWm9ZTkVoVnZUcTh2b0ZzRFNZeEJna1M1M1wvRlwvSmJpdEhXS0J5cHJqQllCWlpVeHpVbm9QYVdGTFlZNTlFSUhrRE9NQStIMTJBdlA2dnUzakR3N1BKNGxJZU1cL1pucDVOdHRsY3FhRVwvRUlPRlVTSEtHbVA2cnNcL1UrM1hRT2l5ZFM5RFNQaFYwdXg0c0UwVit4R3pmUTdsOE1YS1REbXFJQTFRalwvUERHdWRXUDZHN0kyaFhVUzgwcXlXXC9FSXFSaHh1SUJOUHY1NW0wR1ZXdGVUQVFaWThmQzA2aHZnRDVpdHFkZ1AraUNucjFteUdWUGlFQ1lcLzA1REdlaStJaWYrTm9XZjNxTXNnenVraFRWUG5QSG0zZVFpM2Nadk9md2doVE5sRDcyV0lMdHE4cnliXC83a2VvcHR2ZFhPcmpQQWdPXC8yeWZIRnlKVUJmb0N5NDlkZlB5WThpK2FCZHREaUdaMTZGTUVrRDZ0N05OdGE0SE9EQ1JJK1JCTFRRRTJ6eUdXRVJXZCtycWM5ckYyb21TK0s5ZGtTa3FwMWhMMkVPMjFTbTBhUzh0WDI0Zyt1eEtSb0FOVDNYU2ZMU0Q1XC9pcHpGT0JmZG5FM0xWVU9TQ0x4YXhwOXZzY1I5Tjl4RE9KbE1FeTVXRlh3MG9DbiIsImlzcyI6IlZlcmlmaWNhdGlvbiIsImlhdCI6MTYyOTgyODIyMSwiaXYiOiIzN2ZmNDBkMjIzMzQ2ZWQzZDVlZWUyZjA0ZjAxNTgwNSJ9.7B7NvqYb9hfWKXCZLZXDK63sn8CRNVxAGJ-FwoRN4gU';
         $body =  $this->request->rawBody;
         $headers = $this->request->headers;
-        $jwtDecoded = JWT::decode($body);
-        \Yii::info(JSON::encode($jwtDecoded), 'own');
+        $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
+        $apiKey = $headers['api-key'];
+        \Yii::info($apiKey, 'own');
+        if($apiKey != $fiberPayConfig['fiberIdApiKey']){
+            $this->throw404();
+        }
+        \Yii::info('fiber decrypt', 'own');
+        $fiberClient = new FiberIdClient($fiberPayConfig['fiberIdApiKey'], $fiberPayConfig['fiberIdSecret'], $fiberPayConfig['testServer']);
+        $res = $fiberClient->decodeAndDecrypt($body);
+        \Yii::info(JSON::encode($res), 'own');
+        switch($res->status){
+            case 'accepted':
+                $user->status = User::STATUS_VERIFIED;
+                $user->bank_no = $res->data->bankAccount;
+                $user->save();
+                Yii::$app->mailer->compose('accountVerifiedFiber', ['model' => $user])
+                    ->setTo($user->email)
+                    ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
+                    ->setSubject(Yii::t('db','Verification successful'))
+                    ->send();
+                break;
+
+            case 'rejected':
+
+                break;
+
+        }
+        return 'ok';
     }
 
 
