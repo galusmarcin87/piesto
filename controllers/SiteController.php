@@ -499,7 +499,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
             case 'accepted':
                 $user->status = User::STATUS_VERIFIED;
                 $user->bank_no = $res->data->bankAccount;
-                $user->save();
+                $saved = $user->save();
+                \Yii::info(JSON::encode($user), 'own');
+                \Yii::info(JSON::encode($user->getFirstErrors()), 'own');
                 Yii::$app->mailer->compose('accountVerifiedFiber', ['model' => $user])
                     ->setTo($user->email)
                     ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
