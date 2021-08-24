@@ -462,6 +462,14 @@ class SiteController extends \app\components\mgcms\MgCmsController
         }
     }
 
+    public function beforeAction($action)
+    {
+        if ($action->id == 'verify-fiber-id-callback') {
+            $this->enableCsrfValidation = false;
+        }
+        return true;
+    }
+
     public function actionVerifyFiberIdCallback()
     {
         \Yii::info("notify", 'own');
