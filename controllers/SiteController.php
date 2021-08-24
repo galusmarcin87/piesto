@@ -497,6 +497,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
         \Yii::info(JSON::encode($res), 'own');
         switch($res->status){
             case 'accepted':
+                \Yii::info('accepted', 'own');
                 $user->status = User::STATUS_VERIFIED;
                 $user->bank_no = $res->data->bankAccount;
                 $saved = $user->save();
