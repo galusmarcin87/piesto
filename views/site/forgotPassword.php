@@ -8,26 +8,28 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = Yii::t('db', 'Forgotten password');
+
+$fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
 ?>
 <?= $this->render('/common/breadcrumps')?>
 
-<section class="Section Section--white Register animatedParent">
-    <div class="container fadeIn animated">
-
-        <div class="User-Panel__form User-Panel__form--block">
-            <div>
+<section class="Section Section--big-padding-top Contact">
+    <div class="container">
+        <h1 class="text-center"><?= Yii::t('db', 'Forgotten password'); ?></h1>
+        <div class="Contact__grid" style="display: block">
+            <div class="Contact-form offset-3 col-md-6">
                 <?php
                 $form = ActiveForm::begin([
                     'id' => 'login-form',
-                    'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig()
+                    'fieldConfig' => $fieldConfig
                 ]);
 
                 //          echo $form->errorSummary($model);
 
                 ?>
 
-                <div class="User-Panel__form-group">
-                        <?= $form->field($model, 'email')->textInput(['placeholder' => ' ']) ?>
+                <div class="">
+                        <?= $form->field($model, 'email')->textInput(['placeholder' => Yii::t('db','Your email')]) ?>
                 </div>
 
                 <div class="text-center">
