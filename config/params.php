@@ -14,6 +14,10 @@ return [
     'tokeneoIp' => '18.158.21.113',
     'tokeneoIp2' => '18.158.184.206',
     'recaptcha' => [
+        'siteKey' => '6LeTfKsbAAAAAKHoxDeBQeyOxgKMkwP15azy0Itf',
+        'secretKey' => '6LeTfKsbAAAAAMNBg3YtKf4F258qChEW-4I2ZwUp'
+    ],
+    'recaptcha2' => [
         'siteKey' => '6LeA-CUbAAAAACVgBPUjUY2PfRo3HOaK3gVzVyPj',
         'secretKey' => '6LeA-CUbAAAAAErEaliKQa3oKkP7uVxJCP6x7mg2'
     ],
