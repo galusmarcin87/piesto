@@ -3,6 +3,7 @@
 /* @var $form app\components\mgcms\yii\ActiveForm */
 
 /* @var $this yii\web\View */
+/* @var $subscribeForm \app\models\SubscribeForm */
 
 use app\components\mgcms\MgHelpers;
 use yii\web\View;
@@ -193,21 +194,24 @@ $index = 0;
                     ?>
 
 
-                    <div class="User-Panel__form-group">
-                        <label class="Contact-form__label field-user-first_name">
-                        </label>
-
-                            <div class="Contact-form__label">
-                                <?= Yii::t('db', 'Your email'); ?>
-                                <input type="text" id="plnToInvest"
-                                       class="Contact-form__input form-control"
-                                       name="emailSubscribe"
-                                       placeholder=" ">
-
-                                <p class="help-block help-block-error"></p>
-                            </div>
-
+                    <div class="User-Panel__form-group offset-3 col-md-6" style="display: block">
+                        <?= $form->field($subscribeForm, 'email')->textInput(['placeholder' => $model->getAttributeLabel('email')])->label(false) ?>
                     </div>
+                    <div class="User-Panel__form-group offset-3 col-md-6" style="display: block">
+                        <?= $form->field($subscribeForm, 'acceptTerms',
+                            [
+                                'options' => [
+                                    'class' => "Form__group form-group",
+                                ],
+                                'checkboxTemplate' => "{input}\n{label}\n{error}",
+                            ]
+                        )->checkbox(['class' => 'Form__checkbox']) ?>
+                        <?= $form->field($model, 'reCaptcha')->widget(
+                            \himiklab\yii2\recaptcha\ReCaptcha::className(),
+                            ['siteKey' => MgHelpers::getConfigParam('recaptcha')['siteKey']]
+                        )->label(false) ?>
+                    </div>
+
 
                 <div class="User-Panel__form-group">
                     <label class="Contact-form__label field-user-first_name">

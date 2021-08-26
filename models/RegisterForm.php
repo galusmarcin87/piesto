@@ -90,7 +90,7 @@ class RegisterForm extends Model
                 'model' => $user
             ])
                 ->setTo($user->username)
-                ->setFrom(['asdas@wp.pl' => 'asds'])
+                ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
                 ->setSubject(MgHelpers::getSettingTranslated('register_activation_email_subject', 'Noble Platform - activation'));
             $sent = $mailer->send();
 

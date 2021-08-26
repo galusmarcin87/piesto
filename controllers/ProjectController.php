@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\mgcms\db\User;
+use app\models\SubscribeForm;
 use Yii;
 use yii\console\widgets\Table;
 use yii\helpers\Json;
@@ -46,20 +47,14 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
         }
 
-        $emailSubscribe = $this->request->post('emailSubscribe');
-        if($emailSubscribe){
-            $validator = new EmailValidator();
-            $valid = $validator->validate($emailSubscribe);
-            if(!$valid){
-                MgHelpers::setFlashError(Yii::t('db', 'Email is incorrect'));
-                return $this->refresh();
-            }
-            $emails = $model->getModelAttribute('emails');
-            $model->setModelAttribute('emails', $emails.$emailSubscribe.';');
+
+        $subscribeForm = new SubscribeForm();
+        if ($subscribeForm->load(Yii::$app->request->post()) && $subscribeForm->subscribe($model)) {
             MgHelpers::setFlashSuccess(MgHelpers::getSettingTranslated('email project subscription','Thank you for subscribing'));
+            return $this->refresh();
         }
 
-        return $this->render('view', ['model' => $model]);
+        return $this->render('view', ['model' => $model, 'subscribeForm'=> $subscribeForm]);
     }
 
     public function actionBuy($id)
