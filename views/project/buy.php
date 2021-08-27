@@ -10,24 +10,25 @@ use yii\web\View;
 
 /* @var $payment app\models\mgcms\db\Payment */
 /* @var $form app\components\mgcms\yii\ActiveForm */
-
+$this->title = Yii::t('db', 'Invest');
 
 ?>
 
-<section class="Section Section--big-padding-top Contact animatedParent">
+<?= $this->render('/common/breadcrumps') ?>
+
+<section class="Section Section--big-padding-top Contact fillAccount">
     <div class="container">
-        <h3>
-            <?= Yii::t('db', 'Buy tokens'); ?>
-        </h3>
-        <?php
-        $form = ActiveForm::begin([
-            'id' => 'login-form',
-        ]);
+        <h1 class="text-center"><?= Yii::t('db', 'Invest'); ?></h1>
+        <div class="Contact__grid">
+            <?php
+            $form = ActiveForm::begin([
+                'id' => 'login-form',
+            ]);
 
-        ?>
+            ?>
 
-        <div class="fadeIn animated">
-            <div class="User-Panel__form-group">
+
+            <div class="col-md-4">
                 <label class="Contact-form__label field-user-first_name">
                     <div class="Contact-form__label" style="display: none">
                         <?= Yii::t('db', 'Tokens to invest'); ?>
@@ -39,7 +40,7 @@ use yii\web\View;
                         <p class="help-block help-block-error"></p>
                     </div>
                     <div class="Contact-form__label">
-                        <?= Yii::t('db', 'Value in PLN'); ?>
+                        <?= Yii::t('db', 'Enter amount you want to invest'); ?>
                         <input type="text" id="plnToInvest"
                                class="Contact-form__input form-control"
                                name="plnToInvest"
@@ -48,28 +49,28 @@ use yii\web\View;
                         <p class="help-block help-block-error"></p>
                     </div>
                 </label>
+
+                <input
+                        type="submit"
+                        class="Contact-form__submit btn btn-primary btn-block"
+                        value="<?= Yii::t('db', 'Next'); ?>"
+                />
             </div>
+
+
+            <br/>
+
+            <?php ActiveForm::end(); ?>
         </div>
-
-        <div class="text-center">
-            <input
-                    type="submit"
-                    class="Contact-form__submit btn btn-primary btn-block"
-                    value="<?= Yii::t('db', 'Buy'); ?>"
-            />
-        </div>
-
-        <br/>
-
-        <?php ActiveForm::end(); ?>
     </div>
 </section>
 
+
 <script>
-    $( document ).ready(function() {
-        var tokenRate = <?=MgHelpers::getSetting('token rate', false, 2)?>;
-      $('#tokensToInvest').on('input', function() {
-          $('#plnToInvest').val($(this).val() * tokenRate);
-      });
+  $(document).ready(function () {
+    var tokenRate = <?=MgHelpers::getSetting('token rate', false, 2)?>;
+    $('#tokensToInvest').on('input', function () {
+      $('#plnToInvest').val($(this).val() * tokenRate);
     });
+  });
 </script>

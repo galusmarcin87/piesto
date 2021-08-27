@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\mgcms\db\User;
 use app\models\SubscribeForm;
 use Yii;
+use yii\base\BaseObject;
 use yii\console\widgets\Table;
 use yii\helpers\Json;
 use yii\log\Logger;
@@ -15,6 +16,7 @@ use yii\helpers\Url;
 use \app\components\mgcms\MgHelpers;
 use app\models\mgcms\db\Payment;
 use __;
+use yii\web\Link;
 use yii\web\Session;
 use FiberPay\FiberPayClient;
 use JWT;
@@ -71,7 +73,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             return $this->redirect(['site/account']);
         }
         if ($user->status != User::STATUS_VERIFIED) {
-            MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'You need to verify by Fiber ID'));
+            MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'You need to verify by Fiber ID, to do so go to <a href="'. Url::to('site/verify-fiber-id')).'">Verify</a>');
             return $this->redirect(['site/account']);
         }
 
@@ -86,13 +88,23 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         }
 
         if (Yii::$app->request->post('plnToInvest')) {
-            $plnToInvest = str_replace(',', '.', Yii::$app->request->post('plnToInvest'));
+            return $this->render('buy2', ['project' => $project, 'amount' => Yii::$app->request->post('plnToInvest')]);
+        }
+
+        if (Yii::$app->request->post('plnToInvest2')) {
+            if(!Yii::$app->request->post('acceptTerms0') || !Yii::$app->request->post('acceptTerms1')){
+                MgHelpers::setFlashError(Yii::t('db','You must accept terms'));
+                return $this->render('buy2', ['project' => $project, 'amount' => Yii::$app->request->post('plnToInvest2')]);
+            }
+            return $this->render('buy3', ['project' => $project, 'amount' => Yii::$app->request->post('plnToInvest2')]);
+        }
+
+        if(Yii::$app->request->post('plnToInvest3')){
+            $plnToInvest = str_replace(',', '.', Yii::$app->request->post('plnToInvest3'));
             if (!is_numeric($plnToInvest)) {
                 MgHelpers::setFlashError(Yii::t('db', 'Invalid value'));
                 return $this->render('buy', []);
             }
-
-
 
             $payment = new Payment();
             //$payment->amount = $tokensToInvest * MgHelpers::getSetting('token rate', false, 2);
