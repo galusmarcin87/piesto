@@ -174,7 +174,17 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         }
         $saved = $payment->save();
 
+
+
         \Yii::info('saved ' . $saved, 'own');
+
+        Yii::$app->mailer->compose('afterBuy', ['model' => $payment])
+            ->setTo($payment->user->email)
+            ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
+            ->setSubject(Yii::t('db','Thank you for purchase'))
+            ->send();
+
+        \Yii::info('mail ', 'own');
 
         return 'OK';
     }
@@ -197,6 +207,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
         }
         $model->language = Yii::$app->language;
+
         return $this->render('buyThanks', [
             'model' => $model,
         ]);
