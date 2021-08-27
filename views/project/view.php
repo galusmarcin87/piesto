@@ -206,7 +206,7 @@ $index = 0;
                                 'checkboxTemplate' => "{input}\n{label}\n{error}",
                             ]
                         )->checkbox(['class' => 'Form__checkbox']) ?>
-                        <?= $form->field($model, 'reCaptcha')->widget(
+                        <?= $form->field($subscribeForm, 'reCaptcha')->widget(
                             \himiklab\yii2\recaptcha\ReCaptcha::className(),
                             ['siteKey' => MgHelpers::getConfigParam('recaptcha')['siteKey']]
                         )->label(false) ?>
