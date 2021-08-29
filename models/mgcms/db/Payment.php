@@ -93,6 +93,8 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
             'ethereum_buy_date' => Yii::t('db', 'DATE OF ETHEREUM I WILL BUY'),
             'market' => Yii::t('db', 'NAME OF MARKET WHERE I WIIL BUY ETHEREUM'),
             'comments' => 'Komentarz',
+            'statusToDisplay' => Yii::t('db', 'Payment status'),
+            'benefitWithAmount' => Yii::t('db', 'Expected return with profit'),
         ];
     }
 
@@ -176,5 +178,31 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
         Yii::$app->language = $currentLanguage;
 
         return parent::save($runValidaton, $attributes);
+    }
+
+
+    public function getBenefit()
+    {
+        return ($this->project->percentage / 100) * $this->amount;
+    }
+
+    public function getBenefitWithAmount()
+    {
+        return ($this->project->percentage / 100) * $this->amount + $this->amount;
+    }
+
+    public function getStatusToDisplay()
+    {
+
+        $class = 'red';
+        $label = Yii::t('db', 'Pay');
+        switch ($this->status) {
+            case Payment::STATUS_PAYMENT_CONFIRMED:
+                $class = 'green';
+                $label = Yii::t('db', 'Confirmed');
+                break;
+        }
+
+        return '<span class="'.$class.'">'.$label.'</span>';
     }
 }

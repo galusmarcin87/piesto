@@ -21,15 +21,13 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="Section Section--big-padding-top Contact animatedParent myAccount">
     <div class="container">
         <div class="userMain row">
-            <div class="col-md-1">
-                asdsa
-            </div>
+
             <div class="col-md-10">
                 <h1><?= Yii::t('db', 'Hello') ?> <?= $model ?></h1>
                 <p><?= Yii::t('db', 'Number of projects invested') ?>: <?= count($model->payments) ?></p>
                 <p><?= Yii::t('db', 'The amount of funds invested') ?>
                     : <?= array_sum(array_column($model->payments, 'amount')); ?></p>
-                <p><?= Yii::t('db', 'Assumed profit') ?>: </p>
+                <p><?= Yii::t('db', 'Assumed profit') ?>: <?= array_sum(array_column($model->payments, 'benefit')); ?></p>
             </div>
 
         </div>
@@ -40,8 +38,8 @@ $this->params['breadcrumbs'][] = $this->title;
             $tabsItems = [
                 [
                     'label' => MgHelpers::getSettingTranslated('account_tab1', 'My investitions'),
-                    'content' => $this->render('account/tokens', [
-                        'payments' => $model->payments
+                    'content' => $this->render('account/tokensGrid', [
+                        'user' => $model
                     ]),
                     'options' => ['id' => 'myTokens'],
                 ],

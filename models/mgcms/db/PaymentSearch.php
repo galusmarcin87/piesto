@@ -20,7 +20,7 @@ use app\components\mgcms\MgHelpers;
     {
         return [
             [['id', 'project_id', 'user_id'], 'integer'],
-            [['created_on', 'status', 'is_preico', 'user_token'], 'safe'],
+            [['created_on', 'status', 'is_preico', 'user_token', 'user_id'], 'safe'],
             [['amount', 'percentage'], 'number'],
         ];
     }

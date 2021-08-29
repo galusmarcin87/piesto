@@ -5,6 +5,7 @@ namespace app\models\mgcms\db;
 use Yii;
 use app\components\mgcms\MgHelpers;
 use app\models\mgcms\db\User;
+use yii\helpers\Html;
 
 /**
  * This is the base model class for table "project".
@@ -51,7 +52,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
 {
     use LanguageBehaviorTrait;
 
-    public $languageAttributes = ['name', 'lead', 'text','text2', 'buy_token_info'];
+    public $languageAttributes = ['name', 'lead', 'text', 'text2', 'buy_token_info'];
     public $downloadFiles;
 
     const STATUS_ACTIVE = 1;
@@ -68,11 +69,11 @@ class Project extends \app\models\mgcms\db\AbstractRecord
         return [
             [['name', 'file_id'], 'required'],
             [['gps_lat', 'gps_long', 'money', 'money_full', 'percentage', 'percentage_presale_bonus'], 'number'],
-            [['lead', 'text','text2', 'buy_token_info', 'fiber_collect_id'], 'string'],
+            [['lead', 'text', 'text2', 'buy_token_info', 'fiber_collect_id'], 'string'],
             [['file_id', 'token_value', 'token_to_sale', 'token_minimal_buy', 'token_left', 'flag_id', 'created_by'], 'integer'],
             [['date_presale_start', 'date_presale_end', 'date_crowdsale_start', 'date_crowdsale_end', 'date_realization_profit'], 'safe'],
             [['name', 'localization', 'whitepaper', 'www', 'token_blockchain'], 'string', 'max' => 245],
-            [['status', 'investition_time','token_currency'], 'string', 'max' => 45]
+            [['status', 'investition_time', 'token_currency'], 'string', 'max' => 45]
         ];
     }
 
@@ -103,14 +104,14 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             'flag_id' => Yii::t('app', 'Flaga'),
             'whitepaper' => Yii::t('app', 'Whitepaper'),
             'www' => Yii::t('app', 'Www'),
-            'money' => Yii::t('app', 'Money'),
-            'money_full' => Yii::t('app', 'Money Full'),
-            'investition_time' => Yii::t('app', 'Investition Time'),
-            'percentage' => Yii::t('app', 'Percentage'),
-            'date_presale_start' => Yii::t('app', 'Date Presale Start'),
-            'date_presale_end' => Yii::t('app', 'Date Presale End'),
-            'date_crowdsale_start' => Yii::t('app', 'Date Crowdsale Start'),
-            'date_crowdsale_end' => Yii::t('app', 'Date Crowdsale End'),
+            'money' => Yii::t('db', 'Money'),
+            'money_full' => Yii::t('db', 'Money Full'),
+            'investition_time' => Yii::t('db', 'Investition Time'),
+            'percentage' => Yii::t('db', 'Percentage'),
+            'date_presale_start' => Yii::t('db', 'Date Presale Start'),
+            'date_presale_end' => Yii::t('db', 'Date Presale End'),
+            'date_crowdsale_start' => Yii::t('db', 'Date Crowdsale Start'),
+            'date_crowdsale_end' => Yii::t('db', 'Date Crowdsale End'),
             'percentage_presale_bonus' => Yii::t('app', 'Percentage Presale Bonus'),
             'date_realization_profit' => Yii::t('app', 'Date Realization Profit'),
             'token_value' => Yii::t('app', 'Token Value'),
@@ -123,6 +124,10 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             'token_currency' => Yii::t('app', 'Token currency'),
             'downloadFiles' => Yii::t('app', 'Files to download'),
             'created_by' => Yii::t('app', 'Created by'),
+            'link' => Yii::t('db', 'Project link'),
+            'daysLeft' => Yii::t('db', 'Days left to the end of investition'),
+            'thumbFront' => '',
+
         ];
     }
 
@@ -174,8 +179,24 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     {
         return new \app\models\mgcms\db\ProjectQuery(get_called_class());
     }
-     public function getLinkUrl()
-  {
-    return \yii\helpers\Url::to(['/project/view', 'name' => $this->name]);
-  }
+
+    public function getLinkUrl()
+    {
+        return \yii\helpers\Url::to(['/project/view', 'name' => $this->name]);
+    }
+
+    public function getLink()
+    {
+        return Html::a(Yii::t('db', 'See'), \yii\helpers\Url::to(['/project/view', 'name' => $this->name]));
+    }
+
+    public function getDaysLeft()
+    {
+        return MgHelpers::dateDifference($this->date_crowdsale_end, date('Y-m-d', strtotime('now')));
+    }
+
+    public function getThumbFront()
+    {
+        return $this->file && $this->file->isImage() ? Html::img($this->file->getImageSrc(455, 303)) : '';
+    }
 }
