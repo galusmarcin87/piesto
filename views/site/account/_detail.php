@@ -18,6 +18,7 @@ $payment = $model;
     <div class="row">
         <?php
         $gridColumn = [
+            ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'visible' => false],
             'thumbFront:raw',
             'money_full',
@@ -43,6 +44,7 @@ $payment = $model;
             'columns' => $gridColumn,
             'summary' => false,
             'bordered' => false,
+
         ]);
         ?>
     </div>

@@ -272,11 +272,23 @@
 
 .payment-grid{
 
-  .table-striped tbody tr:nth-of-type(odd){
+  .table-striped tbody tr.odd{
     background-color: #f2f7f9;
+    & + tr.kv-expand-detail-row{
+      tr{
+        background-color: #f2f7f9;
+      }
+      background-color: #f2f7f9;
+    }
   }
-  .table-striped tbody tr:nth-of-type(even){
+  .table-striped tbody tr.even{
     background-color: #e9f4f8;
+    & + tr.kv-expand-detail-row{
+      tr{
+        background-color: #e9f4f8;
+      }
+      background-color: #e9f4f8;
+    }
   }
   .table td, .table th{
     border-top: 4px solid #fff;
@@ -286,5 +298,22 @@
   .table thead th{
     border-bottom: 2px solid #fff;
     border-top: 1px solid #fff;
+  }
+
+  .kv-expand-detail-row{
+    .kv-expanded-row{
+      width: 99%;
+    }
+
+    thead th{
+      border-bottom: none;
+      border-top: none;
+    }
+    td, th{
+      border-top: none;
+      &:first-child{
+        color: transparent;
+      }
+    }
   }
 }

@@ -32,7 +32,7 @@ $dataProvider = $searchModel->search($searchParams);
         'project.link:raw',
         [
             'attribute' => 'amount',
-            'label' => Yii::t('db', 'My investition')
+            'label' => Yii::t('db', 'My investition'),
         ],
         'statusToDisplay:raw',
         [
@@ -74,9 +74,16 @@ $dataProvider = $searchModel->search($searchParams);
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-payment']],
         'summary' => false,
         'bordered' => false,
+        'options' => ['class'=>'mainTable']
         // your toolbar can include the additional full export menu
     ]);
 
     ?>
 
 </div>
+
+<script>
+    $('.mainTable > div.table-responsive > table > tbody > tr').each(function (index){
+      $(this).addClass(index % 2 ? 'even' : 'odd')
+    })
+</script>

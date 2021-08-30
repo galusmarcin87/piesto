@@ -217,10 +217,22 @@
   -o-transform: rotate(-90deg);
   transform: rotate(-90deg);
 }
-.payment-grid .table-striped tbody tr:nth-of-type(odd) {
+.payment-grid .table-striped tbody tr.odd {
   background-color: #f2f7f9;
 }
-.payment-grid .table-striped tbody tr:nth-of-type(even) {
+.payment-grid .table-striped tbody tr.odd + tr.kv-expand-detail-row {
+  background-color: #f2f7f9;
+}
+.payment-grid .table-striped tbody tr.odd + tr.kv-expand-detail-row tr {
+  background-color: #f2f7f9;
+}
+.payment-grid .table-striped tbody tr.even {
+  background-color: #e9f4f8;
+}
+.payment-grid .table-striped tbody tr.even + tr.kv-expand-detail-row {
+  background-color: #e9f4f8;
+}
+.payment-grid .table-striped tbody tr.even + tr.kv-expand-detail-row tr {
   background-color: #e9f4f8;
 }
 .payment-grid .table td,
@@ -232,4 +244,19 @@
 .payment-grid .table thead th {
   border-bottom: 2px solid #fff;
   border-top: 1px solid #fff;
+}
+.payment-grid .kv-expand-detail-row .kv-expanded-row {
+  width: 99%;
+}
+.payment-grid .kv-expand-detail-row thead th {
+  border-bottom: none;
+  border-top: none;
+}
+.payment-grid .kv-expand-detail-row td,
+.payment-grid .kv-expand-detail-row th {
+  border-top: none;
+}
+.payment-grid .kv-expand-detail-row td:first-child,
+.payment-grid .kv-expand-detail-row th:first-child {
+  color: transparent;
 }

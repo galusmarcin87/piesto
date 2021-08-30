@@ -197,6 +197,6 @@ class Project extends \app\models\mgcms\db\AbstractRecord
 
     public function getThumbFront()
     {
-        return $this->file && $this->file->isImage() ? Html::img($this->file->getImageSrc(455, 303)) : '';
+        return $this->file && $this->file->isImage() ? Html::img($this->file->getImageSrc(140, 100)) : '';
     }
 }
