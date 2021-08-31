@@ -205,7 +205,7 @@ $index = 0;
                                 ],
                                 'checkboxTemplate' => "{input}\n{label}\n{error}",
                             ]
-                        )->checkbox(['class' => 'Form__checkbox']) ?>
+                        )->checkbox(['class' => 'Form__checkbox' , 'label'=> '<label for="subscribeform-acceptterms">'.$subscribeForm->getAttributeLabel('acceptTerms').'</label>']) ?>
                         <?= $form->field($subscribeForm, 'reCaptcha')->widget(
                             \himiklab\yii2\recaptcha\ReCaptcha::className(),
                             ['siteKey' => MgHelpers::getConfigParam('recaptcha')['siteKey']]
