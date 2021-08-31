@@ -368,14 +368,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
             if (Yii::$app->request->post('passwordChanging')) {
                 $model->scenario = 'passwordChanging';
             }
-            $upladedFiles = UploadedFile::getInstance($model, 'file_id');
-            if ($upladedFiles) {
-                $fileModel = new File;
-                $file = $fileModel->push(new \rmrevin\yii\module\File\resources\UploadedResource($upladedFiles));
-                if ($file) {
-                    $model->file_id = $file->id;
-                }
-            }
+
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 if ($backUrl) {
                     $model->is_kyc_filled = 1;
@@ -386,6 +379,19 @@ class SiteController extends \app\components\mgcms\MgCmsController
                 } else {
                     MgHelpers::setFlashSuccess(Yii::t('db', 'Saved succesfully'));
                 }
+            }
+        }
+
+        if (Yii::$app->request->post('imageSave')=== '') {
+            $upladedFiles = UploadedFile::getInstance($model, 'file_id');
+            if ($upladedFiles) {
+                $fileModel = new File;
+                $file = $fileModel->push(new \rmrevin\yii\module\File\resources\UploadedResource($upladedFiles));
+                if ($file) {
+                    $model->file_id = $file->id;
+                    $saved = $model->save();
+                }
+
             }
         }
 

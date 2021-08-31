@@ -268,3 +268,15 @@
   margin-top: 10px;
   padding: 9px 15px;
 }
+.accountSettings input[type=text],
+.accountSettings input[type=password] {
+  border: 1px solid #e7ebef;
+  border-radius: 3px;
+}
+.accountSettings .btn.inputFit {
+  margin-top: 10px;
+  padding: 9px 15px;
+}
+.accountSettings label {
+  margin-left: 0;
+}
