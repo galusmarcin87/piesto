@@ -8,6 +8,9 @@ $opts = ['type' => $type, 'placeholder' => $model->getAttributeLabel($attribute)
 if($required){
     $opts['required'] = 'required';
 }
+if(isset($addOpts)){
+    $opts = array_merge($opts, $addOpts);
+}
 ?>
 
 <div class="col-md-<?=$width?>">
