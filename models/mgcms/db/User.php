@@ -98,7 +98,6 @@ class User extends BaseUser implements IdentityInterface
         self::STATUS_SUSPENDED => 'suspended',
     ];
 
-    const STEP_VERIFIED = 'verified';
 
     public $auths = false;
     public $passwordRepeat;
