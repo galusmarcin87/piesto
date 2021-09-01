@@ -21,13 +21,19 @@ $this->params['breadcrumbs'][] = $this->title;
 <section class="Section Section--big-padding-top Contact animatedParent myAccount">
     <div class="container">
         <div class="userMain row">
+            <? if ($model->file && $model->file->isImage()): ?>
+            <div class="col-md-2">
+                <img src="<?= $model->file->getImageSrc(210, 210) ?>" alt=""/>
+            </div>
+            <? endif; ?>
 
             <div class="col-md-10">
                 <h1><?= Yii::t('db', 'Hello') ?> <?= $model ?></h1>
                 <p><?= Yii::t('db', 'Number of projects invested') ?>: <?= count($model->payments) ?></p>
                 <p><?= Yii::t('db', 'The amount of funds invested') ?>
                     : <?= array_sum(array_column($model->payments, 'amount')); ?></p>
-                <p><?= Yii::t('db', 'Assumed profit') ?>: <?= array_sum(array_column($model->payments, 'benefit')); ?></p>
+                <p><?= Yii::t('db', 'Assumed profit') ?>
+                    : <?= array_sum(array_column($model->payments, 'benefit')); ?></p>
             </div>
 
         </div>
