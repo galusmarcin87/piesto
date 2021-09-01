@@ -64,28 +64,28 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false);
         </div>
 
 
-        <div class="col-md-5 offset-1">
+        <div class="col-md-2 offset-2">
             <?php
             $form = ActiveForm::begin([
                 'id' => 'login-form',
 
                 'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig(true),
-                'options' => ['enctype' => 'multipart/form-data', 'class' => 'User-Panel__form Contact-form animatedParent',]
+                'options' => ['enctype' => 'multipart/form-data', 'class' => 'animatedParent',]
             ]);
 
             //          echo $form->errorSummary($model);
             ?>
-            <div class="User-Panel_profile">
-                <label class="User-Panel__label">
-                    <?= Yii::t('db', 'YOUR PROFILE PHOTO'); ?>
-                </label>
-                <div class="text-center User-Panel__block">
+            <div class="User-Photo ">
+                <div class="text-center">
+                    <h5>
+                        <?= Yii::t('db', 'PROFILE PHOTO'); ?>
+                    </h5>
                     <? if (!$model->file_id): ?>
                         <img src="/images/avatar_03.jpg" alt=""/>
                     <? else: ?>
-                        <img src="<?= $model->file->getImageSrc(160, 160) ?>" alt=""/>
+                        <img src="<?= $model->file->getImageSrc(210, 210) ?>" alt=""/>
                     <? endif; ?>
-                    <div class="User-Panel__block__action">
+                    <div class="buttonWrapper top10 bottom10">
                         <?= \kartik\widgets\FileInput::widget([
                             'name' => 'User[file_id]',
                             'pluginOptions' => [
@@ -94,19 +94,19 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false);
                                 'showUpload' => false,
                                 'showPreview' => false,
 
-                                'browseClass' => 'btn btn-success',
+                                'browseClass' => '',
 //                                    'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                                'browseLabel' => Yii::t('db', 'SELECT PHOTO')
+                                'browseLabel' => Yii::t('db', 'UPLOAD PHOTO +')
                             ],
                             'options' => ['accept' => 'image/*']
                         ]);
                         ?>
-                        <a href="<?= \yii\helpers\Url::to(['site/remove-photo']) ?>" class="btn btn-primary">
-                            <?= Yii::t('db', 'REMOVE PHOTO'); ?>
+                        <a href="<?= \yii\helpers\Url::to(['site/remove-photo']) ?>" class="removeBtn">
+                            <?= Yii::t('db', 'REMOVE PHOTO -'); ?>
                         </a>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-success btn-block" name="imageSave"
+                <button type="submit" class="btn btn-success btn-block top10" name="imageSave"
                         onclick="return confirm('<?= Yii::t('db', 'Are you sure to make changes?') ?>')">
                     <?= Yii::t('db', 'Save changes') ?>
                 </button>

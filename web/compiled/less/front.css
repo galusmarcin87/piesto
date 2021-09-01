@@ -280,3 +280,27 @@
 .accountSettings label {
   margin-left: 0;
 }
+.accountSettings .User-Photo h5 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 27px;
+}
+.accountSettings .User-Photo .fileinput-cancel {
+  display: none;
+}
+.accountSettings .User-Photo .btn-file,
+.accountSettings .User-Photo .removeBtn {
+  padding: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.accountSettings .User-Photo .btn-file input,
+.accountSettings .User-Photo .removeBtn input {
+  cursor: pointer;
+}
+.accountSettings .User-Photo .removeBtn {
+  color: #f10930;
+}

@@ -245,7 +245,7 @@
 }
 
 
-.arrowDown{
+.arrowDown {
   display: block;
   width: 34px;
   height: 11px;
@@ -257,7 +257,7 @@
   transform: rotate(90deg);
 }
 
-.arrowUp{
+.arrowUp {
   display: block;
   width: 34px;
   height: 11px;
@@ -270,48 +270,57 @@
 }
 
 
-.payment-grid{
+.payment-grid {
 
-  .table-striped tbody tr.odd{
+  .table-striped tbody tr.odd {
     background-color: #f2f7f9;
-    & + tr.kv-expand-detail-row{
-      tr{
+
+    & + tr.kv-expand-detail-row {
+      tr {
         background-color: #f2f7f9;
       }
+
       background-color: #f2f7f9;
     }
   }
-  .table-striped tbody tr.even{
+
+  .table-striped tbody tr.even {
     background-color: #e9f4f8;
-    & + tr.kv-expand-detail-row{
-      tr{
+
+    & + tr.kv-expand-detail-row {
+      tr {
         background-color: #e9f4f8;
       }
+
       background-color: #e9f4f8;
     }
   }
-  .table td, .table th{
+
+  .table td, .table th {
     border-top: 4px solid #fff;
     color: #11375f;
     text-align: center;
   }
-  .table thead th{
+
+  .table thead th {
     border-bottom: 2px solid #fff;
     border-top: 1px solid #fff;
   }
 
-  .kv-expand-detail-row{
-    .kv-expanded-row{
+  .kv-expand-detail-row {
+    .kv-expanded-row {
       width: 99%;
     }
 
-    thead th{
+    thead th {
       border-bottom: none;
       border-top: none;
     }
-    td, th{
+
+    td, th {
       border-top: none;
-      &:first-child{
+
+      &:first-child {
         color: transparent;
       }
     }
@@ -319,30 +328,58 @@
 }
 
 
-.accountMyData{
-  input[type=text]{
+.accountMyData {
+  input[type=text] {
     border: 1px solid #e7ebef;
     border-radius: 3px;
   }
-  .btn.verify{
+
+  .btn.verify {
     margin-top: 10px;
     padding: 9px 15px;
   }
 }
 
 
-.accountSettings{
-  input[type=text], input[type=password]{
+.accountSettings {
+  input[type=text], input[type=password] {
     border: 1px solid #e7ebef;
     border-radius: 3px;
   }
 
-  .btn.inputFit{
+  .btn.inputFit {
     margin-top: 10px;
     padding: 9px 15px;
   }
 
-  label{
+  label {
     margin-left: 0;
+  }
+
+  .User-Photo {
+    h5 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 27px;
+    }
+
+    .fileinput-cancel {
+      display: none;
+    }
+
+    .btn-file, .removeBtn{
+      padding: 15px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      cursor: pointer;
+      input{
+        cursor: pointer;
+      }
+    }
+    .removeBtn{
+      color: #f10930;
+    }
   }
 }

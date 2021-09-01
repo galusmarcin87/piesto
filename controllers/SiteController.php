@@ -352,7 +352,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
 
         $model = $this->getUserModel();
-        
+
+        $model->password = '';
+
         if ($this->getUserModel()->status != User::STATUS_VERIFIED) {
             return $this->redirect(['site/fill-account']);
         }
