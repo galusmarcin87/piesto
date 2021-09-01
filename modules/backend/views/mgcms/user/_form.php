@@ -86,6 +86,10 @@ use yii\helpers\Url;
                 'form' => $form]) ?>
         </div>
 
+        <div class="col-md-12">
+            <?= $form->field($model, 'file_text')->textarea(['rows' => 8]) ?>
+        </div>
+
 
 
     </div>

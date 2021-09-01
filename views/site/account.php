@@ -57,6 +57,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'options' => ['id' => 'myAccount'],
                 ],
                 [
+                    'label' => MgHelpers::getSettingTranslated('account_tab4', 'My files'),
+                    'content' => $this->render('account/files', [
+                        'model' => $model
+                    ]),
+                    'options' => ['id' => 'files'],
+                ],
+                [
                     'label' => MgHelpers::getSettingTranslated('account_tab3', 'Account settings'),
                     'content' => $this->render('account/settings', [
                         'model' => $model
