@@ -353,9 +353,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
         $model = $this->getUserModel();
 
-//        if ($this->getUserModel()->step != User::STEP_VERIFIED) {
-//            return $this->redirect(['site/fill-account']);
-//        }
+        if ($this->getUserModel()->step != User::STEP_VERIFIED) {
+            return $this->redirect(['site/fill-account']);
+        }
 
 
         $model->scenario = 'account';
