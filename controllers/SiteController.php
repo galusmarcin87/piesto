@@ -353,7 +353,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
         $model = $this->getUserModel();
 
-        $model->password = '';
+        if (!$model) {
+            $this->throw404();
+        }
 
         if ($this->getUserModel()->status != User::STATUS_VERIFIED) {
             return $this->redirect(['site/fill-account']);
@@ -397,9 +399,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
             }
         }
 
-        if (!$model) {
-            $this->throw404();
-        }
+
         return $this->render('account', [
             'model' => $model,
             'backProject' => $backUrl
