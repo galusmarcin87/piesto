@@ -1,5 +1,6 @@
 <?php
 /* @var $this yii\web\View */
+
 /* @var $user \app\models\mgcms\db\User */
 
 
@@ -8,8 +9,9 @@ use yii\helpers\Html;
 use app\components\mgcms\MgHelpers;
 use app\models\mgcms\db\Payment;
 use kartik\grid\GridView;
+
 $searchModel = new \app\models\mgcms\db\PaymentSearch();
-$searchParams =  ['PaymentSearch' =>['user_id' => $user->id]];
+$searchParams = ['PaymentSearch' => ['user_id' => $user->id]];
 $dataProvider = $searchModel->search($searchParams);
 
 
@@ -43,6 +45,7 @@ $dataProvider = $searchModel->search($searchParams);
         'project.daysLeft',
         'benefitWithAmount',
         [
+            'label' => Yii::t('db', 'Increse investition'),
             'value' => function ($model, $key, $index, $column) {
                 return Html::a(Yii::t('db', 'invest'), ['project/buy', 'id' => $model->project->id]);
             },
@@ -74,7 +77,7 @@ $dataProvider = $searchModel->search($searchParams);
         'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-payment']],
         'summary' => false,
         'bordered' => false,
-        'options' => ['class'=>'mainTable']
+        'options' => ['class' => 'mainTable']
         // your toolbar can include the additional full export menu
     ]);
 
@@ -83,7 +86,7 @@ $dataProvider = $searchModel->search($searchParams);
 </div>
 
 <script>
-    $('.mainTable > div.table-responsive > table > tbody > tr').each(function (index){
-      $(this).addClass(index % 2 ? 'even' : 'odd')
-    })
+  $('.mainTable > div.table-responsive > table > tbody > tr').each(function (index) {
+    $(this).addClass(index % 2 ? 'even' : 'odd');
+  });
 </script>

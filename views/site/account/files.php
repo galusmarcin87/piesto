@@ -17,7 +17,7 @@ use yii\bootstrap\Tabs;
         <? if ($model->file_text): ?>
 
             <? $fileArr = explode("\n", $model->file_text); ?>
-            <? foreach ($fileArr as $file): $fileParts = explode(':', $file) ?>
+            <? foreach ($fileArr as $file): $fileParts = explode(';', $file) ?>
                 <? if (count($fileParts) !== 2) continue ?>
                 <a href="<?= $fileParts[1]?>" class="btn"><?= $fileParts[0]?></a>
             <? endforeach; ?>
