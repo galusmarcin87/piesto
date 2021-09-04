@@ -6,7 +6,7 @@
             type="checkbox"
             id="agree<?=$number?>"
             value="1"
-            checked
+            required
     />
     <label for="agree<?=$number?>" >
         <?= \app\components\mgcms\MgHelpers::getSettingTranslated('register_terms_label'.$number, ' zgoda '.$number) ?>
