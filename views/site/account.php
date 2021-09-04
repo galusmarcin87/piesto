@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="userMain row">
             <? if ($model->file && $model->file->isImage()): ?>
             <div class="col-md-2">
-                <img src="<?= $model->file->getImageSrc(210, 210) ?>" alt=""/>
+                <img src="<?= $model->file->getImageSrc(210, 210) ?>" alt="" class="rounded-circle"/>
             </div>
             <? endif; ?>
 
