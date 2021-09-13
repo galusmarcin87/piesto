@@ -34,7 +34,7 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false);
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'pesel', 'required' => true]) ?>
 
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'phone', 'required' => true]) ?>
-            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'bank_no', 'required' => true]) ?>
+            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'bank_no', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 
             <div class="col-md-3">
                 <a href="<?= \yii\helpers\Url::to('site/verify-fiber-id') ?>"
