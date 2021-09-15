@@ -42,6 +42,9 @@ use yii\helpers\Html;
  * @property string $token_currency
  * @property string $fiber_collect_id
  * @property integer $created_by
+ * @property string $iban
+ * @property string $pay_description
+ * @property string $pay_name
  *
  * @property \app\models\mgcms\db\Bonus[] $bonuses
  * @property \app\models\mgcms\db\Payment[] $payments
@@ -67,9 +70,9 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     public function rules()
     {
         return [
-            [['name', 'file_id'], 'required'],
+            [['name', 'file_id', 'pay_name', 'iban','pay_description'], 'required'],
             [['gps_lat', 'gps_long', 'money', 'money_full', 'percentage', 'percentage_presale_bonus'], 'number'],
-            [['lead', 'text', 'text2', 'buy_token_info', 'fiber_collect_id'], 'string'],
+            [['lead', 'text', 'text2', 'buy_token_info', 'fiber_collect_id','iban','pay_description','pay_name'], 'string'],
             [['file_id', 'token_value', 'token_to_sale', 'token_minimal_buy', 'token_left', 'flag_id', 'created_by'], 'integer'],
             [['date_presale_start', 'date_presale_end', 'date_crowdsale_start', 'date_crowdsale_end', 'date_realization_profit'], 'safe'],
             [['name', 'localization', 'whitepaper', 'www', 'token_blockchain'], 'string', 'max' => 245],

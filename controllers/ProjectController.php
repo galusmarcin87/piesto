@@ -123,7 +123,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
             $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
 
-            $item = $fiberClient->addCollectItem($project->fiber_collect_id, 'Piesto', $payment->amount, 'PLN', Url::to(['project/notify','hash'=>$hash], true), $hash);
+            $item = $fiberClient->addCollectItem($project->fiber_collect_id, $project->pay_description, $payment->amount, 'PLN', Url::to(['project/notify','hash'=>$hash], true), $hash);
             $itemObj = Json::decode($item);
 
             $project->money_full += $plnToInvest;

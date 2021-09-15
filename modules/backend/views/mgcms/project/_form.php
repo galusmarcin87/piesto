@@ -164,8 +164,6 @@ yii\jui\JuiAsset::register($this);
 
         <?= $form->field6md($model, 'token_left')->textInput(['placeholder' => '']) ?>
 
-        <?= $form->field6md($model, 'fiber_collect_id')->textInput(['placeholder' => '']) ?>
-
         <?if(MgHelpers::getUserModel()->role === 'admin'):?>
             <?= $form->field6md($model, 'created_by')->widget(\kartik\widgets\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\User::find()->orderBy('id')->all(), 'id', 'toString'),
@@ -175,6 +173,12 @@ yii\jui\JuiAsset::register($this);
                 ],
             ]); ?>
         <?endif?>
+
+        <?= $form->field3md($model, 'fiber_collect_id')->textInput(['placeholder' => '']) ?>
+        <?= $form->field3md($model, 'iban')->textInput(['placeholder' => '']) ?>
+        <?= $form->field3md($model, 'pay_name')->textInput(['placeholder' => '']) ?>
+        <?= $form->field3md($model, 'pay_description')->textInput(['placeholder' => '']) ?>
+
 
         <div class="hidden">
             <?= $form->field12md($model, 'buy_token_info')->tinyMce(['rows' => 6]) ?>
