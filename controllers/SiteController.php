@@ -529,7 +529,11 @@ class SiteController extends \app\components\mgcms\MgCmsController
                 break;
 
             case 'rejected':
-
+                Yii::$app->mailer->compose('accountRejectedFiber', ['model' => $user])
+                    ->setTo($user->email)
+                    ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
+                    ->setSubject(Yii::t('db','Verification rejected'))
+                    ->send();
                 break;
 
         }
