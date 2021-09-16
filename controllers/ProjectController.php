@@ -88,6 +88,10 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         }
 
         if (Yii::$app->request->post('plnToInvest')) {
+            if(Yii::$app->request->post('plnToInvest') < $project->token_minimal_buy){
+                MgHelpers::setFlashError(Yii::t('db', 'Amount is too low, minimal investition amount is ').$project->token_minimal_buy);
+                return $this->refresh();
+            }
             return $this->render('buy2', ['project' => $project, 'amount' => Yii::$app->request->post('plnToInvest')]);
         }
 
