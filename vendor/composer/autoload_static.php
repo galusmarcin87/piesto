@@ -75,13 +75,13 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
-        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
+        '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '180092cfc969a12e06f2132a203a3184' => __DIR__ . '/..' . '/codeception/verify/src/Codeception/function.php',
-        '91c98f290cee6130db6e4364079af680' => __DIR__ . '/..' . '/lodash-php/lodash-php/src/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '91c98f290cee6130db6e4364079af680' => __DIR__ . '/..' . '/lodash-php/lodash-php/src/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -169,6 +169,7 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
             'kartik\\date\\' => 12,
             'kartik\\color\\' => 13,
             'kartik\\builder\\' => 15,
+            'kartik\\bs5dropdown\\' => 19,
             'kartik\\bs4dropdown\\' => 19,
             'kartik\\base\\' => 12,
             'kartik\\alert\\' => 13,
@@ -511,6 +512,10 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
         'kartik\\builder\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-builder/src',
+        ),
+        'kartik\\bs5dropdown\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-bootstrap5-dropdown/src',
         ),
         'kartik\\bs4dropdown\\' => 
         array (

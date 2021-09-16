@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '5ea21519b8f4c8b1b53643f99c908da8c8832fb3',
+    'reference' => '09d064695e9ba4143968646c8e9b64ae7ff79b87',
     'name' => 'mg/cms',
   ),
   'versions' => 
@@ -216,21 +216,21 @@ private static $installed = array (
     ),
     'fakerphp/faker' => 
     array (
-      'pretty_version' => 'v1.15.0',
-      'version' => '1.15.0.0',
+      'pretty_version' => 'v1.16.0',
+      'version' => '1.16.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '89c6201c74db25fa759ff16e78a4d8f32547770e',
+      'reference' => '271d384d216e5e5c468a6b28feedf95d49f83b35',
     ),
     'fiberpay/fiberpay-php' => 
     array (
-      'pretty_version' => '0.1.3',
-      'version' => '0.1.3.0',
+      'pretty_version' => '0.1.4',
+      'version' => '0.1.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'cb8d7fd2d9ff754517295d3b8c18fa99adf28dd4',
+      'reference' => '651869d93a5e02f7512c64bd27270108185ee864',
     ),
     'firebase/php-jwt' => 
     array (
@@ -315,21 +315,21 @@ private static $installed = array (
     ),
     'kartik-v/bootstrap-popover-x' => 
     array (
-      'pretty_version' => 'v1.4.7',
-      'version' => '1.4.7.0',
+      'pretty_version' => 'v1.4.9',
+      'version' => '1.4.9.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'd4fc84a0776250f47840eb1594950a1702d8424d',
+      'reference' => '3a6403b2e0d2a4e67ef6e1ff884fdcde0aaa7358',
     ),
     'kartik-v/bootstrap-star-rating' => 
     array (
-      'pretty_version' => 'v4.1.0',
-      'version' => '4.1.0.0',
+      'pretty_version' => 'v4.1.1',
+      'version' => '4.1.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '5b53222d326b951d1fff0f55bd593dcb17ff941f',
+      'reference' => 'a06ddc61651fdeddf7467482a344d40ee76632ed',
     ),
     'kartik-v/bootstrap-tabs-x' => 
     array (
@@ -369,12 +369,21 @@ private static $installed = array (
     ),
     'kartik-v/yii2-bootstrap4-dropdown' => 
     array (
-      'pretty_version' => 'v1.0.1',
-      'version' => '1.0.1.0',
+      'pretty_version' => 'v1.0.2',
+      'version' => '1.0.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '394cb4f85d82522ec5918f1581bdad518b324498',
+      'reference' => 'f96ed0b472e2b27ad392b961960484c9b9ea0519',
+    ),
+    'kartik-v/yii2-bootstrap5-dropdown' => 
+    array (
+      'pretty_version' => 'v1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a5de5a0be15928efbf639fe5e1eb267516313ec8',
     ),
     'kartik-v/yii2-builder' => 
     array (
@@ -397,21 +406,21 @@ private static $installed = array (
     ),
     'kartik-v/yii2-dialog' => 
     array (
-      'pretty_version' => 'v1.0.5',
-      'version' => '1.0.5.0',
+      'pretty_version' => 'v1.0.6',
+      'version' => '1.0.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c38616d719f52530749457c022ca6134d0ad31ce',
+      'reference' => '510c3a35ffe79987cde9a9366cedbff545fd92d4',
     ),
     'kartik-v/yii2-dynagrid' => 
     array (
-      'pretty_version' => 'v1.5.1',
-      'version' => '1.5.1.0',
+      'pretty_version' => 'v1.5.2',
+      'version' => '1.5.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '16b9f2bb145a4e2eee2f36d7b3fa2d75907797c3',
+      'reference' => '277151070b57f813cf804f339880b3c6e1f36ada',
     ),
     'kartik-v/yii2-editable' => 
     array (
@@ -433,12 +442,12 @@ private static $installed = array (
     ),
     'kartik-v/yii2-grid' => 
     array (
-      'pretty_version' => 'v3.3.5',
-      'version' => '3.3.5.0',
+      'pretty_version' => 'v3.3.6',
+      'version' => '3.3.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'e4ba0c68ecb864e1a158f16cc73a5e73a6cdf7c7',
+      'reference' => '61fd7499317608ea7c910bd918a7c208d1962284',
     ),
     'kartik-v/yii2-helpers' => 
     array (
@@ -461,12 +470,12 @@ private static $installed = array (
     ),
     'kartik-v/yii2-krajee-base' => 
     array (
-      'pretty_version' => 'v2.0.6',
-      'version' => '2.0.6.0',
+      'pretty_version' => 'v3.0.1',
+      'version' => '3.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9b6bc8335e8e561e3953826efefd57b1df7bdce0',
+      'reference' => 'bbf7b58b0000f44834c18c0f2eed13a0a7d04c09',
     ),
     'kartik-v/yii2-mpdf' => 
     array (
@@ -516,12 +525,12 @@ private static $installed = array (
     ),
     'kartik-v/yii2-widget-activeform' => 
     array (
-      'pretty_version' => 'v1.5.8',
-      'version' => '1.5.8.0',
+      'pretty_version' => 'v1.6.0',
+      'version' => '1.6.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '02baee5e06a5dfbc94b71dc8c13ca87789716b29',
+      'reference' => 'd54f986737d4c2b309bc72760f5aa55f78286e0e',
     ),
     'kartik-v/yii2-widget-affix' => 
     array (
@@ -585,7 +594,7 @@ private static $installed = array (
       array (
         0 => '1.1.x-dev',
       ),
-      'reference' => 'e15d65047af23a3cf25e47e8c23444e750a27f2c',
+      'reference' => 'd3caa4911ecd8125a5f87865807fa1de7f6cdba7',
     ),
     'kartik-v/yii2-widget-growl' => 
     array (
@@ -616,12 +625,12 @@ private static $installed = array (
     ),
     'kartik-v/yii2-widget-select2' => 
     array (
-      'pretty_version' => 'v2.2.1',
-      'version' => '2.2.1.0',
+      'pretty_version' => 'v2.2.2',
+      'version' => '2.2.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b30936d556639cdecd98bdd9733509a6be5dcc1c',
+      'reference' => '5b3c91df7908193981033cb7ca52e83303197753',
     ),
     'kartik-v/yii2-widget-sidenav' => 
     array (
@@ -661,12 +670,12 @@ private static $installed = array (
     ),
     'kartik-v/yii2-widget-touchspin' => 
     array (
-      'pretty_version' => 'v1.2.3',
-      'version' => '1.2.3.0',
+      'pretty_version' => 'v1.2.4',
+      'version' => '1.2.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1daca822ad11258242178155613da8e269e3df2b',
+      'reference' => '1eec4c3f3a8bf9a170e1e0682c2c89f2929d65e9',
     ),
     'kartik-v/yii2-widget-typeahead' => 
     array (
@@ -738,7 +747,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '5ea21519b8f4c8b1b53643f99c908da8c8832fb3',
+      'reference' => '09d064695e9ba4143968646c8e9b64ae7ff79b87',
     ),
     'monolog/monolog' => 
     array (
@@ -796,12 +805,12 @@ private static $installed = array (
     ),
     'mpdf/mpdf' => 
     array (
-      'pretty_version' => 'v8.0.12',
-      'version' => '8.0.12.0',
+      'pretty_version' => 'v8.0.13',
+      'version' => '8.0.13.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9d94344844c9daec7266eb6dd14448f728aeccb1',
+      'reference' => '42f145615cfe830fd432474da1d2e1f927efe402',
     ),
     'mrclay/jsmin-php' => 
     array (
@@ -1272,12 +1281,12 @@ private static $installed = array (
     ),
     'symfony/console' => 
     array (
-      'pretty_version' => 'v4.4.29',
-      'version' => '4.4.29.0',
+      'pretty_version' => 'v4.4.30',
+      'version' => '4.4.30.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8baf0bbcfddfde7d7225ae8e04705cfd1081cd7b',
+      'reference' => 'a3f7189a0665ee33b50e9e228c46f50f5acbed22',
     ),
     'symfony/css-selector' => 
     array (
@@ -1299,21 +1308,21 @@ private static $installed = array (
     ),
     'symfony/dom-crawler' => 
     array (
-      'pretty_version' => 'v4.4.27',
-      'version' => '4.4.27.0',
+      'pretty_version' => 'v4.4.30',
+      'version' => '4.4.30.0',
       'aliases' => 
       array (
       ),
-      'reference' => '86aa075c9e0b13ac7db8d73d1f9d8b656143881a',
+      'reference' => '4632ae3567746c7e915c33c67a2fb6ab746090c4',
     ),
     'symfony/event-dispatcher' => 
     array (
-      'pretty_version' => 'v4.4.27',
-      'version' => '4.4.27.0',
+      'pretty_version' => 'v4.4.30',
+      'version' => '4.4.30.0',
       'aliases' => 
       array (
       ),
-      'reference' => '958a128b184fcf0ba45ec90c0e88554c9327c2e9',
+      'reference' => '2fe81680070043c4c80e7cedceb797e34f377bac',
     ),
     'symfony/event-dispatcher-contracts' => 
     array (
@@ -1333,12 +1342,12 @@ private static $installed = array (
     ),
     'symfony/finder' => 
     array (
-      'pretty_version' => 'v4.4.27',
-      'version' => '4.4.27.0',
+      'pretty_version' => 'v4.4.30',
+      'version' => '4.4.30.0',
       'aliases' => 
       array (
       ),
-      'reference' => '42414d7ac96fc2880a783b872185789dea0d4262',
+      'reference' => '70362f1e112280d75b30087c7598b837c1b468b6',
     ),
     'symfony/inflector' => 
     array (
@@ -1414,12 +1423,12 @@ private static $installed = array (
     ),
     'symfony/property-access' => 
     array (
-      'pretty_version' => 'v4.4.27',
-      'version' => '4.4.27.0',
+      'pretty_version' => 'v4.4.30',
+      'version' => '4.4.30.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9fcb3ac3f915749b60d789bc09e0c6d6d50290a9',
+      'reference' => '727edd3a5fd2feca1562e0f2520ed6888805c0fa',
     ),
     'symfony/service-contracts' => 
     array (
