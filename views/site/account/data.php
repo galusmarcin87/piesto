@@ -28,12 +28,12 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false);
         <div class="row">
             <?= $this->render('../fillAccount/_personForm', ['form' => $form, 'model' => $model]) ?>
 
-            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'citizenship', 'required' => true]) ?>
+            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'citizenship', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'id_document_type', 'required' => true]) ?>
-            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'id_document_no', 'required' => true]) ?>
-            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'pesel', 'required' => true]) ?>
+            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'id_document_no', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
+            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'pesel', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 
-            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'phone', 'required' => true]) ?>
+            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'phone', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'bank_no', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 
             <div class="col-md-3">

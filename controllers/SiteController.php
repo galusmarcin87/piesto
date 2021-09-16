@@ -269,9 +269,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $model = new LoginForm();
         $modelRegister = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if ($this->getUserModel()->step != User::STEP_VERIFIED) {
-                return $this->redirect(['site/fill-account', 'step' => $this->getUserModel()->step]);
-            }
+//            if ($this->getUserModel()->step != User::STEP_VERIFIED) {
+//                return $this->redirect(['site/fill-account', 'step' => $this->getUserModel()->step]);
+//            }
             return $this->goBack();
         }
         if ($modelRegister->load(Yii::$app->request->post()) && $modelRegister->register()) {
@@ -386,7 +386,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
             }
         }
 
-        if (Yii::$app->request->post('imageSave')=== '') {
+        if (Yii::$app->request->post('imageSave') === '') {
             $upladedFiles = UploadedFile::getInstance($model, 'file_id');
             if ($upladedFiles) {
                 $fileModel = new File;
@@ -502,11 +502,21 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $fiberClient = new FiberIdClient($fiberPayConfig['fiberIdApiKey'], $fiberPayConfig['fiberIdSecret'], $fiberPayConfig['testServer']);
         $res = $fiberClient->decodeAndDecrypt($body);
         \Yii::info(JSON::encode($res), 'own');
-        switch($res->status){
+        switch ($res->status) {
             case 'accepted':
                 \Yii::info('accepted', 'own');
                 $user->status = User::STATUS_VERIFIED;
                 $user->bank_no = $res->data->bankAccount;
+                $user->first_name = $res->data->firstName;
+                $user->last_name = $res->data->lastName;
+                $user->country = $res->data->country;
+                $user->address = $res->data->address;
+                $user->postcode = $res->data->postalCode;
+                $user->city = $res->data->city;
+                $user->phone = $res->data->phoneNumber;
+                $user->id_document_no = $res->data->idNumber;
+                $user->citizenship = $res->data->nationality;
+                $user->pesel = $res->data->personalIdentityNumber;
                 $saved = $user->save();
                 \Yii::info($saved, 'own');
                 //\Yii::info(JSON::encode($user), 'own');
