@@ -183,12 +183,12 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
 
     public function getBenefit()
     {
-        return ($this->project->percentage / 100) * $this->amount;
+        return ($this->project->percentage / 100) * $this->amount * (int)$this->project->investition_time;
     }
 
     public function getBenefitWithAmount()
     {
-        return ($this->project->percentage / 100) * $this->amount + $this->amount;
+        return ($this->project->percentage / 100) * $this->amount * (int)$this->project->investition_time + $this->amount;
     }
 
     public function getStatusToDisplay()

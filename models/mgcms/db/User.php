@@ -71,6 +71,7 @@ use app\components\mgcms\MgHelpers;
  * @property User $createdBy
  * @property User[] $users
  * @property Payment[] $payments
+ * @property Payment[] $paymentsApproved
  */
 class User extends BaseUser implements IdentityInterface
 {
@@ -163,6 +164,14 @@ class User extends BaseUser implements IdentityInterface
     public function getPayments()
     {
         return $this->hasMany(Payment::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPaymentsApproved()
+    {
+        return $this->hasMany(Payment::className(), ['user_id' => 'id'])->andWhere(['payment.status' => Payment::STATUS_PAYMENT_CONFIRMED]);
     }
 
     public function beforeValidate()
