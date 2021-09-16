@@ -52,11 +52,11 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
         $subscribeForm = new SubscribeForm();
         if ($subscribeForm->load(Yii::$app->request->post()) && $subscribeForm->subscribe($model)) {
-            MgHelpers::setFlashSuccess(MgHelpers::getSettingTranslated('email project subscription','Thank you for subscribing'));
+            MgHelpers::setFlashSuccess(MgHelpers::getSettingTranslated('email project subscription', 'Thank you for subscribing'));
             return $this->refresh();
         }
 
-        return $this->render('view', ['model' => $model, 'subscribeForm'=> $subscribeForm]);
+        return $this->render('view', ['model' => $model, 'subscribeForm' => $subscribeForm]);
     }
 
     public function actionBuy($id)
@@ -73,37 +73,39 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             return $this->redirect(['site/account']);
         }
         if ($user->status != User::STATUS_VERIFIED) {
-            MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'You need to verify by Fiber ID, to do so go to <a href="'. Url::to('site/verify-fiber-id')).'">Verify</a>');
+            MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'You need to verify by Fiber ID, to do so go to <a href="' . Url::to('site/verify-fiber-id')) . '">Verify</a>');
             return $this->redirect(['site/account']);
         }
+
+
 
 
         $project = Project::find()
             ->where(['status' => Project::STATUS_ACTIVE, 'id' => $id])
             ->one();
 
-        if(!$project->fiber_collect_id){
+        if (!$project->fiber_collect_id) {
             MgHelpers::setFlashError(Yii::t('db', 'Project does not have fiber collect id'));
             return $this->back();
         }
 
         if (Yii::$app->request->post('plnToInvest')) {
-            if(Yii::$app->request->post('plnToInvest') < $project->token_minimal_buy){
-                MgHelpers::setFlashError(Yii::t('db', 'Amount is too low, minimal investition amount is ').$project->token_minimal_buy);
+            if (Yii::$app->request->post('plnToInvest') < $project->token_minimal_buy) {
+                MgHelpers::setFlashError(Yii::t('db', 'Amount is too low, minimal investition amount is ') . $project->token_minimal_buy);
                 return $this->refresh();
             }
             return $this->render('buy2', ['project' => $project, 'amount' => Yii::$app->request->post('plnToInvest')]);
         }
 
         if (Yii::$app->request->post('plnToInvest2')) {
-            if(!Yii::$app->request->post('acceptTerms0') || !Yii::$app->request->post('acceptTerms1')){
-                MgHelpers::setFlashError(Yii::t('db','You must accept terms'));
+            if (!Yii::$app->request->post('acceptTerms0') || !Yii::$app->request->post('acceptTerms1')) {
+                MgHelpers::setFlashError(Yii::t('db', 'You must accept terms'));
                 return $this->render('buy2', ['project' => $project, 'amount' => Yii::$app->request->post('plnToInvest2')]);
             }
             return $this->render('buy3', ['project' => $project, 'amount' => Yii::$app->request->post('plnToInvest2')]);
         }
 
-        if(Yii::$app->request->post('plnToInvest3')){
+        if (Yii::$app->request->post('plnToInvest3')) {
             $plnToInvest = str_replace(',', '.', Yii::$app->request->post('plnToInvest3'));
             if (!is_numeric($plnToInvest)) {
                 MgHelpers::setFlashError(Yii::t('db', 'Invalid value'));
@@ -125,9 +127,17 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $payment->save();
 
             $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
-            $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
+            $fiberClient = new FiberPayClient($fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
 
-            $item = $fiberClient->addCollectItem($project->fiber_collect_id, $project->pay_description, $payment->amount, 'PLN', Url::to(['project/notify','hash'=>$hash], true), $hash);
+            $item = $fiberClient->addCollectItem(
+                $project->fiber_collect_id,
+                $project->pay_description,
+                $payment->amount,
+                'PLN',
+                Url::to(['project/notify', 'hash' => $hash], true),
+                $hash, null,
+                Url::to(['project/view', 'name' => $project->name], true)
+            );
             $itemObj = Json::decode($item);
 
             $project->money_full += $plnToInvest;
@@ -157,7 +167,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         \Yii::info(JSON::encode($this->request->headers), 'own');
         \Yii::info(JSON::encode($this->request->rawBody), 'own');
 
-        $body =  $this->request->rawBody;
+        $body = $this->request->rawBody;
         $headers = $this->request->headers;
         $jwtDecoded = JWT::decode($body);
         $status = $jwtDecoded->payload->orderItem->data->status;
@@ -165,15 +175,15 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
         $apiKey = $headers['api-key'];
         \Yii::info($apiKey, 'own');
-        if($apiKey != $fiberPayConfig['apikey']){
+        if ($apiKey != $fiberPayConfig['apikey']) {
             $this->throw404();
         }
         $hashDecoded = JSON::decode(MgHelpers::decrypt($hash));
         \Yii::info($hashDecoded, 'own');
         $paymentId = $hashDecoded['paymentId'];
         $userId = $hashDecoded['userId'];
-        $payment = Payment::find()->where(['id' => $paymentId,'user_id'=>$userId])->one();
-        if(!$payment){
+        $payment = Payment::find()->where(['id' => $paymentId, 'user_id' => $userId])->one();
+        if (!$payment) {
             $this->throw404();
         }
 
@@ -191,13 +201,12 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $saved = $payment->save();
 
 
-
         \Yii::info('saved ' . $saved, 'own');
 
         Yii::$app->mailer->compose('afterBuy', ['model' => $payment])
             ->setTo($payment->user->email)
             ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
-            ->setSubject(Yii::t('db','Thank you for purchase'))
+            ->setSubject(Yii::t('db', 'Thank you for purchase'))
             ->send();
 
         \Yii::info('mail ', 'own');
