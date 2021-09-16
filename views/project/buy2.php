@@ -144,8 +144,14 @@ $model = $project;
             </div>
 
             <div class="row">
-                <div class="col-md-4">
-                    <input hidden name="plnToInvest2" value="<?= $amount?>"/>
+                <div class="col-md-3">
+                    <input hidden name="plnToInvest2" value="<?= $amount ?>"/>
+                    <a href="javascript:history.back()" class="btn btn-primary btn-block">
+                        <?= Yii::t('db', 'Back') ?>
+                    </a>
+
+                </div>
+                <div class="col-md-3">
                     <input
                             type="submit"
                             class="btn btn-primary btn-block"
@@ -153,8 +159,6 @@ $model = $project;
                     />
                 </div>
             </div>
-
-
 
 
             <?php ActiveForm::end(); ?>
