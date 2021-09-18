@@ -204,4 +204,8 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     {
         return $this->file && $this->file->isImage() ? Html::img($this->file->getImageSrc(140, 100)) : '';
     }
+
+    public function getLtv(){
+        return $this->money_full ? (number_format($this->money / $this->money_full, 2) * 100).'%' : '';
+    }
 }

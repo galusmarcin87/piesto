@@ -21,9 +21,9 @@ $payment = $model;
             ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'visible' => false],
             'thumbFront:raw',
+            'value',
             'money_full',
-            'money',
-            'percentage',
+            'ltv',
             [
                 'label' => Yii::t('db', 'Investition date'),
                 'value' => function ($model, $key, $index, $column) use ($payment){
@@ -33,9 +33,9 @@ $payment = $model;
             'date_crowdsale_start',
             'date_crowdsale_end',
             [
-                'label' => Yii::t('db', 'Expected return with profit'),
+                'label' => Yii::t('db', 'Benefit'),
                 'value' => function ($model, $key, $index, $column) use ($payment){
-                    return $payment->getBenefitWithAmount();
+                    return $payment->getBenefit();
                 },
             ],
         ];
