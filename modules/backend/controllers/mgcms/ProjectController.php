@@ -114,7 +114,7 @@ class ProjectController extends MgBackendController
         }
 
         $model->language = $lang;
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
+        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll(['payments'])) {
             $this->_assignDownloadFiles($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

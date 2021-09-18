@@ -156,7 +156,7 @@ yii\jui\JuiAsset::register($this);
 
         <?= $form->field6md($model, 'token_currency')->textInput(['placeholder' => '']) ?>
 
-        <?= $form->field6md($model, 'token_blockchain')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
+        <?= $form->field6md($model, 'value')->textInput(['maxlength' => true, 'placeholder' => '']) ?>
 
         <?= $form->field6md($model, 'token_to_sale')->textInput(['placeholder' => '']) ?>
 

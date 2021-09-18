@@ -252,7 +252,7 @@ $(document).ready(function () {
               $Value.text(Math.floor(this.countNum));
             },
             complete: function () {
-              $Value.text(String(this.countNum).replace('.', ','));
+              $Value.text(String(this.countNum).replace('.', ',').replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1 '));
               //alert('finished');
             },
           }
