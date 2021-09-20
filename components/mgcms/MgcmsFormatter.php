@@ -13,4 +13,9 @@ class MgcmsFormatter extends \yii\i18n\Formatter
   {
     return MgHelpers::getFormatedFileSize($value);
   }
+
+    public function asNumberSeparatedWithSpace($value)
+    {
+        return number_format($value, 2, '.', ' ');
+    }
 }

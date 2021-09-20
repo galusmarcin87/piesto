@@ -64,7 +64,7 @@ $model = $project;
                             </span>
                             <span>
                               <strong>
-                                <?= $amount ?>
+                                <?= number_format($amount,2,'.',' ') ?>
                               </strong>
                             </span>
                         </li>
@@ -83,7 +83,7 @@ $model = $project;
                               <?= Yii::t('db', 'Expected profit'); ?>:
                             </span>
                             <span>
-                              <strong> <?= $amount * ($model->percentage / 100) ?> </strong>
+                              <strong> <?=  number_format($amount * ($model->percentage / 100),2,'.',' ') ?> </strong>
                             </span>
                         </li>
 
@@ -92,7 +92,7 @@ $model = $project;
                               <?= Yii::t('db', 'Expected return with profit'); ?>:
                             </span>
                             <span>
-                              <strong> <?= $amount * ($model->percentage / 100) + $amount ?> </strong>
+                              <strong> <?= number_format($amount * ($model->percentage / 100) + $amount,2,'.',' ') ?> </strong>
                             </span>
                         </li>
                     </ul>

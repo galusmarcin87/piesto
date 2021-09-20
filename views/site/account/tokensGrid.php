@@ -35,6 +35,7 @@ $dataProvider = $searchModel->search($searchParams);
         [
             'attribute' => 'amount',
             'label' => Yii::t('db', 'My investition'),
+            'format' => 'numberSeparatedWithSpace'
         ],
         'statusToDisplay:raw',
         [
@@ -43,7 +44,7 @@ $dataProvider = $searchModel->search($searchParams);
         ],
         'project.investition_time',
         'project.daysLeft',
-        'benefitWithAmount',
+        'benefitWithAmount:numberSeparatedWithSpace',
         [
             'label' => Yii::t('db', 'Increse investition'),
             'value' => function ($model, $key, $index, $column) {

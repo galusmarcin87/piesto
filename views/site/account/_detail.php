@@ -21,8 +21,8 @@ $payment = $model;
             ['class' => 'yii\grid\SerialColumn'],
             ['attribute' => 'id', 'visible' => false],
             'thumbFront:raw',
-            'value',
-            'money_full',
+            'value:numberSeparatedWithSpace',
+            'money_full:numberSeparatedWithSpace',
             'ltv',
             [
                 'label' => Yii::t('db', 'Investition date'),
@@ -37,6 +37,7 @@ $payment = $model;
                 'value' => function ($model, $key, $index, $column) use ($payment){
                     return $payment->getBenefit();
                 },
+                'format'=> "numberSeparatedWithSpace"
             ],
         ];
         echo GridView::widget([

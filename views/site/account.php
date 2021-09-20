@@ -31,9 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 <h1><?= Yii::t('db', 'Hello') ?> <?= $model ?></h1>
                 <p><?= Yii::t('db', 'Number of projects invested') ?>: <?= count($model->paymentsApproved) ?></p>
                 <p><?= Yii::t('db', 'The amount of funds invested') ?>
-                    : <?= array_sum(array_column($model->paymentsApproved, 'amount')); ?></p>
+                    : <?= number_format(array_sum(array_column($model->paymentsApproved, 'amount')), 2, '.', ' '); ?></p>
                 <p><?= Yii::t('db', 'Assumed profit') ?>
-                    : <?= array_sum(array_column($model->paymentsApproved, 'benefit')); ?></p>
+                    : <?= number_format(array_sum(array_column($model->paymentsApproved, 'benefit')), 2, '.', ' '); ?></p>
             </div>
 
         </div>
