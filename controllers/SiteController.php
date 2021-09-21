@@ -269,9 +269,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
         $model = new LoginForm();
         $modelRegister = new RegisterForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-//            if ($this->getUserModel()->step != User::STEP_VERIFIED) {
-//                return $this->redirect(['site/fill-account', 'step' => $this->getUserModel()->step]);
-//            }
+            if ($model->status != User::STATUS_VERIFIED) {
+                MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('db', 'You need to verify by Fiber ID, to do so go to <a href="' . Url::to('site/verify-fiber-id')) . '">Verify</a>');
+            }
             return $this->goBack();
         }
         if ($modelRegister->load(Yii::$app->request->post()) && $modelRegister->register()) {
@@ -357,9 +357,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
             $this->throw404();
         }
 
-        if ($this->getUserModel()->status != User::STATUS_VERIFIED) {
-            return $this->redirect(['site/fill-account']);
-        }
+//        if ($this->getUserModel()->status != User::STATUS_VERIFIED) {
+//            return $this->redirect(['site/fill-account']);
+//        }
 
 
         $model->scenario = 'account';
