@@ -136,7 +136,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
                 'PLN',
                 Url::to(['project/notify', 'hash' => $hash], true),
                 $hash, null,
-                Url::to(['project/view', 'name' => $project->name], true)
+                Url::to(['site/account'], true)
             );
             $itemObj = Json::decode($item);
 
