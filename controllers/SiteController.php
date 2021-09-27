@@ -526,6 +526,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
                     ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
                     ->setSubject(Yii::t('db','Verification successful'))
                     ->send();
+                \Yii::info('mail accepted', 'own');
                 break;
 
             case 'rejected':
@@ -534,6 +535,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
                     ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
                     ->setSubject(Yii::t('db','Verification rejected'))
                     ->send();
+                \Yii::info('mail rejected', 'own');
                 break;
 
         }
