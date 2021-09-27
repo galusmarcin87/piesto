@@ -23,6 +23,7 @@ $payment = $model;
             'thumbFront:raw',
             'value:numberSeparatedWithSpace',
             'money_full:numberSeparatedWithSpace',
+            'percentage',
             'ltv',
             [
                 'label' => Yii::t('db', 'Investition date'),

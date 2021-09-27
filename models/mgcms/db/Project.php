@@ -206,6 +206,6 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     }
 
     public function getLtv(){
-        return $this->money_full ? (number_format($this->money / $this->money_full, 2) * 100).'%' : '';
+        return $this->value ? (number_format($this->money_full / $this->value, 2) * 100).'%' : '';
     }
 }
