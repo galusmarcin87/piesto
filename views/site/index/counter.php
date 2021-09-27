@@ -7,6 +7,8 @@ use yii\helpers\Url;
 if(!$project->money_full){
     return false;
 }
+
+$formatter = \Yii::$app->formatter;
 ?>
 <section class="Counter">
     <div class="container">
@@ -26,7 +28,7 @@ if(!$project->money_full){
                         >0</span
                         >%)
                     </div>
-                    <div class="Invest-counter__target">CEL: <?= $project->money_full ?> PLN</div>
+                    <div class="Invest-counter__target">CEL: <?= $formatter->asSumberSeparatedWithSpace($project->money_full) ?> PLN</div>
                 </div>
                 <div class="Invest-counter__value-line-wrapper">
                     <div

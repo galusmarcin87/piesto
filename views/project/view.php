@@ -96,7 +96,7 @@ $index = 0;
                             >%)
                         </div>
                         <div class="Invest-counter__target">
-                            cel: <?= $model->money_full ?> PLN
+                            cel: <?= \Yii::$app->formatter->asNumberSeparatedWithSpace($model->money_full) ?> PLN
                         </div>
                     </div>
                     <div class="Invest-counter__value-line-wrapper">
