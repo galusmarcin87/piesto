@@ -9,11 +9,10 @@
 <?= $this->render('_field', ['width' => 6, 'form' => $form, 'model' => $model, 'attribute' => 'last_name', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 
 <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'country', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
-<?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'voivodeship', 'required' => true]) ?>
 <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'postcode', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'city', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 
 <?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'address', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 
-<?= $this->render('_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'birthdate', 'required' => true, 'type' => 'date']) ?>
+
 

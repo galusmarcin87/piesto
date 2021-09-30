@@ -24,22 +24,27 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false);
 
         //          echo $form->errorSummary($model);
         ?>
+<p><span style="font-size: 10pt;"><span style="color: #ff0000; font-size: 12pt;"><strong>DOKOŃCZ WERYFIKACJĘ:</strong></span><br />Klikając w poniższy link, zostaniesz przeniesiony do bezpiecznej bramki płatności &ndash; Fiber ID*.</span>&nbsp;<span style="font-size: 10pt;">Tam wypełnisz swoje dane osobowe i adresowe.&nbsp;</span><span style="font-size: 10pt;">Na koniec zostaniesz przeniesiony do swojego banku, celem potwierdzenia poprawności wprowadzonych danych.&nbsp;<br /><span style="color: #ff0000; font-size: 12pt;"><strong>UWAGA:</strong></span> <br /><span style="color: #ff0000;"><strong>ZAZNACZ JEDNE RACHUNEK BANKOWY, NA KT&Oacute;RY OTRZYMASZ ZWROT POŻYCZKI.</strong></span><br /></span><span style="font-size: 10pt;">Poniższa weryfikacja jest konieczna, aby m&oacute;c inwestować w projekty na platformie piesto.io //&nbsp;<span style="font-size: 10pt;">*Fiber&nbsp;ID - bezpieczna bramka płatności, wpisana do prowadzonego przez Komisję Nadzoru Finansowego rejestru małych instytucji płatniczych pod numerem MIP28/2019.</span><br /></span></p>
+
+        <div class="row bottom10">
+            <div class="col-md-6 offset-3">
+
+		 <a href="<?= \yii\helpers\Url::to('site/verify-fiber-id') ?>"
+                   class="btn btn-default verify top10"><?= Yii::t('db', 'Update bank number by Piber ID') ?></a><br><br>
+            </div>
+        </div>
 
         <div class="row">
+
             <?= $this->render('../fillAccount/_personForm', ['form' => $form, 'model' => $model]) ?>
 
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'citizenship', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
-            <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'id_document_type', 'required' => true]) ?>
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'id_document_no', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'pesel', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
-
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'phone', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
             <?= $this->render('../fillAccount/_field', ['width' => 3, 'form' => $form, 'model' => $model, 'attribute' => 'bank_no', 'required' => true, 'addOpts' => ['disabled' => true]]) ?>
 
-            <div class="col-md-3">
-                <a href="<?= \yii\helpers\Url::to('site/verify-fiber-id') ?>"
-                   class="btn btn-default verify top10"><?= Yii::t('db', 'Update bank number by Piber ID') ?></a>
-            </div>
+
 
         </div>
 
