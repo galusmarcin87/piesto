@@ -459,7 +459,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
     {
         $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
         $fiberClient = new FiberIdClient($fiberPayConfig['fiberIdApiKey'], $fiberPayConfig['fiberIdSecret'], $fiberPayConfig['testServer']);
-        $order = $fiberClient->createOrder('individual', 'asdas', Url::to(['site/verify-fiber-id-callback', 'hash' => MgHelpers::encrypt(serialize(['userId' => $this->getUserModel()->id]))], true), Url::to('site/account', true));
+        $order = $fiberClient->createOrder('individual', MgHelpers::getSetting('fiberId - description'), Url::to(['site/verify-fiber-id-callback', 'hash' => MgHelpers::encrypt(serialize(['userId' => $this->getUserModel()->id]))], true), Url::to('site/account', true));
 
         if ($order->url) {
             return $this->redirect($order->url);
