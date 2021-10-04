@@ -140,7 +140,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             );
             $itemObj = Json::decode($item);
 
-            $project->money_full += $plnToInvest;
+            $project->money += $plnToInvest;
             $saved = $project->save();
 
             $this->redirect($itemObj['data']['redirect']);
