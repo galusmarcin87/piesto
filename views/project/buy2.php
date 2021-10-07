@@ -64,7 +64,7 @@ $model = $project;
                             </span>
                             <span>
                               <strong>
-                                <?= number_format($amount,2,'.',' ') ?>
+                                <?= number_format($amount,2,'.',' ') ?> PLN 
                               </strong>
                             </span>
                         </li>
@@ -83,7 +83,7 @@ $model = $project;
                               <?= Yii::t('db', 'Expected profit'); ?>:
                             </span>
                             <span>
-                              <strong> <?=  number_format($amount * ($model->percentage / 100),2,'.',' ') ?> </strong>
+                              <strong> <?=  number_format($amount * ($model->percentage / 100 * $model->investition_time),2,'.',' ') ?> PLN </strong>
                             </span>
                         </li>
 
@@ -92,7 +92,7 @@ $model = $project;
                               <?= Yii::t('db', 'Expected return with profit'); ?>:
                             </span>
                             <span>
-                              <strong> <?= number_format($amount * ($model->percentage / 100) + $amount,2,'.',' ') ?> </strong>
+                              <strong> <?= number_format($amount * ($model->percentage / 100 * $model->investition_time) + $amount,2,'.',' ') ?> PLN </strong>
                             </span>
                         </li>
                     </ul>
@@ -101,7 +101,7 @@ $model = $project;
 
             <div class="row">
                 <? foreach ($project->files as $file): ?>
-                    <div class="col-md-3"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <?= $file ?></div>
+                    <div class="col-md-3"><i class="" aria-hidden="true"></i> <?= $file ?></div>
                 <? endforeach; ?>
             </div>
 

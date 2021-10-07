@@ -36,10 +36,10 @@ $model = $project;
 
             <table>
                 <tr>
-                    <th><?= Yii::t('db', 'You invest') ?></th><td><?= number_format($amount,2,'.',' ')?>PLN</td>
+                    <th><?= Yii::t('db', 'You invest') ?></th><td><?= number_format($amount,2,'.',' ')?> PLN </td>
                 </tr>
                 <tr>
-                    <th><?= Yii::t('db', 'Your expected profit') ?></th><td><?= number_format($amount * ($project->percentage / 100),2,'.',' ')?>PLN</td>
+                    <th><?= Yii::t('db', 'Your expected profit') ?></th><td><?= number_format($amount * ($project->percentage / 100 * $model->investition_time),2,'.',' ')?> PLN </td>
                 </tr>
             </table>
 
