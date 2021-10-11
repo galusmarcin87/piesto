@@ -65,6 +65,8 @@ use app\components\mgcms\MgHelpers;
  * @property string $step
  * @property integer $is_corespondence
  * @property integer $file_text
+ * @property integer $acceptTerms5
+ * @property integer $acceptTerms6
  *
  *
  *
@@ -122,7 +124,7 @@ class User extends BaseUser implements IdentityInterface
     {
         return [
             [['username'], 'required'],
-            [['status', 'created_by', 'file_id'], 'integer'],
+            [['status', 'created_by', 'file_id', 'acceptTerms5', 'acceptTerms6'], 'integer'],
             [['created_on', 'last_login', 'birthdate', 'country', 'voivodeship', 'street', 'flat_no', 'citizenship', 'id_document_no', 'id_document_type', 'pesel', 'oldPassword'], 'safe'],
             [['username', 'password', 'first_name', 'last_name', 'email', 'address', 'postcode', 'city', 'cor_first_name', 'cor_last_name', 'cor_country', 'cor_voivodeship', 'cor_street', 'cor_flat_no', 'cor_house_no', 'cor_city', 'cor_postcode'], 'string', 'max' => 245],
             [['role', 'language'], 'string', 'max' => 45],

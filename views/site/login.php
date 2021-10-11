@@ -104,14 +104,15 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
                 <?= $this->render('login/acceptCheckbox',['number' => 2,'form'=> $form, 'modelRegister' => $modelRegister])?>
                 <?= $this->render('login/acceptCheckbox',['number' => 3,'form'=> $form, 'modelRegister' => $modelRegister])?>
                 <?= $this->render('login/acceptCheckbox',['number' => 4,'form'=> $form, 'modelRegister' => $modelRegister])?>
-                <?= $this->render('login/acceptCheckbox',['number' => 5,'form'=> $form, 'modelRegister' => $modelRegister])?>
-                <?= $this->render('login/acceptCheckbox',['number' => 6,'form'=> $form, 'modelRegister' => $modelRegister])?>
+                <?= $this->render('login/acceptCheckbox',['number' => 5,'form'=> $form, 'modelRegister' => $modelRegister, 'required' => false])?>
+                <?= $this->render('login/acceptCheckbox',['number' => 6,'form'=> $form, 'modelRegister' => $modelRegister, 'required' => false])?>
 
 
 
                     <div class="text-center">
                         <input
                                 type="submit"
+                                onclick="return checkTerms()"
                                 class="Contact-form__submit btn btn-success btn-block"
                                 value="<?= Yii::t('db', 'Register'); ?>"
                         />
@@ -123,3 +124,15 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(false)
     </div>
 </section>
 
+<script>
+    function checkTerms(){
+      const reqTerms = ['acceptTerms','acceptTerms2', 'acceptTerms3', 'acceptTerms4'];
+      let alertSent = false;
+      for(var i = 0; i < reqTerms.length; i++){
+        if(!$('.Form__checkbox[name="RegisterForm['+reqTerms[i]+']"]').is(':checked') && !alertSent){
+          alertSent = true;
+          alert('Zaznacz wymagane zgody');
+        }
+      }
+    }
+</script>

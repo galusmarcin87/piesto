@@ -41,9 +41,9 @@ class RegisterForm extends Model
                 'special' => 0,
                 'userAttribute' => 'username'],
             ['passwordRepeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('db', "Passwords don't match")],
-            [['acceptTerms', 'acceptTerms2', 'acceptTerms3', 'acceptTerms4', 'acceptTerms5', 'acceptTerms6'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['acceptTerms', 'acceptTerms2', 'acceptTerms3', 'acceptTerms4'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
             ['username', 'email'],
-            ['phone', 'safe'],
+            [['phone', 'acceptTerms5', 'acceptTerms6'], 'safe'],
 //        [['password'], StrengthValidator::className(), 'min' => 8, 'digit' => 1, 'special' => 1, 'upper' => 1, 'lower' => 1, 'userAttribute' => 'username'],
         ];
     }
@@ -62,7 +62,7 @@ class RegisterForm extends Model
             'acceptTerms3' => MgHelpers::getSettingTranslated('register_terms_label3', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms4' => MgHelpers::getSettingTranslated('register_terms_label4', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms5' => MgHelpers::getSettingTranslated('register_terms_label5', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
-            'acceptTerms5' => MgHelpers::getSettingTranslated('register_terms_label6', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'acceptTerms6' => MgHelpers::getSettingTranslated('register_terms_label6', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
         ];
     }
 
@@ -79,6 +79,8 @@ class RegisterForm extends Model
             $user->first_name = $this->firstName;
             $user->last_name = $this->surname;
             $user->phone = $this->phone;
+            $user->acceptTerms5 = (int)$this->acceptTerms5;
+            $user->acceptTerms6 = (int)$this->acceptTerms6;
             $saved = $user->save();
             if (!$saved) {
                 MgHelpers::setFlashError(Yii::t('db', 'Error during registration:') . MgHelpers::getErrorsString($user->getErrors()));

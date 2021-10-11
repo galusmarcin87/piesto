@@ -1,3 +1,4 @@
+<?$required = isset($required) ? $required : true;?>
 <div class="form-group text-left">
     <input type="hidden" name="RegisterForm[acceptTerms<?=$number?>]" value="0">
     <input
@@ -6,7 +7,7 @@
             type="checkbox"
             id="agree<?=$number?>"
             value="1"
-            required
+            <?= $required ? 'required' : ''?>
     />
     <label for="agree<?=$number?>" >
         <?= \app\components\mgcms\MgHelpers::getSettingTranslated('register_terms_label'.$number, ' zgoda '.$number) ?>
