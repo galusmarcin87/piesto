@@ -131,7 +131,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
             $item = $fiberClient->addCollectItem(
                 $project->fiber_collect_id,
-                $project->pay_description,
+                $project->pay_description . ' od '. ($user->first_name . ' ' . $user->last_name),
                 $payment->amount,
                 'PLN',
                 Url::to(['project/notify', 'hash' => $hash], true),
