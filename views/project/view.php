@@ -131,7 +131,11 @@ $index = 0;
                         </div>
                     </div>
                 </div>
-                <b><?= Yii::t('db', 'Files to download'); ?></b>
+ <div>
+<center><a class="btn btn-success btn--medium"
+                       href="<?= Url::to(['project/buy', 'id' => $model->id]) ?>"><?= Yii::t('db', 'INVEST'); ?></a></center>
+</div><br>
+                <center><b><?= Yii::t('db', 'Files to download'); ?></b></center>
                 <div>
                     <? foreach ($model->fileRelations as $fileRelation): ?>
                         <? if ($fileRelation->json != '1' || !$fileRelation->file) continue ?>
