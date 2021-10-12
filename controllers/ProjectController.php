@@ -140,8 +140,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             );
             $itemObj = Json::decode($item);
 
-            $project->money += $plnToInvest;
-            $saved = $project->save();
+
 
             $this->redirect($itemObj['data']['redirect']);
         }
@@ -190,6 +189,9 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         switch ($status) {
             case 'received':
                 $payment->status = Payment::STATUS_PAYMENT_CONFIRMED;
+                $project = $payment->project;
+                $project->money += $payment->amount;
+                $saved = $project->save();
                 break;
             case 'Canceled':
                 $payment->status = Payment::STATUS_SUSPENDED;
