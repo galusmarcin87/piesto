@@ -71,6 +71,8 @@ $this->registerJs($search);
           ],
           'filterInputOptions' => ['placeholder' => Yii::t('app', 'User'), 'id' => 'grid-payment-search-user_id']
       ],
+      'user.first_name',
+      'user.last_name',
       'amount',
       [
           'attribute' => 'status',
