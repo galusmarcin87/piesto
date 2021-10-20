@@ -25,8 +25,8 @@ $model = $project;
 
             <h3>
                 <?= Yii::t('db', 'You invest in project'); ?> <?= $project ?>&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="<?= $project->linkUrl ?>"
-                   class="btn btn-success "><?= Yii::t('db', 'Link to investition') ?></a>
+                <a href="<?= $project->linkUrl ?>" target="_blank"
+                   class="btn btn-success"><?= Yii::t('db', 'Link to investition') ?></a>
             </h3>
 
             <?php
@@ -99,11 +99,6 @@ $model = $project;
                 </div>
             </div>
 
-            <div class="row">
-                <? foreach ($project->files as $file): ?>
-                    <div class="col-md-3"><i class="" aria-hidden="true"></i> <?= $file ?></div>
-                <? endforeach; ?>
-            </div>
 
             <div class="row top10">
                 <div class="col-md-12 top10">
